@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>CSS 渲染：CSS 是如何绘制颜色的？ - 亚美大前端（FED）</title><meta name="description" content="重点介绍 CSS 的颜色系统，从颜色基本原理讲解 RGB 颜色、CMYK 颜色和 HSV 颜色，还有 Alpha 通道"/><meta property="og:description" content="重点介绍 CSS 的颜色系统，从颜色基本原理讲解 RGB 颜色、CMYK 颜色和 HSV 颜色，还有 Alpha 通道"/>    <meta name="keywords" content="YM,亚美,前端,博客"/><link rel="dns-prefetch" href="https://ymfed.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ymfed.github.io"><link rel="icon" type="image/png" href="http://fed.ym/images/czh-fed-logo.png"/><link rel="apple-touch-icon" href="http://fed.ym/images/czh-fed-logo.png"><link rel="shortcut icon" type="image/x-icon" href="http://fed.ym/images/czh-fed-logo.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="CSS 渲染：CSS 是如何绘制颜色的？ - 亚美大前端（FED）"/><meta property="og:site_name" content="亚美大前端（FED）"/><meta property="og:url"      content="https://ymfed.github.io/articles/2019/07/18/1563454497520.html?"/><meta property="og:image" content="http://fed.ym/images/czh-fed-logo.png"/><link rel="search" type="application/opensearchdescription+xml" title="CSS 渲染：CSS 是如何绘制颜色的？ - 亚美大前端（FED）" href="/opensearch.xml"><link href="https://ymfed.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ymfed.github.io/manifest.json">        <link rel="canonical" href="https://ymfed.github.io/articles/2019/07/18/1563454497520.html">        <link rel="stylesheet"
+              href="https://ymfed.github.io/skins/9IPHP/css/base.css?1585645466987"/>
+            <link rel="prev" title="webpack——从构建项目到优化" href="https://ymfed.github.io/articles/2019/07/17/1563358541278.html">
+            <link rel="next" title="微前端在项目中的应用及实现方案" href="https://ymfed.github.io/articles/2019/07/19/1563507662350.html">
+    </head>
+<body>
+<header>
+    <div class="banner">
+        <div class="fn-clear wrapper">
+            <a href="https://ymfed.github.io" class="logo" rel="start"></a>
+            <h2 class="subtitle-wrap">
+                <p class="subtitle">亚美大前端（FED）</p>
+                <p class="description">既要埋头干事，也要抬头看路</p>
+            </h2>
+            <div class="fn-right">
+                    <a class="fn__flex-inline" href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i>&nbsp;开始使用
+                    </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="fn-clear wrapper">
+            <nav class="fn-left">
+                <a href="https://ymfed.github.io">
+                    <i class="icon-home"></i>
+                    首页
+                </a>
+                <a href="https://ymfed.github.io/tags.html" rel="section">
+                    <i class="icon-tags"></i> 标签墙
+                </a>
+                <a href="https://ymfed.github.io/archives.html">
+                    <i class="icon-inbox"></i> 存档
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/links.html">
+                    <i class="icon-link"></i> 友情链接
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/team.html">
+                    <i class="icon-category"></i> 团队介绍
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/join.html">
+                    <i class="icon-register"></i> 加入我们
+                </a>
+            </nav>
+            <div class="fn-right">
+                <form class="form" action="https://ymfed.github.io/search">
+                    <input placeholder="搜索" id="search" type="text" name="keyword"/>
+                    <button type="submit"><i class="icon-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="responsive fn-none">
+    <i class="icon-list"></i>
+    <ul class="list">
+                <li>
+                    <a href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i> 开始使用
+                    </a>
+                </li>
+        <li>
+            <a href="https://ymfed.github.io">
+                <i class="icon-home"></i>
+                首页
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/tags.html" rel="section">
+                <i class="icon-tags"></i> 标签墙
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/archives.html">
+                <i class="icon-inbox"></i> 存档
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/links.html">
+                <i class="icon-link"></i> 友情链接
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/team.html">
+                <i class="icon-category"></i> 团队介绍
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/join.html">
+                <i class="icon-register"></i> 加入我们
+            </a>
+        </li>
+    </ul>
+</div><div class="wrapper">
+    <div class="main-wrap">
+        <main>
+            <article class="post">
+                <header>
+                    <h2>
+                        <a rel="bookmark" href="https://ymfed.github.io/articles/2019/07/18/1563454497520.html">
+                            CSS 渲染：CSS 是如何绘制颜色的？
+                        </a>
+                    </h2>
+                    <div class="meta">
+                                <span class="vditor-tooltipped vditor-tooltipped__n"
+                                      aria-label="更新日期">
+                                    <i class="icon-date"></i>
+                                    <time>
+                                    2019-07-19
+                                    </time>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="评论数">
+                                    <i class="icon-comments"></i>
+                                    <a href="https://ymfed.github.io/articles/2019/07/18/1563454497520.html#b3logsolocomments">
+                                        <span data-uvstatcmt="1563454497520">0</span> 评论</a>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="浏览数">
+                                    <i class="icon-views"></i>
+                        <span data-uvstaturl="https://ymfed.github.io/articles/2019/07/18/1563454497520.html">22</span> 浏览
+                                </span>
+                    </div>
+                </header>
+
+                <div class="vditor-reset post__content">
+                    <p><img src="https://img.hacpai.com/bing/20171228.jpg?imageView2/1/w/960/h/540/interlace/1/q/100" alt=""></p>
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>CSS渲染：CSS是如何绘制颜色的？</title>
+
+
+<div>
+<p>你好，我们今天来聊一下 CSS 的渲染相关的属性：颜色。</p>
+<p>CSS 的一些属性决定了盒的位置，那么今天我讲到的属性就决定了盒如何被渲染。</p>
+<h2 id="toc_h2_0">颜色的原理</h2>
+<p>首先我们来讲讲颜色，最常见的颜色相关的属性就是 <code>color</code> 和 <code>background-color</code>。</p>
+<p>这两个属性没什么好讲的，它们分别表示文字颜色和背景颜色，我们这里重点讲讲颜色值。</p>
+<h3 id="toc_h3_1">RGB 颜色</h3>
+<p>我们在计算机中，最常见的颜色表示法是 RGB 颜色，<strong>它符合光谱三原色理论：红、绿、蓝三种颜色的光可以构成所有的颜色。</strong></p>
+<img src="https://static001.geekbang.org/resource/image/7f/a1/7f5bf39cbe44e36758683a674f9fcfa1.png" alt="">
+<p>为什么是这三种颜色呢？这跟人类的视神经系统相关，人类的视觉神经分别有对红、绿、蓝三种颜色敏感的类型。</p>
+<p>顺便提一下，人类对红色的感觉最为敏感，所以危险信号提示一般会选择红色；而红绿色盲的人，就是红和绿两种神经缺失一种。其它的动物视觉跟人可能不太一样，比如皮皮虾拥有 16 种视锥细胞，所以我猜它们看到的世界一定特别精彩。</p>
+<p>现代计算机中多用 0 - 255 的数字表示每一种颜色，这正好占据了一个字节，每一个颜色就占据三个字节。</p>
+<p>这个数字远远超过了人体的分辨能力，因此，上世纪 90 年代刚推出这样的颜色系统的时候，它被称作真彩色。早年间还有更节约空间，但是精度更低的 16 色、256 色、8 位色和 16 位色表示法。</p>
+<p>红绿蓝三种颜色的光混合起来就是白光，没有光就是黑暗，所以在 RGB 表示法中，三色数值最大表示白色，三色数值为 0 表示黑色。</p>
+<h3 id="toc_h3_2">CMYK 颜色</h3>
+<p>如果你上过小学美术课，应该听过“红黄蓝”三原色的说法，这好像跟我们说的不太一样。实际上是这样的，颜料显示颜色的原理是它吸收了所有别的颜色的光，只反射一种颜色，所以颜料三原色其实是红、绿、蓝的补色，也就是：品红、黄、青。因为它们跟红、黄、蓝相近，所以有了这样的说法。</p>
+<p><img src="https://static001.geekbang.org/resource/image/15/1b/15fefe9f80ec8e1f7bd9ecd223feb61b.png" alt=""></p>
+<p>在印刷行业，使用的就是这样的三原色（品红、黄、青）来调配油墨，这种颜色的表示法叫做 CMYK，它用一个四元组来表示颜色。</p>
+<p>你一定会好奇，为什么它比三原色多了一种，其实答案并不复杂，在印刷行业中，黑色颜料价格最低，而品红、黄、青颜料价格较贵，如果要用三原色调配黑色，经济上是不划算的，所以印刷时会单独指定黑色。</p>
+<p>对 CMYK 颜色表示法来说，同一种颜色会有多种表示方案，但是我们参考印刷行业的习惯，会尽量优先使用黑色。</p>
+<h3 id="toc_h3_3">HSL 颜色</h3>
+<p>好了，讲了这么多，其实还没有涉及今天的主角：HSL 颜色。接下来我们就讲一讲。</p>
+<p>我们刚才讲的颜色是从人类的视觉原理建模，应该说是十分科学了。但是，人类对颜色的认识却并非来自自己的神经系统，当我们把阳光散射，可以得到七色光：红橙黄绿蓝靛紫，实际上，阳光接近白光，它包含了各种颜色的光，它散射之后，应该是个基本连续的。这说明对人的感知来说，颜色远远大于红、绿、蓝。</p>
+<p>因此，HSL 这样的颜色模型被设计出来了，它用一个值来表示人类认知中的颜色，我们用专业的术语叫做色相（H）。加上颜色的纯度（S）和明度（L），就构成了一种颜色的表示。</p>
+<p><img src="https://static001.geekbang.org/resource/image/a3/ce/a3016a6ff178870d6dba23f807b0dfce.png" alt=""></p>
+<p>在这里，我需要特别推荐 HSL 颜色，因为它是一种语义化的颜色。当我们对一张图片改变色相时，人们感知到的是“图片的颜色变了”。这里先容我卖个关子，具体的例子待我们讲完了渐变再看。</p>
+<h3 id="toc_h3_4">其它颜色</h3>
+<p>接下来我们讲一讲 RGBA，RGBA 是代表 Red（红色）、Green（绿色）、Blue（蓝色）和 Alpha 的色彩空间。RGBA 颜色被用来表示带透明度的颜色，实际上，Alpha 通道类似一种颜色值的保留字。在 CSS 中，Alpha 通道被用于透明度，所以我们的颜色表示被称作 RGBA，而不是 RGBO（Opacity）。</p>
+<p>为了方便使用，CSS 还规定了名称型的颜色，它内置了大量（140 种）的颜色名称。不过这里我要挑出两个颜色来讲一讲：金（gold）和银（silver）</p>
+<p>如果你使用过这两个颜色，你会发现，金（gold）和银（silver）的视觉表现跟我们想象中的金色和银色相差甚远。与其被叫做金色和银色，它们看起来更像是难看的暗黄色和浅灰色。</p>
+<p>为什么会这样呢？在人类天然的色彩认知中，实际上混杂了很多其它因素，金色和银色不仅仅是一种颜色，它还意味着一定的镜面反光程度，在同样的光照条件下，金属会呈现出更亮的色彩，这并非是用一个色值可以描述的，这就引出了我们接下来要讲的渐变。</p>
+<h2 id="toc_h2_5">渐变</h2>
+<p>在 CSS 中，<code>background-image</code>这样的属性，可以设为渐变。CSS 中支持两种渐变，一种是线性渐变，一种是放射性渐变，我们先了解一下它们的基本用法：</p>
+<p>线性渐变的写法是：</p>
+<pre><code>linear-gradient(direction, color-stop1, color-stop2, ...);
+</code></pre>
+<p>这里的 direction 可以是方向，也可以是具体的角度。例如：</p>
+<ul>
+<li>to bottom</li>
+<li>to top</li>
+<li>to left</li>
+<li>to right</li>
+<li>to bottom left</li>
+<li>to bottom right</li>
+<li>to top left</li>
+<li>to top right</li>
+<li>120deg</li>
+<li>3.14rad</li>
+</ul>
+<p>以上这些都是合理的方向取值。</p>
+<p>color-stop 是一个颜色和一个区段，例如：</p>
+<ul>
+<li>rgba(255,0,0,0)</li>
+<li>orange</li>
+<li>yellow 10%</li>
+<li>green 20%</li>
+<li>lime 28px</li>
+</ul>
+<p>我们组合一下，产生一个“真正的金色”的背景：</p>
+<pre><code>&lt;style&gt;
+#grad1 {
+    height: 200px;
+    background: linear-gradient(45deg, gold 10%, yellow 50%, gold 90%); 
+}
+&lt;/style&gt;
+&lt;div id="grad1"&gt;&lt;/div&gt;
+</code></pre>
+<p>放射性渐变需要一个中心点和若干个颜色：</p>
+<pre><code>radial-gradient(shape size at position, start-color, ..., last-color);
+</code></pre>
+<p>当我们应用的每一种颜色都是 HSL 颜色时，就产生了一些非常有趣的效果，比如，我们可以通过变量来调整一个按钮的风格：</p>
+<pre><code>&lt;style&gt;
+.button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 14px/100% Arial, Helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    border-radius: .5em;
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    color: white;
+    border: solid 1px ;
+}
+
+&lt;/style&gt;
+&lt;div class="button orange"&gt;123&lt;/div&gt;
+</code></pre>
+<pre><code>var btn = document.querySelector(".button");
+var h = 25;
+setInterval(function(){
+  h ++;
+  h = h % 360;
+  btn.style.borderColor=`hsl(${h}, 95%, 45%)`
+  btn.style.background=`linear-gradient(to bottom,  hsl(${h},95%,54.1%),  hsl(${h},95%,84.1%))`
+},100);
+</code></pre>
+<h2 id="toc_h2_6">总结</h2>
+<p>今天我们介绍了 CSS 中渲染相关的属性：颜色。</p>
+<p>我们重点介绍了 CSS 的颜色系统，从颜色基本原理讲解了 RGB 颜色、CMYK 颜色和 HSV 颜色，我们还讲解了 Alpha 通道。</p>
+<p>接下来我们又讲了颜色的一个重要应用：渐变，我们可以把渐变看作是一个更复杂的颜色，它非常实用，能够用渐变绘制很多的图像。</p>
+</div>
+                        <div>
+                            <hr>
+
+标题：CSS 渲染：CSS 是如何绘制颜色的？<br>
+作者：<a href="https://ymfed.github.io" target="_blank">kendydeng</a><br>
+地址：<a href="https://ymfed.github.io/articles/2019/07/18/1563454497520.html" target="_blank">https://ymfed.github.io/articles/2019/07/18/1563454497520.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                        </div>
+                </div>
+
+                <footer class="tags">
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/Web">
+                            Web</a>
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/CSS">
+                            CSS</a>
+
+                    <div class="rel fn-clear ft__center">
+                            <a href="https://ymfed.github.io/articles/2019/07/17/1563358541278.html" rel="prev"
+                               class="fn-left vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="webpack——从构建项目到优化">
+                                旧一篇
+                            </a>
+                            <a href="https://ymfed.github.io/articles/2019/07/19/1563507662350.html" rel="next"
+                               class="fn-right vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="微前端在项目中的应用及实现方案">
+                                新一篇
+                            </a>
+                    </div>
+                </footer>
+                    <div id="b3logsolocomments"></div>
+                    <div id="vcomment" data-name="kendydeng" data-postId="1563454497520"></div>
+                <br>
+                <div id="externalRelevantArticles" class="list"></div>
+                <div id="relevantArticles" class="list"></div>
+                <div id="randomArticles" class="list"></div>
+            </article>
+        </main>
+<aside>
+<ul class="article__toc">
+        <li class="toc__h2">
+            <a href="#toc_h2_0">颜色的原理</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_1">RGB 颜色</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_2">CMYK 颜色</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">HSL 颜色</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_4">其它颜色</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_5">渐变</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_6">总结</a>
+        </li>
+</ul></aside>
+    </div>
+</div>
+<footer class="footer fn-clear">
+    &copy; 2020
+    <a href="https://ymfed.github.io">亚美大前端（FED）</a>
+    
+    <br/>
+    Powered by <a href="https://solo.b3log.org" target="_blank">YMFED</a>
+    <span class="ft-warn">&heartsuit;</span>
+    Theme
+    <sup>[<a href="javascript:;" target="_blank">ref</a>]</sup>
+    by <a href="javascript:;" target="_blank">亚美Web团队</a>
+</footer>
+<div class="icon-up" onclick="Util.goTop()"></div>
+<script>
+  var Label = {
+    servePath: "https://ymfed.github.io",
+    staticServePath: "https://ymfed.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "3.9.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
+</script>
+<script src="https://ymfed.github.io/skins/9IPHP/js/common.min.js?1585645466987"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+<script type="text/javascript">
+    Util.addScript('https://ymfed.github.io/js/page.min.js?1585645466987', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1563454497520",
+        "blogHost": "https://ymfed.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initToc()
+    page.share()
+    });
+</script>
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 41ms, 2020/06/24 15:11:34 -->

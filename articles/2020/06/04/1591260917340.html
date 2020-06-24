@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Service Worker介绍与实战 - 亚美大前端（FED）</title><meta name="description" content="可能是未来的一大趋势，让web应用流行起来~"/><meta property="og:description" content="可能是未来的一大趋势，让web应用流行起来~"/>    <meta name="keywords" content="YM,亚美,前端,博客"/><link rel="dns-prefetch" href="https://ymfed.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ymfed.github.io"><link rel="icon" type="image/png" href="http://fed.ym/images/czh-fed-logo.png"/><link rel="apple-touch-icon" href="http://fed.ym/images/czh-fed-logo.png"><link rel="shortcut icon" type="image/x-icon" href="http://fed.ym/images/czh-fed-logo.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Service Worker介绍与实战 - 亚美大前端（FED）"/><meta property="og:site_name" content="亚美大前端（FED）"/><meta property="og:url"      content="https://ymfed.github.io/articles/2020/06/04/1591260917340.html?"/><meta property="og:image" content="http://fed.ym/images/czh-fed-logo.png"/><link rel="search" type="application/opensearchdescription+xml" title="Service Worker介绍与实战 - 亚美大前端（FED）" href="/opensearch.xml"><link href="https://ymfed.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ymfed.github.io/manifest.json">        <link rel="canonical" href="https://ymfed.github.io/articles/2020/06/04/1591260917340.html">        <link rel="stylesheet"
+              href="https://ymfed.github.io/skins/9IPHP/css/base.css?1585645466987"/>
+            <link rel="prev" title="ES6-箭头函数与普通函数的区别" href="https://ymfed.github.io/articles/2020/06/03/1591155965999.html">
+            <link rel="next" title="6月内训纪实-Service Worker介绍与实战" href="https://ymfed.github.io/articles/2020/06/04/1591263090776.html">
+    </head>
+<body>
+<header>
+    <div class="banner">
+        <div class="fn-clear wrapper">
+            <a href="https://ymfed.github.io" class="logo" rel="start"></a>
+            <h2 class="subtitle-wrap">
+                <p class="subtitle">亚美大前端（FED）</p>
+                <p class="description">既要埋头干事，也要抬头看路</p>
+            </h2>
+            <div class="fn-right">
+                    <a class="fn__flex-inline" href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i>&nbsp;开始使用
+                    </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="fn-clear wrapper">
+            <nav class="fn-left">
+                <a href="https://ymfed.github.io">
+                    <i class="icon-home"></i>
+                    首页
+                </a>
+                <a href="https://ymfed.github.io/tags.html" rel="section">
+                    <i class="icon-tags"></i> 标签墙
+                </a>
+                <a href="https://ymfed.github.io/archives.html">
+                    <i class="icon-inbox"></i> 存档
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/links.html">
+                    <i class="icon-link"></i> 友情链接
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/team.html">
+                    <i class="icon-category"></i> 团队介绍
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/join.html">
+                    <i class="icon-register"></i> 加入我们
+                </a>
+            </nav>
+            <div class="fn-right">
+                <form class="form" action="https://ymfed.github.io/search">
+                    <input placeholder="搜索" id="search" type="text" name="keyword"/>
+                    <button type="submit"><i class="icon-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="responsive fn-none">
+    <i class="icon-list"></i>
+    <ul class="list">
+                <li>
+                    <a href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i> 开始使用
+                    </a>
+                </li>
+        <li>
+            <a href="https://ymfed.github.io">
+                <i class="icon-home"></i>
+                首页
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/tags.html" rel="section">
+                <i class="icon-tags"></i> 标签墙
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/archives.html">
+                <i class="icon-inbox"></i> 存档
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/links.html">
+                <i class="icon-link"></i> 友情链接
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/team.html">
+                <i class="icon-category"></i> 团队介绍
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/join.html">
+                <i class="icon-register"></i> 加入我们
+            </a>
+        </li>
+    </ul>
+</div><div class="wrapper">
+    <div class="main-wrap">
+        <main>
+            <article class="post">
+                <header>
+                    <h2>
+                        <a rel="bookmark" href="https://ymfed.github.io/articles/2020/06/04/1591260917340.html">
+                            Service Worker介绍与实战
+                        </a>
+                    </h2>
+                    <div class="meta">
+                                <span class="vditor-tooltipped vditor-tooltipped__n"
+                                      aria-label="更新日期">
+                                    <i class="icon-date"></i>
+                                    <time>
+                                    2020-06-04
+                                    </time>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="评论数">
+                                    <i class="icon-comments"></i>
+                                    <a href="https://ymfed.github.io/articles/2020/06/04/1591260917340.html#b3logsolocomments">
+                                        <span data-uvstatcmt="1591260917340">0</span> 评论</a>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="浏览数">
+                                    <i class="icon-views"></i>
+                        <span data-uvstaturl="https://ymfed.github.io/articles/2020/06/04/1591260917340.html">0</span> 浏览
+                                </span>
+                    </div>
+                </header>
+
+                <div class="vditor-reset post__content">
+                    <h2 id="toc_h2_0">为什么要用service woker</h2>
+<h3 id="toc_h3_1">PWA</h3>
+<blockquote>
+<p>PWA是Progressive Web App的英文缩写， 翻译过来就是<font color="red">渐进式增强WEB应用</font>， 是Google 在2016年提出的概念，2017年落地的web技术。</p>
+</blockquote>
+<p>PWA并不是单指某一项技术，你更可以把它理解成是一种思想和概念，<font color="red">目的就是对标原生app</font>，将Web网站通过一系列的Web技术去优化它，提升其安全性，性能，流畅性，用户体验等各方面指标，最后达到用户<font color="red">就像在用app一样的感觉</font>。</p>
+<p>渐进式Web应用它可以横跨Web技术及Native APP开发的解决方案，对于<strong>开发者的优势</strong>如下：</p>
+<ul>
+<li>你只需要关心W3C的Web标准，不用关心各种Native APP的代码。</li>
+<li>用户可以在安装应用之前先试用。</li>
+<li>不需要使用各种应用商店来分发应用，也不用关心应用发布时奇怪的审核标准以及应用内购的平台抽成。</li>
+<li>应用程序更新是自动进行的，无需用户交互，使用体验更为平滑。</li>
+<li>“安装”过程很快，只需要在主屏幕上添加一个图标即可。</li>
+<li>轻量级安装——你只需要缓存几百KB的数据即可。</li>
+<li>所有的数据传输必须使用安全的HTTPS连接</li>
+<li>渐进式Web应用可以离线缓存数据，并且会在重新连接互联网时重新同步数据。</li>
+</ul>
+<p>PWA中包含的<strong>核心功能及特性</strong>如下：</p>
+<ul>
+<li>Web App Manifest</li>
+<li>Service Worker</li>
+<li>Cache API 缓存</li>
+<li>Push&amp;Notification 推送与通知</li>
+<li>Background Sync 后台同步</li>
+<li>响应式设计</li>
+</ul>
+<blockquote>
+<p>现有的前端缓存技术方案，主要分为 <font color="#008000"><strong>http缓存</strong></font> 和 <font color="#008000"><strong>浏览器缓存</strong></font></p>
+</blockquote>
+<h2 id="toc_h2_2">http缓存</h2>
+<h3 id="toc_h3_3">Expires</h3>
+<p>HTTP1.0的内容，服务器使用Expires头来告诉Web客户端它可以使用当前副本，直到指定的时间为止。</p>
+<h3 id="toc_h3_4">Cache-Control</h3>
+<p>HTTP1.1引入了Cathe-Control，它使用max-age指定资源被缓存多久，主要是解决了Expires一个重大的缺陷，就是它设置的是一个固定的时间点，客户端时间和服务端时间可能有误差。</p>
+<p>所以一般会把两个头都带上，这种缓存称为强缓存</p>
+<h3 id="toc_h3_5">Last-Modified / If-Modified-Since</h3>
+<p>Last-Modified是服务器告诉浏览器该资源的最后修改时间，If-Modified-Since是请求头带上的，上次服务器给自己的该资源的最后修改时间。然后服务器拿去对比。</p>
+<p>若资源的最后修改时间大于If-Modified-Since，说明资源又被改动过，则响应整片资源内容，返回状态码200；</p>
+<p>若资源的最后修改时间小于或等于If-Modified-Since，说明资源无新修改，则响应HTTP 304，告知浏览器继续使用当前版本。</p>
+<h3 id="toc_h3_6">Etag / If-None-Match</h3>
+<p>前面提到由文件的修改时间来判断文件是否改动，还是会带来一定的误差，比如注释等无关紧要的修改等。所以推出了新的方式。</p>
+<p>Etag是由服务端特定算法生成的该文件的唯一标识，而请求头把返回的Etag值通过If-None-Match再带给服务端，服务端通过比对从而决定是否响应新内容。这也是304缓存。</p>
+<hr>
+<h2 id="toc_h2_7">浏览器缓存</h2>
+<h3 id="toc_h3_8">storage</h3>
+<p>简单的缓存方式有cookie，localStorage和sessionStorage。</p>
+<p>查看请求发现，基本没有js和css的请求，因为它把全部的不需要改动的资源都放到了localStorage中</p>
+<h3 id="toc_h3_9">前端数据库</h3>
+<p>前端数据库有WebSql和<font color="red">IndexDB</font>，其中WebSql被规范废弃，他们都有大约<font color="red">50MB的最大容量</font>，可以理解为localStorage的加强版。</p>
+<h3 id="toc_h3_10">应用缓存</h3>
+<p>应用缓存主要是通过manifest文件来注册被缓存的静态资源，已经被废弃，因为他的设计有些不合理的地方，他在缓存静态文件的同时，也会默认缓存html文件。这导致页面的更新只能通过manifest文件中的版本号来决定。所以，应用缓存只适合那种常年不变化的静态网站。如此的不方便，也是被废弃的重要原因。</p>
+<p>PWA也运用了该文件，不同于manifest简单的将文件通过是否缓存进行分类，PWA用manifest构建了自己的APP骨架，并运用Servie Worker来控制缓存，这也是今天的主角。</p>
+<h3 id="toc_h3_11">Memory Cache &amp; Disk Cache</h3>
+<p>from memory cache：字面理解是从内存中，其实也是字面的含义，这个资源是直接从内存中拿到的，不会请求服务器一般已经加载过该资源且缓存在了内存当中，当关闭该页面时，此资源就被内存释放掉了，再次重新打开相同页面时不会出现from memory cache的情况</p>
+<p>from disk cache：同上类似，此资源是从磁盘当中取出的，也是在已经在之前的某个时间加载过该资源，不会请求服务器但是此资源不会随着该页面的关闭而释放掉，因为是存在硬盘当中的，下次打开仍会from disk cache</p>
+<p>资源本身大小数值：当http状态为200是实实在在从浏览器获取的资源，当http状态为304时该数字是与服务端通信报文的大小，并不是该资源本身的大小，该资源是从本地获取的<br>
+| 状态 | 类型 | 说明  |<br>
+| --- | :---- | :----|<br>
+| 200 | form memory cache | 不请求网络资源，资源在内存当中，一般<font color="red">脚本、字体、图片</font>会存在内存当中 |<br>
+| 200 | form disk ceche   | 不请求网络资源，在磁盘当中，一般<font color="red">非脚本会存在内存当中，如css</font>等 |<br>
+| 200 | 资源大小数值    | 从服务器下载最新资源  |<br>
+| 304 | 报文大小    | 请求服务端发现资源没有更新，使用本地资源 |</p>
+<hr>
+<h2 id="toc_h2_12">web Worker</h2>
+<p>一个服务器与浏览器之间的中间人角色，如果网站中注册了service worker那么它可以<font color="red">拦截当前网站所有的请求</font>，进行判断（需要编写相应的判断程序），如果需要向服务器发起请求的就转给服务器，如果可以直接使用缓存的就直接返回缓存不再转给服务器。从而大大提高浏览体验。</p>
+<p>Service Worker本质上也是<font color="red">浏览器缓存资源用</font>的，只不过他不仅仅是cache，也是通过worker的方式来进一步优化。</p>
+<p>他<strong>基于h5的web worker</strong>，所以绝对<font color="red">不会阻碍当前js线程的执行</font></p>
+<p><img src="https://www.wangbase.com/blogimg/asset/201807/bg2018070801.png" alt="cmd-markdown-logo"></p>
+<p>Web Worker 的作用，就是为 JavaScript 创造多线程环境，允许主线程创建 Worker 线程，将一些任务分配给后者运行。在主线程运行的同时，Worker 线程在后台运行，两者互不干扰。等到 Worker 线程完成计算任务，再把结果返回给主线程。这样的好处是，一些计算密集型或高延迟的任务，被 Worker 线程负担了，主线程（通常负责 UI 交互）就会很流畅，不会被阻塞或拖慢。</p>
+<p>Worker 线程一旦新建成功，就会始终运行，不会被主线程上的活动（比如用户点击按钮、提交表单）打断。这样有利于随时响应主线程的通信。但是，这也造成了 Worker 比较耗费资源，不应该过度使用，而且一旦使用完毕，就应该关闭。</p>
+<h3 id="toc_h3_13">兼容性</h3>
+<p><img src="https://edu-image.nosdn.127.net/fd75001a-c7bd-4c91-a082-ea225138751b.png?imageView&amp;quality=100" alt="cmd-markdown-logo"></p>
+<h3 id="toc_h3_14">使用条件</h3>
+<p>sw 是<font color="red">基于 HTTPS </font>的，因为service worker中涉及到请求拦截，所以必须使用HTTPS协议来保障安全。如果是本地调试的话，localhost是可以的。</p>
+<h3 id="toc_h3_15">cache对象的方法</h3>
+<blockquote>
+<p>Cache 接口像 workers 一样，是暴露在 window 作用域下的。尽管它被定义在 service worker 的标准中,  但是它不必一定要配合 service worker 使用.<br>
+一个域可以有多个命名 Cache 对象</p>
+</blockquote>
+<h4 id="toc_h4_16">创建cache对象</h4>
+<pre><code>// 这个caches.open方法返回一个Promise，其中的cache对象新创建出来，如果是以前创建过，就不重新创建。
+
+const CACHE_NAME = 'cache_test';
+let cache = await caches.open(CACHE_NAME);
+</code></pre>
+<h4 id="toc_h4_17">添加缓存数据</h4>
+<pre><code>// 这个addAll方法可以接受一个地址数组作为参数，
+这些请求地址的响应数据将会被缓存在cache对象里。addAll返回的是一个Promise。
+
+cache.addAll(['/', '/admin')
+// add()方法可以接受一个自定义的Request
+ cache.add(new Request('/page/1', { /*具体请求参数*/ }));
+</code></pre>
+<h4 id="toc_h4_18">访问缓存数据</h4>
+<pre><code>// 以数组形式
+let reqCacheData = await cache.keys();  
+</code></pre>
+<h4 id="toc_h4_19">删除缓存数据</h4>
+<pre><code>// 删除缓存里的数据
+cache.delete('/page/a');
+
+// 删除一个缓存对象
+cache.delete(CACHE_NAME); 
+</code></pre>
+<p>更多cache方法介绍 =&gt; <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Cache" target="_blank">web API -- Cache</a></p>
+<h3 id="toc_h3_20">生命周期</h3>
+<p><img src="https://b3logfile.com/file/2020/06/09F01FC951D4436992FA8D84F92968D1-7752d487.png" alt="09F01FC951D4436992FA8D84F92968D1.png"></p>
+<h3 id="toc_h3_21">过程</h3>
+<ul>
+<li>
+<p>Service Worker 在 sw.js 进行注册，首次注册前会进行分析，判断加载的文件是否在域名下，协议是否为 HTTPS 的，通过这两点则成功注册。</p>
+</li>
+<li>
+<p>service Worker 开始进入下一个生命周期状态 install， install 完成后会触发 service Worker 的 install 事件。 如果 install 成功则接下来是 activate状态, 然后这个 service worker 才能接管页面。</p>
+</li>
+<li>
+<p>当事件 active 事件执行完成之后，此时 service Worker 有两种状态，一种是 active，一种是 terminated。</p>
+</li>
+<li>
+<p>active 是为了工作，terminated则为了节省内存。当新的 service Worker 处于 install/waitting 阶段，当前 service Worker 处于 terminated，就会发生交接替换。或者可以通过调用 self.skipWaiting() 方法跳过等待。</p>
+</li>
+<li>
+<p>被替换掉的原有的 service Worker 到 Redundant 阶段，在 install 或者 activating 中断的也会进入 Redundant 阶段。</p>
+</li>
+</ul>
+<h3 id="toc_h3_22">事件</h3>
+<h4 id="toc_h4_23">register注册事件</h4>
+<pre><code>        "serviceWorker" in navigator &amp;&amp; window.addEventListener("load",
+            function() {
+                console.log('进入serviceWorker')
+                // var e = location.origin.match("index");
+                var e = location.origin.match("index");
+                navigator.serviceWorker.register("./sw.js",{scope: '/lottery/'}).then(function(n) {
+                    n.onupdatefound = function() {
+                        var e = n.installing;
+                        e.onstatechange = function() {
+                            switch (e.state) {
+                                case "installed":
+                                    navigator.serviceWorker.controller ? console.log("New or updated content is available ") : console.log("Content is now available offline!");
+                                    // break;
+                                case "redundant":
+                                    console.error("The installing service worker became redundant.")
+                            }
+                        }
+                    }
+                }).
+                catch(function(e) {
+                    console.error("Error during service worker registration:", e)
+                })
+            }
+        )
+</code></pre>
+<p>作用域</p>
+<pre><code>navigator.serviceWorker.register('/topics/sw.js');
+</code></pre>
+<h4 id="toc_h4_24">Install事件</h4>
+<font size="3" color="#888">
+当浏览器解析完sw文件时触发install事件
+</font>
+<pre><code>var cacheStorageKey = 'cachesName';
+var cacheList = [
+  // 注册成功后要立即缓存的资源列表
+]
+
+// 当浏览器解析完 SW 文件时触发 install 事件
+self.addEventListener('install', function(e) {
+  // install 事件中一般会将 cacheList 中要换存的内容通过 addAll 方法，请求一遍放入 caches 中
+  e.waitUntil(
+    caches.open(cacheStorageKey).then(function(cache) {
+      return cache.addAll(cacheList)
+    })
+  );
+});
+</code></pre>
+<h4 id="toc_h4_25">Activate事件</h4>
+<p>激活时触发 activate 事件<br>
+active 事件中通常做一些过期资源释放的工作，匹配到就从 caches 中删除</p>
+<pre><code>self.addEventListener('activate', function(e) {
+  // active 事件中通常做一些过期资源释放的工作，匹配到就从 caches 中删除
+  var cacheDeletePromises = caches.keys().then(cacheNames =&gt; {
+    return Promise.all(cacheNames.map(name =&gt; {
+      if (name !== cacheStorageKey) {
+        return caches.delete(name);
+      } else {
+        return Promise.resolve();
+      }
+    }));
+  });
+
+  e.waitUntil(
+    Promise.all([cacheDeletePromises])
+  );
+});
+</code></pre>
+<h4 id="toc_h4_26">Fetch事件</h4>
+<pre><code>self.addEventListener('fetch', function(e) {
+  // 在此编写缓存策略
+  e.respondWith(
+    // 可以通过匹配缓存中的资源返回
+    caches.match(e.request)
+    // 也可以从远端拉取
+    fetch(e.request.url)
+    // 也可以自己造
+    new Response('自己造')
+    // 也可以通过吧 fetch 拿到的响应通过 caches.put 方法放进 caches
+  );
+});
+</code></pre>
+<h3 id="toc_h3_27">关于通过fetch更新缓存</h3>
+<h5 id="toc_h5_28">网络缓存同时干</h5>
+<p>一方面检查请求，一方面有检查缓存，然后看两个谁快，就用谁</p>
+<pre><code>function promiseAny(promises) {
+  return new Promise((resolve, reject) =&gt; {
+    // 通过 promise 的 resolve 特性来决定谁快
+    promises = promises.map(p =&gt; Promise.resolve(p));
+    // 这里调用外层的 resolve
+    promises.forEach(p =&gt; p.then(resolve));
+    // 如果其中有一方出现 error，则直接挂掉
+    promises.reduce((a, b) =&gt; a.catch(() =&gt; b))
+      .catch(() =&gt; reject(Error("All failed")));
+  });
+};
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    promiseAny([
+      caches.match(event.request),
+      fetch(event.request)
+    ])
+  );
+});
+</code></pre>
+<h5 id="toc_h5_29">总是更新</h5>
+<p>这里就和我们在后台配置的 Last-Modifier || Etag 一样，询问更新的文件内容，然后执行更新:</p>
+<pre><code>self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.open('mysite-dynamic').then(function(cache) {
+      return fetch(event.request).then(function(response) {
+        cache.put(event.request, response.clone());
+        return response;
+      });
+    })
+  );
+});
+</code></pre>
+<h5 id="toc_h5_30">先返回后更新</h5>
+<p>返回的时候不会影响正在发送的请求，而接受到的新的请求后，最新的文件会替换旧的文件</p>
+<pre><code>self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.open('mysite-dynamic').then(function(cache) {
+      return cache.match(event.request).then(function(response) {
+        var fetchPromise = fetch(event.request).then(function(networkResponse) {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        })
+        return response || fetchPromise;
+      })
+    })
+  );
+});
+</code></pre>
+<h3 id="toc_h3_31">通信</h3>
+<h4 id="toc_h4_32">使用 MessageChannel API</h4>
+<p>顾名思义，MessageChannel API 设置了一个可以发送消息的通道。</p>
+<ul>
+<li>在两侧设置事件侦听器以接收 'message' 事件</li>
+<li>通过发送 port 并将其存储在 Service Worker 中，建立与 Service Worker 的连接。</li>
+<li>使用存储的 port 回复客户端</li>
+</ul>
+<pre><code>// app.js - somewhere in our main app
+const messageChannel = new MessageChannel();
+
+// First we initialize the channel by sending
+// the port to the Service Worker (this also
+// transfers the ownership of the port)
+navigator.serviceWorker.controller.postMessage({
+  type: 'INIT_PORT',
+}, [messageChannel.port2]);
+
+// Listen to the response
+messageChannel.port1.onmessage = (event) =&gt; {
+  // Print the result
+  console.log(event.data.payload);
+};
+
+// Then we send our first message
+navigator.serviceWorker.controller.postMessage({
+  type: 'INCREASE_COUNT',
+});
+// service-worker.js
+let getVersionPort;
+let count = 0;
+self.addEventListener("message", event =&gt; {
+  if (event.data &amp;&amp; event.data.type === 'INIT_PORT') {
+    getVersionPort = event.ports[0];
+  }
+
+  if (event.data &amp;&amp; event.data.type === 'INCREASE_COUNT') {
+    getVersionPort.postMessage({ payload: ++count });
+  }
+}
+</code></pre>
+<h4 id="toc_h4_33">使用 Broadcast API</h4>
+<p>Broadcast API 与 MessageChannel 非常相似，但是它消除了将端口传递给 Service Worker 的需求。<br>
+我们看到只需要在两侧建立一个有相同名称 count-channel 的通道。<br>
+我们可以将相同的代码添加到其他 WebWorker 或 Service Worker，后者也将接收所有这些消息。</p>
+<pre><code>// app.js
+// Set up channel
+const broadcast = new BroadcastChannel('count-channel');
+
+// Listen to the response
+broadcast.onmessage = (event) =&gt; {
+  console.log(event.data.payload);
+};
+
+// Send first request
+broadcast.postMessage({
+  type: 'INCREASE_COUNT',
+});
+// service-worker.js
+// Set up channel with same name as in app.js
+const broadcast = new BroadcastChannel('count-channel');
+broadcast.onmessage = (event) =&gt; {
+  if (event.data &amp;&amp; event.data.type === 'INCREASE_COUNT') {
+    broadcast.postMessage({ payload: ++count });
+  }
+};
+</code></pre>
+<h4 id="toc_h4_34">使用 使用 Client API</h4>
+<p>Client API 也不需要传递对通道的引用。<br>
+在客户端，我们侦听 Service Worker 的响应，在 Service Worker 中，用 self.clients.matchAll 函数提供给我们的过滤器选项，选择要发送响应的客户端。</p>
+<pre><code>// app.js
+// Listen to the response
+navigator.serviceWorker.onmessage = (event) =&gt; {
+  if (event.data &amp;&amp; event.data.type === 'REPLY_COUNT_CLIENTS') {
+    setCount(event.data.count);
+  }
+};
+
+// Send first request
+navigator.serviceWorker.controller.postMessage({
+  type: 'INCREASE_COUNT_CLIENTS',
+});
+// service-worker.js
+// Listen to the request
+self.addEventListener('message', (event) =&gt; {
+  if (event.data &amp;&amp; event.data.type === 'INCREASE_COUNT') {
+    // Select who we want to respond to
+    self.clients.matchAll({
+      includeUncontrolled: true,
+      type: 'window',
+    }).then((clients) =&gt; {
+      if (clients &amp;&amp; clients.length) {
+        // Send a response - the clients
+        // array is ordered by last focused
+        clients[0].postMessage({
+          type: 'REPLY_COUNT',
+          count: ++count,
+        });
+      }
+    });
+  }
+});
+</code></pre>
+<h3 id="toc_h3_35">版本更新</h3>
+<h4 id="toc_h4_36">debug 时更新</h4>
+<pre><code>self.addEventListener('install', function () {
+    self.skipWaiting();
+});
+</code></pre>
+<h4 id="toc_h4_37">自动更新所有页面</h4>
+<p>在 install 事件中执行 self.skipWaiting() 方法跳过 waiting 状态，然后会直接进入 activate 阶段。接着在 activate 事件发生时，通过执行 self.clients.claim() 方法，更新所有客户端上的 Service Worker。</p>
+<pre><code>// 安装阶段跳过等待，直接进入 
+activeself.addEventListener('install', function (event) {
+    event.waitUntil(
+      self.skipWaiting()
+    );
+});
+
+self.addEventListener('activate', function (event) {
+    event.waitUntil(        
+      Promise.all([            
+        // 更新客户端
+        self.clients.claim();  
+
+        // 清理旧版本
+        caches.keys().then(function (cacheList) {                
+          return Promise.all(
+            cacheList.map(function (cacheName) {                        
+              if (cacheName !== 'my-test-cache-v1') {                            
+                return caches.delete(cacheName);
+              }
+            })
+          );
+        })
+
+      ])·
+    );
+});
+</code></pre>
+<h4 id="toc_h4_38">手动更新 Service Worker</h4>
+<pre><code>var version = '1.0.1';
+navigator.serviceWorker.register('/sw.js').then(
+  function (reg) {    
+    if (localStorage.getItem('sw_version') !== version) {
+      reg.update().then(function () {
+          localStorage.setItem('sw_version', version)
+      });
+    }
+});
+</code></pre>
+<h4 id="toc_h4_39">强制更新</h4>
+<p>Service Worker 的特殊之处除了由浏览器触发更新之外，还应用了特殊的缓存策略： 如果该文件已 24 小时没有更新，当 Update 触发时会强制更新。这意味着最坏情况下 Service Worker 会每天更新一次。</p>
+<h3 id="toc_h3_40">Workbox插件</h3>
+<p><img src="https://image-static.segmentfault.com/186/214/1862149445-5ce76901d3434" alt="cmd-markdown-logo"></p>
+<p>wokbox 是用于向web应用程序添加离线支持的JavaScript库</p>
+<p>由于直接写原生的sw.js，比较繁琐和复杂，所以一些工具就出现了，而workbox是其中的佼佼者，由google团队推出。</p>
+<p>workbox 是 GoogleChrome 团队推出的一套 Web App 静态资源本地存储的解决方案，该解决方案包含一些 Js 库和构建工具.</p>
+<h4 id="toc_h4_41">用法</h4>
+<p>要使用wokbox，只需在service-worker.js文件中引入workbox-sw.js即可，然后会自动的在service-worker.js中创建workbox对象</p>
+<pre><code>importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
+
+if (workbox) {
+  console.log(`Workbox is loaded`);
+} else {
+  console.log(`Workbox didn't load`);
+}
+</code></pre>
+<h4 id="toc_h4_42">模块</h4>
+<blockquote>
+<p>比如 workbox.routing模块，workbox.precaching模块，workbox.strategies模块，workbox.expiration模块等等，它们分别负责处理不同的逻辑。</p>
+</blockquote>
+<h4 id="toc_h4_43">workbox路由</h4>
+<ul>
+<li>StaleWhileRevalidate， 此策略将对请求使用缓存响应，并在后台使用网络响应更新缓存。如果没有缓存，它将等待网络响应并使用它），这是一种相当安全的策略，因为这意味着用户会定期更新其缓存。</li>
+<li>NetworkFirst，这将首先尝试从网络获取请求。如果收到响应，它会将其传递给浏览器并将其保存到缓存中。如果网络请求失败，将使用最后一个缓存的响应。</li>
+<li>CacheFirst，此策略将首先检查缓存中的响应，如果有可用则使用该策略。如果请求不在缓存中，则将使用网络，并且在传递给浏览器之前，任何有效响应都将添加到缓存中。</li>
+<li>NetworkOnly，强制从网络获取。</li>
+<li>CacheOnly，，强制从缓存获取。</li>
+</ul>
+<h3 id="toc_h3_44">一个例子</h3>
+<p><a href="https://3g.163.com/touch/#/" target="_blank">网易新闻</a></p>
+<p><img src="https://b3logfile.com/file/2020/06/25595311D28B4f9594450406184B85BB-9533b93e.png" alt="25595311D28B4f9594450406184B85BB.png"></p>
+<h2 id="toc_h2_45">总结&amp;思考</h2>
+<h3 id="toc_h3_46">service worker的特点</h3>
+<ul>
+<li>在页面中注册并安装成功后，运行于浏览器后台，不受页面刷新的影响，可以监听和截作用域范围内所有页面的HTTP 请求。</li>
+<li>网站必须使用 HTTPS。除了使用本地开发环境调试时(如域名使用 localhost)</li>
+<li>运行于浏览器后台，可以控制打开的作用域范围下所有的页面请求</li>
+<li>单独的作用域范围，单独的运行环境和执行线程</li>
+<li>不能操作页面 DOM。但可以通过事件机制来处理事件驱动型服务线程</li>
+<li>基于web worker（一个独立于JavaScript主线程的独立线程，在里面执行需要消耗大量资源的操作不会堵塞主程）</li>
+<li>在web worker的基础上增加了离线缓存的能力</li>
+<li>本质上充当Web应用程序（服务器）与浏览器之间的代理服务器（可以拦截全站的请求，并作出相应的动作-&gt;由开者指定的动作）</li>
+<li>创建有效的离线体验（将一些不常更新的内容缓存在浏览器，提高访问体验）</li>
+<li>由事件驱动的,具有生命周期</li>
+<li>可以访问cache和indexDB</li>
+<li>支持推送</li>
+<li>并且可以让开发者自己控制管理缓存的内容以及版本</li>
+</ul>
+<h3 id="toc_h3_47">注意事项</h3>
+<ul>
+<li>不要给 service-worker.js 设置不同的名字</li>
+<li>不要给 service-worker.js 设置缓存</li>
+<li>waiting状态——如果目前尚未有活跃的 SW ，那就直接安装并激活。如果已有 SW 安装着，向新的 swUrl 发起请求，获取内容和和已有的 SW 比较。如没有差别，则结束安装。如有差别，则安装新版本的 SW（执行 install 阶段），之后令其等待（进入 waiting 阶段）</li>
+</ul>
+<hr>
+<pre><code></code></pre>
+                        <div>
+                            <hr>
+
+标题：Service Worker介绍与实战<br>
+作者：<a href="https://ymfed.github.io" target="_blank">zeech-zhou</a><br>
+地址：<a href="https://ymfed.github.io/articles/2020/06/04/1591260917340.html" target="_blank">https://ymfed.github.io/articles/2020/06/04/1591260917340.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                        </div>
+                </div>
+
+                <footer class="tags">
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/ServiceWorker">
+                            ServiceWorker</a>
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/JS">
+                            JS</a>
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/Cache">
+                            Cache</a>
+
+                    <div class="rel fn-clear ft__center">
+                            <a href="https://ymfed.github.io/articles/2020/06/03/1591155965999.html" rel="prev"
+                               class="fn-left vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="ES6-箭头函数与普通函数的区别">
+                                旧一篇
+                            </a>
+                            <a href="https://ymfed.github.io/articles/2020/06/04/1591263090776.html" rel="next"
+                               class="fn-right vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="6月内训纪实-Service Worker介绍与实战">
+                                新一篇
+                            </a>
+                    </div>
+                </footer>
+                    <div id="b3logsolocomments"></div>
+                    <div id="vcomment" data-name="zeech-zhou" data-postId="1591260917340"></div>
+                <br>
+                <div id="externalRelevantArticles" class="list"></div>
+                <div id="relevantArticles" class="list"></div>
+                <div id="randomArticles" class="list"></div>
+            </article>
+        </main>
+<aside>
+<ul class="article__toc">
+        <li class="toc__h2">
+            <a href="#toc_h2_0">为什么要用service woker</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_1">PWA</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_2">http缓存</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">Expires</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_4">Cache-Control</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_5">Last-Modified / If-Modified-Since</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_6">Etag / If-None-Match</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_7">浏览器缓存</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_8">storage</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_9">前端数据库</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_10">应用缓存</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_11">Memory Cache & Disk Cache</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_12">web Worker</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_13">兼容性</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_14">使用条件</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_15">cache对象的方法</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_16">创建cache对象</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_17">添加缓存数据</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_18">访问缓存数据</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_19">删除缓存数据</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_20">生命周期</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_21">过程</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_22">事件</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_23">register注册事件</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_24">Install事件</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_25">Activate事件</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_26">Fetch事件</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_27">关于通过fetch更新缓存</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_28">网络缓存同时干</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_29">总是更新</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_30">先返回后更新</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_31">通信</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_32">使用 MessageChannel API</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_33">使用 Broadcast API</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_34">使用 使用 Client API</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_35">版本更新</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_36">debug 时更新</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_37">自动更新所有页面</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_38">手动更新 Service Worker</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_39">强制更新</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_40">Workbox插件</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_41">用法</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_42">模块</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_43">workbox路由</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_44">一个例子</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_45">总结&思考</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_46">service worker的特点</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_47">注意事项</a>
+        </li>
+</ul></aside>
+    </div>
+</div>
+<footer class="footer fn-clear">
+    &copy; 2020
+    <a href="https://ymfed.github.io">亚美大前端（FED）</a>
+    
+    <br/>
+    Powered by <a href="https://solo.b3log.org" target="_blank">YMFED</a>
+    <span class="ft-warn">&heartsuit;</span>
+    Theme
+    <sup>[<a href="javascript:;" target="_blank">ref</a>]</sup>
+    by <a href="javascript:;" target="_blank">亚美Web团队</a>
+</footer>
+<div class="icon-up" onclick="Util.goTop()"></div>
+<script>
+  var Label = {
+    servePath: "https://ymfed.github.io",
+    staticServePath: "https://ymfed.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "3.9.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
+</script>
+<script src="https://ymfed.github.io/skins/9IPHP/js/common.min.js?1585645466987"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+<script type="text/javascript">
+    Util.addScript('https://ymfed.github.io/js/page.min.js?1585645466987', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1591260917340",
+        "blogHost": "https://ymfed.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initToc()
+    page.share()
+    });
+</script>
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 27ms, 2020/06/24 15:11:33 -->

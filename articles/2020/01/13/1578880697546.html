@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Vue生命周期总结 - 亚美大前端（FED）</title><meta name="description" content="关于在日常开发中vue的生命周期总结"/><meta property="og:description" content="关于在日常开发中vue的生命周期总结"/>    <meta name="keywords" content="YM,亚美,前端,博客"/><link rel="dns-prefetch" href="https://fed.ym"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://fed.ym"><link rel="icon" type="image/png" href="http://fed.ym/images/czh-fed-logo.png"/><link rel="apple-touch-icon" href="http://fed.ym/images/czh-fed-logo.png"><link rel="shortcut icon" type="image/x-icon" href="http://fed.ym/images/czh-fed-logo.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Vue生命周期总结 - 亚美大前端（FED）"/><meta property="og:site_name" content="亚美大前端（FED）"/><meta property="og:url"      content="https://fed.ym/articles/2020/01/13/1578880697546.html?"/><meta property="og:image" content="http://fed.ym/images/czh-fed-logo.png"/><link rel="search" type="application/opensearchdescription+xml" title="Vue生命周期总结 - 亚美大前端（FED）" href="/opensearch.xml"><link href="https://fed.ym/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://fed.ym/manifest.json">        <link rel="canonical" href="https://fed.ym/articles/2020/01/13/1578880697546.html">        <link rel="stylesheet"
+              href="https://fed.ym/skins/9IPHP/css/base.css?1585645466987"/>
+            <link rel="prev" title="CSS语法：除了属性和选择器，你还需要知道这些带@的规则" href="https://fed.ym/articles/2020/01/10/1578646324030.html">
+            <link rel="next" title="ES6 你可能不知道的事 - 进阶篇" href="https://fed.ym/articles/2020/01/13/1578916956055.html">
+    </head>
+<body>
+<header>
+    <div class="banner">
+        <div class="fn-clear wrapper">
+            <a href="https://fed.ym" class="logo" rel="start"></a>
+            <h2 class="subtitle-wrap">
+                <p class="subtitle">亚美大前端（FED）</p>
+                <p class="description">既要埋头干事，也要抬头看路</p>
+            </h2>
+            <div class="fn-right">
+                    <a class="fn__flex-inline" href="https://fed.ym/start">
+                        <i class="icon-login"></i>&nbsp;开始使用
+                    </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="fn-clear wrapper">
+            <nav class="fn-left">
+                <a href="https://fed.ym">
+                    <i class="icon-home"></i>
+                    首页
+                </a>
+                <a href="https://fed.ym/tags.html" rel="section">
+                    <i class="icon-tags"></i> 标签墙
+                </a>
+                <a href="https://fed.ym/archives.html">
+                    <i class="icon-inbox"></i> 存档
+                </a>
+                <a rel="archive" href="https://fed.ym/links.html">
+                    <i class="icon-link"></i> 友情链接
+                </a>
+                <a rel="archive" href="https://fed.ym/team.html">
+                    <i class="icon-category"></i> 团队介绍
+                </a>
+                <a rel="archive" href="https://fed.ym/join.html">
+                    <i class="icon-register"></i> 加入我们
+                </a>
+            </nav>
+            <div class="fn-right">
+                <form class="form" action="https://fed.ym/search">
+                    <input placeholder="搜索" id="search" type="text" name="keyword"/>
+                    <button type="submit"><i class="icon-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="responsive fn-none">
+    <i class="icon-list"></i>
+    <ul class="list">
+                <li>
+                    <a href="https://fed.ym/start">
+                        <i class="icon-login"></i> 开始使用
+                    </a>
+                </li>
+        <li>
+            <a href="https://fed.ym">
+                <i class="icon-home"></i>
+                首页
+            </a>
+        </li>
+        <li>
+            <a href="https://fed.ym/tags.html" rel="section">
+                <i class="icon-tags"></i> 标签墙
+            </a>
+        </li>
+        <li>
+            <a href="https://fed.ym/archives.html">
+                <i class="icon-inbox"></i> 存档
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://fed.ym/links.html">
+                <i class="icon-link"></i> 友情链接
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://fed.ym/team.html">
+                <i class="icon-category"></i> 团队介绍
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://fed.ym/join.html">
+                <i class="icon-register"></i> 加入我们
+            </a>
+        </li>
+    </ul>
+</div><div class="wrapper">
+    <div class="main-wrap">
+        <main>
+            <article class="post">
+                <header>
+                    <h2>
+                        <a rel="bookmark" href="https://fed.ym/articles/2020/01/13/1578880697546.html">
+                            Vue生命周期总结
+                        </a>
+                    </h2>
+                    <div class="meta">
+                                <span class="vditor-tooltipped vditor-tooltipped__n"
+                                      aria-label="更新日期">
+                                    <i class="icon-date"></i>
+                                    <time>
+                                    2020-01-13
+                                    </time>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="评论数">
+                                    <i class="icon-comments"></i>
+                                    <a href="https://fed.ym/articles/2020/01/13/1578880697546.html#b3logsolocomments">
+                                        <span data-uvstatcmt="1578880697546">0</span> 评论</a>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="浏览数">
+                                    <i class="icon-views"></i>
+                        <span data-uvstaturl="https://fed.ym/articles/2020/01/13/1578880697546.html">3</span> 浏览
+                                </span>
+                    </div>
+                </header>
+
+                <div class="vditor-reset post__content">
+                    <p>这些天有对Vue源码的解读，一点一点去了解框架的设计以及实现思路</p>
+<h3 id="toc_h3_0">一、生命周期</h3>
+<p>每个Vue实例在被创建之前都要经过一系列的初始化过程。例如设置数据监听、编译模板、挂载实例到 DOM、在数据变化时更新 DOM 等<br>
+在这个过程中会执行相应的生命周期钩子函数，给予用户机会在一些特定的场景下添加自己的逻辑代码</p>
+<p>直接贴上官方生命周期图：<br>
+<img src="https://img.hacpai.com/file/2020/01/微信图片20200113095248-1a606bfd.png" alt="微信图片20200113095248.png"></p>
+<p>可以看出生命周期是描述了一个Vue实例在创建、挂载、注销、更新的一个流程</p>
+<h3 id="toc_h3_1">二、生命周期钩子的调用</h3>
+<p>在源码中最终执行生命周期的函数是callHook方法和invokeWithErrorHandling方法，它的定义在src/core/instance/lifecycle和src/core/util/error中可以看到：</p>
+<pre><code class="language-javascript">// src/core/instance/lifecycle
+export function callHook (vm: Component, hook: string) {
+  pushTarget()
+  const handlers = vm.$options[hook]
+  const info = `${hook} hook`
+  if (handlers) {
+    for (let i = 0, j = handlers.length; i &lt; j; i++) {
+      invokeWithErrorHandling(handlers[i], vm, null, vm, info)
+    }
+  }
+  if (vm._hasHookEvent) {
+    vm.$emit('hook:' + hook)
+  }
+  popTarget()
+}
+
+// src/core/util/error
+export function invokeWithErrorHandling (
+  handler: Function,
+  context: any,
+  args: null | any[],
+  vm: any,
+  info: string
+) {
+  let res
+  try {
+    res = args ? handler.apply(context, args) : handler.call(context)
+    if (res &amp;&amp; !res._isVue &amp;&amp; isPromise(res) &amp;&amp; !res._handled) {
+      res.catch(e =&gt; handleError(e, vm, info + ` (Promise/async)`))
+      res._handled = true
+    }
+  } catch (e) {
+    handleError(e, vm, info)
+  }
+  return res
+}
+</code></pre>
+<p>callHook接收的两个参数分别为<strong>Vue实例</strong>和要触发的<strong>生命周期钩子名</strong></p>
+<p>在触发时</p>
+<ul>
+<li>根据hook拿到对应的<strong>回调函数数组</strong>(vue实例在初始化时候，其中有个过程是合并options，在该操作时会收集各个阶段的生命周期钩子函数构成对应的数组，然后将他们都挂载到实例的options中(即vm.$options)。所以在这里拿到的是一个数组。具体的可以去看一下代码)</li>
+<li>如果数组有值，遍历代入invokeWithErrorHandling方法中执行(在方法中我们可以看到使用了<strong>apply/call</strong>，<strong>将实例vm作为函数执行上下文传入，这也是我们在编写生命周期回调的时候，不能使用箭头函数的原因</strong>：箭头函数的执行上下文指向定义该函数时的上下文，且无法改变，从而获取不到实例对象指向)</li>
+</ul>
+<h3 id="toc_h3_2">三、钩子罗列</h3>
+<p>查看Vue官网，很容易可以得到有如下钩子：</p>
+<ol>
+<li>beforeCreate</li>
+<li>created</li>
+<li>beforeMount</li>
+<li>mounted</li>
+<li>beforeUpdate</li>
+<li>updated</li>
+<li>activated</li>
+<li>deactivated</li>
+<li>beforeDestroy</li>
+<li>destroyed</li>
+<li>errorCaptured</li>
+</ol>
+<p>至于他们都有什么作用，官网已经写得很详细，建议看一下：<a href="" target="_blank">https://cn.vuejs.org/v2/api/</a></p>
+<p>除7、8、11外，其他的在平时开发中较常用到。它们的执行顺序跟排列顺序一样</p>
+<h3 id="toc_h3_3">四、beforeCreate和created</h3>
+<p>beforeCreate和created函数都是在实例化Vue的阶段，在_init方法中执行的，它的定义在src/core/instance/init中：</p>
+<pre><code class="language-javascript">Vue.prototype._init = function (options?: Object) {
+    ...
+    vm._self = vm
+    initLifecycle(vm)
+    initEvents(vm)
+    initRender(vm)
+    callHook(vm, 'beforeCreate')
+    initInjections(vm) // resolve injections before data/props
+    initState(vm)
+    initProvide(vm) // resolve provide after data/props
+    callHook(vm, 'created')
+    ...
+</code></pre>
+<p>可以看到beforeCreate和created的钩子调用是在initState函数的前后，<strong>initState的作用是初始化props、data、methods、watch、computed等属性</strong></p>
+<p>那么显然<strong>beforeCreate的钩子函数中就不能获取到props、data中定义的值，也不能调用methods中定义的函数，而created可以</strong><br>
+在这俩个钩子函数执行的时候，还没有渲染 DOM，所均访问不到DOM</p>
+<p>一般来说，如果组件在加载的时候需要和后端有交互，放在这俩个钩子函数执行都可以，如果是需要访问props、data等数据的话，就需要使用created钩子函数</p>
+<h3 id="toc_h3_4">五、beforeMount和mounted</h3>
+<p>beforeMount和mounted函数执行在Vue实例挂载阶段，它们的调用时机是在mountComponent函数中，定义在src/core/instance/lifecycle：</p>
+<pre><code class="language-javascript">export function mountComponent (
+  vm: Component,
+  el: ?Element,
+  hydrating?: boolean
+): Component {
+  vm.$el = el
+  ...
+  callHook(vm, 'beforeMount')
+
+  ...
+
+  // manually mounted instance, call mounted on self
+  // mounted is called for render-created child components in its inserted hook
+  if (vm.$vnode == null) {
+    vm._isMounted = true
+    callHook(vm, 'mounted')
+  }
+  return vm
+}
+</code></pre>
+<p>在执行vm._render()函数渲染 VNode 之前，执行了beforeMount钩子函数，在执行完vm._update()把 VNode patch 到真实 DOM 后，执行mounted钩子</p>
+<p>注意，这里对mounted钩子函数执行有一个判断逻辑，vm.$vnode如果为null，则表明这不是一次组件的初始化过程，而是我们通过外部<strong>new Vue初始化过程</strong></p>
+<p>而那么对于组件，它的mounted时机在哪儿呢<br>
+通过阅读源码我们可以发现(假装大家都阅读源码，因为上下文只对生命周期进行总结，所以深入的就不说啦~)，在组件VNode patch到DOM后，会执行invokeInsertHook函数(定义在src/core/vdom/patch.js)，会把insertedVnodeQueue里面保存的所有mounted钩子函数依次执行一遍</p>
+<p>这一些都是题外话了，先记住Vue组件在实例化的时候会先等待子组件的实例化完成，所以insertedVnodeQueue(保存组件的mounted钩子函数的数组)的添加顺序是<strong>先子后父</strong></p>
+<p><strong>所以对于同步渲染的组件而言，mounted钩子函数的执行顺序是先子后父</strong></p>
+<h3 id="toc_h3_5">六、beforeUpdate和updated</h3>
+<p>beforeUpdate和updated的钩子函数执行时机都是在数据更新的时候<br>
+beforeUpdate的执行时机是在 <strong>渲染Watcher</strong> 的before函数中，在mountComponent函数中可以看到(src/core/instance/lifecycle)：</p>
+<pre><code class="language-javascript">export function mountComponent (
+  vm: Component,
+  el: ?Element,
+  hydrating?: boolean
+): Component {
+  vm.$el = el
+  ...
+  callHook(vm, 'beforeMount')
+
+  let updateComponent
+  
+  new Watcher(vm, updateComponent, noop, {
+    before () {
+      if (vm._isMounted &amp;&amp; !vm._isDestroyed) {
+        callHook(vm, 'beforeUpdate')
+      }
+    }
+  }, true /* isRenderWatcher */)
+  ...
+  return vm
+}
+</code></pre>
+<p>这里有个判断，也就是在组件已经mounted之后才会去调用这个钩子函数</p>
+<p>update的执行时机是在flushSchedulerQueue函数调用的时候, 它的定义在src/core/observer/scheduler中：</p>
+<pre><code class="language-javascript">function flushSchedulerQueue () {
+  currentFlushTimestamp = getNow()
+  ...
+  callUpdatedHooks(updatedQueue)
+}
+
+function callUpdatedHooks (queue) {
+  let i = queue.length
+  while (i--) {
+    const watcher = queue[i]
+    const vm = watcher.vm
+    if (vm._watcher === watcher &amp;&amp; vm._isMounted &amp;&amp; !vm._isDestroyed) {
+      callHook(vm, 'updated')
+    }
+  }
+}
+</code></pre>
+<p>至于深入，这里就不解释啦~ (还不会</p>
+<h3 id="toc_h3_6">七、beforeDestroy和destroyed</h3>
+<p>beforeDestroy和destroyed钩子函数的执行时机在组件销毁的阶段<br>
+beforeDestroy钩子函数的执行时机是在destroy函数执行最开始的地方，接着执行了一系列的销毁动作，包括从parent的children中删掉自身，删除watcher，当前渲染的VNode执行销毁钩子函数等，执行完毕后再调用destroy钩子函数<br>
+在$destroy的执行过程中，它又会执行vm.<strong>patch</strong>(vm._vnode, null)触发它子组件的销毁钩子函数，这样一层层的递归调用</p>
+<p><strong>所以destroy钩子函数执行顺序是先子后父，和mounted过程一样</strong></p>
+<h3 id="toc_h3_7">八、activated和deactivated</h3>
+<p>activated是keep-alive组件激活时调用</p>
+<p>deactivated是keep-alive组件停用时调用</p>
+<h3 id="toc_h3_8">九、总结</h3>
+<p>通过对整个生命周期的了解，就可以很清晰地知道可以在什么阶段做什么事，或者某一操作应该在什么阶段执行</p>
+<p>例如在create中进行数据操作，在mounted中进行DOM完成后的操作，在destroyed进行事件解绑和功能注销</p>
+<p>文章篇幅有点多，很多都是一些相关的衍生，只有在进行源码解读的时候才比较容易理解。<strong>在这里最重要的是知道每个生命周期钩子的时机和作用</strong>，其他都是浮云~</p>
+                        <div>
+                            <hr>
+
+标题：Vue生命周期总结<br>
+作者：<a href="https://fed.ym" target="_blank">dora1995</a><br>
+地址：<a href="https://fed.ym/articles/2020/01/13/1578880697546.html" target="_blank">https://fed.ym/articles/2020/01/13/1578880697546.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                        </div>
+                </div>
+
+                <footer class="tags">
+                        <a class="tag" rel="tag" href="https://fed.ym/tags/vue">
+                            vue</a>
+
+                    <div class="rel fn-clear ft__center">
+                            <a href="https://fed.ym/articles/2020/01/10/1578646324030.html" rel="prev"
+                               class="fn-left vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="CSS语法：除了属性和选择器，你还需要知道这些带@的规则">
+                                旧一篇
+                            </a>
+                            <a href="https://fed.ym/articles/2020/01/13/1578916956055.html" rel="next"
+                               class="fn-right vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="ES6 你可能不知道的事 - 进阶篇">
+                                新一篇
+                            </a>
+                    </div>
+                </footer>
+                    <div id="b3logsolocomments"></div>
+                    <div id="vcomment" data-name="dora1995" data-postId="1578880697546"></div>
+                <br>
+                <div id="externalRelevantArticles" class="list"></div>
+                <div id="relevantArticles" class="list"></div>
+                <div id="randomArticles" class="list"></div>
+            </article>
+        </main>
+<aside>
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#toc_h3_0">一、生命周期</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_1">二、生命周期钩子的调用</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_2">三、钩子罗列</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">四、beforeCreate和created</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_4">五、beforeMount和mounted</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_5">六、beforeUpdate和updated</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_6">七、beforeDestroy和destroyed</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_7">八、activated和deactivated</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_8">九、总结</a>
+        </li>
+</ul></aside>
+    </div>
+</div>
+<footer class="footer fn-clear">
+    &copy; 2020
+    <a href="https://fed.ym">亚美大前端（FED）</a>
+    
+    <br/>
+    Powered by <a href="https://solo.b3log.org" target="_blank">YMFED</a>
+    <span class="ft-warn">&heartsuit;</span>
+    Theme
+    <sup>[<a href="javascript:;" target="_blank">ref</a>]</sup>
+    by <a href="javascript:;" target="_blank">亚美Web团队</a>
+</footer>
+<div class="icon-up" onclick="Util.goTop()"></div>
+<script>
+  var Label = {
+    servePath: "https://fed.ym",
+    staticServePath: "https://fed.ym",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "3.9.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
+</script>
+<script src="https://fed.ym/skins/9IPHP/js/common.min.js?1585645466987"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+<script type="text/javascript">
+    Util.addScript('https://fed.ym/js/page.min.js?1585645466987', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1578880697546",
+        "blogHost": "https://fed.ym",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initToc()
+    page.share()
+    });
+</script>
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 66ms, 2020/06/24 15:11:33 -->

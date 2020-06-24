@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>亚美大前端（FED）</title>
+    <link>https://fed.ym</link>
+    <atom:link href="https://fed.ym/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>既要埋头干事，也要抬头看路</description>
+    <generator>Solo, v3.9.0, https://solo.b3log.org</generator>
+    <lastBuildDate>Wed, 24 Jun 2020 15:11:33 +0800</lastBuildDate>
+    <language>zh-cn</language>
+    <item>
+      <title>webpack4构建多页应用</title>
+      <link>https://fed.ym/articles/2020/06/17/1592397628738.html</link>
+      <description><![CDATA[<p><img src="https://b3logfile.com/file/2020/06/12120-7510dc4e.jpg" alt="12120.jpg"></p>
+<p>webpack 快速构建多页应用</p>]]></description>
+      <author>yiyang1317</author>
+      <guid>https://fed.ym/articles/2020/06/17/1592397628738.html</guid>
+      <category>webpack</category>
+      <pubDate>Fri, 19 Jun 2020 15:15:12 +0800</pubDate>
+    </item>
+    <item>
+      <title>2020值得收藏的正则表达式</title>
+      <link>https://fed.ym/articles/2020/06/12/1591955590318.html</link>
+      <description><![CDATA[<p><img src="https://b3logfile.com/file/2020/06/8BE275E2C14D45AF84D81FBBB350FDF420200612175234-c188d1ad.jpg" alt="8BE275E2C14D45AF84D81FBBB350FDF420200612175234.jpg">正则表达式一般是写的时候理解，写完就忘记的东西，这里列出一些基本用法，可供搜索。</p>]]></description>
+      <author>WMJinger</author>
+      <guid>https://fed.ym/articles/2020/06/12/1591955590318.html</guid>
+      <category>正则表达式</category>
+      <pubDate>Fri, 12 Jun 2020 17:59:10 +0800</pubDate>
+    </item>
+    <item>
+      <title>使用ant design开发完整的后台系统</title>
+      <link>https://fed.ym/articles/2020/06/12/1591945873908.html</link>
+      <description><![CDATA[<p><img src="https://b3logfile.com/file/2020/06/1591268294170-a4e9e8ca.png" alt="vue ant design"></p>
+<p>这里要说的是 <strong>ant design</strong> 的 <code>vue</code> 版和 <code>react</code> 版本的使用。这里不考虑到两种框架 <code>vue</code> 和 <code>react</code> 的底层...</p>]]></description>
+      <author>reng99</author>
+      <guid>https://fed.ym/articles/2020/06/12/1591945873908.html</guid>
+      <category>javascript</category>
+      <category>ant-design</category>
+      <pubDate>Fri, 12 Jun 2020 15:36:46 +0800</pubDate>
+    </item>
+    <item>
+      <title>IntersectionObserver API使用教程</title>
+      <link>https://fed.ym/articles/2020/06/12/1591936109264.html</link>
+      <description><![CDATA[<p><img src="https://b3logfile.com/file/2020/06/timg-0eefc25a.jpg" alt="timg.jpg"></p>
+<p>广告打点和图片懒加载是两个非常常见的需求，最简单的实现方式通过监听 scroll 事件，但是大家都知道 scroll 事件的监听回调是同步执行的，这样就会影响 JS 主线程的 UI 渲染。而我们的主角 IntersectionObserver 即将登场。文章里用 observer 代替 IntersectionObserver。</p>]]></description>
+      <author>HTingting</author>
+      <guid>https://fed.ym/articles/2020/06/12/1591936109264.html</guid>
+      <category>javascript</category>
+      <pubDate>Fri, 12 Jun 2020 12:28:29 +0800</pubDate>
+    </item>
+    <item>
+      <title>6月内训纪实-Service Worker介绍与实战</title>
+      <link>https://fed.ym/articles/2020/06/04/1591263090776.html</link>
+      <description><![CDATA[<p><img src="https://b3logfile.com/file/2020/06/9576-8015cf3c.png" alt="9576.png"></p>
+<p>轻应用开发将是未来一两年移动互联网的趋势所在</p>]]></description>
+      <author>yiyang1317</author>
+      <guid>https://fed.ym/articles/2020/06/04/1591263090776.html</guid>
+      <category>Serviceworker</category>
+      <category>JS</category>
+      <category>Cache</category>
+      <pubDate>Fri, 05 Jun 2020 11:58:35 +0800</pubDate>
+    </item>
+    <item>
+      <title>Service Worker介绍与实战</title>
+      <link>https://fed.ym/articles/2020/06/04/1591260917340.html</link>
+      <description><![CDATA[<p><img src="https://b3logfile.com/file/2020/06/ECEF25536AED4d7b983427773C04F928-20fe8a41.png" alt="ECEF25536AED4d7b983427773C04F928.png"></p>
+<p>可能是未来的一大趋势，让web应用流行起来~</p>]]></description>
+      <author>zeech-zhou</author>
+      <guid>https://fed.ym/articles/2020/06/04/1591260917340.html</guid>
+      <category>JS</category>
+      <category>Cache</category>
+      <category>ServiceWorker</category>
+      <pubDate>Thu, 04 Jun 2020 17:06:48 +0800</pubDate>
+    </item>
+    <item>
+      <title>ES6-箭头函数与普通函数的区别</title>
+      <link>https://fed.ym/articles/2020/06/03/1591155965999.html</link>
+      <description><![CDATA[<p><img src="https://b3logfile.com/file/2020/06/38e06aa92b5aac6eb089dc5dc73b01e4-69cd74f0.jpg" alt="38e06aa92b5aac6eb089dc5dc73b01e4.jpg"></p>
+<p>箭头函数一个简单、简洁且频繁使用的函数，你全面了解它了吗？</p>]]></description>
+      <author>qinyueman</author>
+      <guid>https://fed.ym/articles/2020/06/03/1591155965999.html</guid>
+      <category>JS</category>
+      <pubDate>Wed, 03 Jun 2020 15:38:27 +0800</pubDate>
+    </item>
+    <item>
+      <title>BFC知识总结</title>
+      <link>https://fed.ym/articles/2020/06/01/1591015157950.html</link>
+      <description><![CDATA[<p><img src="https://b3logfile.com/file/2020/06/bba30-3d81f293.png" alt="bba30.png"></p>
+<p>BFC（Block Fromatting Context， 即块级格式上下文）</p>]]></description>
+      <author>dora1995</author>
+      <guid>https://fed.ym/articles/2020/06/01/1591015157950.html</guid>
+      <category>css</category>
+      <pubDate>Wed, 03 Jun 2020 10:37:23 +0800</pubDate>
+    </item>
+    <item>
+      <title>新一代 Web 性能体验和质量指标及其提升方法</title>
+      <link>https://fed.ym/articles/2020/06/01/1591001620265.html</link>
+      <description><![CDATA[<p><img src="https://b3logfile.com/file/2020/06/timg-bffe6ba5.jpg" alt="timg.jpg"></p>
+<p>来关注一下 新一代前端性能指标及其优化方法</p>]]></description>
+      <author>Steven201612</author>
+      <guid>https://fed.ym/articles/2020/06/01/1591001620265.html</guid>
+      <category>前端性能优化</category>
+      <category>JS</category>
+      <pubDate>Mon, 01 Jun 2020 17:20:13 +0800</pubDate>
+    </item>
+    <item>
+      <title>ECMAScript 2020新特性</title>
+      <link>https://fed.ym/articles/2020/05/29/1590745984415.html</link>
+      <description><![CDATA[<p><img src="https://b3logfile.com/file/2020/05/61259aaa0ba9449ca330f0d3ff8b0fd0-e7a71480.jpeg" alt="61259aaa0ba9449ca330f0d3ff8b0fd0.jpeg"></p>
+<p>JavaScript 是最流行的编程语言之一，每年都会添加新的特性。本文介绍了添加在 ECMAScript 2020（又称 ES11）中的新特性。</p>]]></description>
+      <author>colorfulWorld</author>
+      <guid>https://fed.ym/articles/2020/05/29/1590745984415.html</guid>
+      <category>JS</category>
+      <category>ES11</category>
+      <pubDate>Fri, 29 May 2020 17:55:02 +0800</pubDate>
+    </item>
+  </channel>
+</rss>

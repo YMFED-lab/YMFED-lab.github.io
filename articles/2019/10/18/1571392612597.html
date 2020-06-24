@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>VUE组件及插件的封装并发布到npm的流程 - 亚美大前端（FED）</title><meta name="description" content="vue-cli2封装简单的库发布到npm流程"/><meta property="og:description" content="vue-cli2封装简单的库发布到npm流程"/>    <meta name="keywords" content="YM,亚美,前端,博客"/><link rel="dns-prefetch" href="https://ymfed.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ymfed.github.io"><link rel="icon" type="image/png" href="http://fed.ym/images/czh-fed-logo.png"/><link rel="apple-touch-icon" href="http://fed.ym/images/czh-fed-logo.png"><link rel="shortcut icon" type="image/x-icon" href="http://fed.ym/images/czh-fed-logo.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="VUE组件及插件的封装并发布到npm的流程 - 亚美大前端（FED）"/><meta property="og:site_name" content="亚美大前端（FED）"/><meta property="og:url"      content="https://ymfed.github.io/articles/2019/10/18/1571392612597.html?"/><meta property="og:image" content="http://fed.ym/images/czh-fed-logo.png"/><link rel="search" type="application/opensearchdescription+xml" title="VUE组件及插件的封装并发布到npm的流程 - 亚美大前端（FED）" href="/opensearch.xml"><link href="https://ymfed.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ymfed.github.io/manifest.json">        <link rel="canonical" href="https://ymfed.github.io/articles/2019/10/18/1571392612597.html">        <link rel="stylesheet"
+              href="https://ymfed.github.io/skins/9IPHP/css/base.css?1585645466987"/>
+            <link rel="prev" title="11个有用的Vue开发技巧" href="https://ymfed.github.io/articles/2019/10/17/1571310065783.html">
+            <link rel="next" title="10月内训——《Vue 组件及插件的封装并发布到 npm 的流程》" href="https://ymfed.github.io/articles/2019/10/28/1572251416380.html">
+    </head>
+<body>
+<header>
+    <div class="banner">
+        <div class="fn-clear wrapper">
+            <a href="https://ymfed.github.io" class="logo" rel="start"></a>
+            <h2 class="subtitle-wrap">
+                <p class="subtitle">亚美大前端（FED）</p>
+                <p class="description">既要埋头干事，也要抬头看路</p>
+            </h2>
+            <div class="fn-right">
+                    <a class="fn__flex-inline" href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i>&nbsp;开始使用
+                    </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="fn-clear wrapper">
+            <nav class="fn-left">
+                <a href="https://ymfed.github.io">
+                    <i class="icon-home"></i>
+                    首页
+                </a>
+                <a href="https://ymfed.github.io/tags.html" rel="section">
+                    <i class="icon-tags"></i> 标签墙
+                </a>
+                <a href="https://ymfed.github.io/archives.html">
+                    <i class="icon-inbox"></i> 存档
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/links.html">
+                    <i class="icon-link"></i> 友情链接
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/team.html">
+                    <i class="icon-category"></i> 团队介绍
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/join.html">
+                    <i class="icon-register"></i> 加入我们
+                </a>
+            </nav>
+            <div class="fn-right">
+                <form class="form" action="https://ymfed.github.io/search">
+                    <input placeholder="搜索" id="search" type="text" name="keyword"/>
+                    <button type="submit"><i class="icon-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="responsive fn-none">
+    <i class="icon-list"></i>
+    <ul class="list">
+                <li>
+                    <a href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i> 开始使用
+                    </a>
+                </li>
+        <li>
+            <a href="https://ymfed.github.io">
+                <i class="icon-home"></i>
+                首页
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/tags.html" rel="section">
+                <i class="icon-tags"></i> 标签墙
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/archives.html">
+                <i class="icon-inbox"></i> 存档
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/links.html">
+                <i class="icon-link"></i> 友情链接
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/team.html">
+                <i class="icon-category"></i> 团队介绍
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/join.html">
+                <i class="icon-register"></i> 加入我们
+            </a>
+        </li>
+    </ul>
+</div><div class="wrapper">
+    <div class="main-wrap">
+        <main>
+            <article class="post">
+                <header>
+                    <h2>
+                        <a rel="bookmark" href="https://ymfed.github.io/articles/2019/10/18/1571392612597.html">
+                            VUE组件及插件的封装并发布到npm的流程
+                        </a>
+                    </h2>
+                    <div class="meta">
+                                <span class="vditor-tooltipped vditor-tooltipped__n"
+                                      aria-label="创建日期">
+                                    <i class="icon-date"></i>
+                                    <time>
+                                    2019-10-18
+                                    </time>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="评论数">
+                                    <i class="icon-comments"></i>
+                                    <a href="https://ymfed.github.io/articles/2019/10/18/1571392612597.html#b3logsolocomments">
+                                        <span data-uvstatcmt="1571392612597">0</span> 评论</a>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="浏览数">
+                                    <i class="icon-views"></i>
+                        <span data-uvstaturl="https://ymfed.github.io/articles/2019/10/18/1571392612597.html">43</span> 浏览
+                                </span>
+                    </div>
+                </header>
+
+                <div class="vditor-reset post__content">
+                    <h3 id="toc_h3_0">VUE组件、插件封装</h3>
+<h4 id="toc_h4_1">1.前言</h4>
+<p>在开发项目过程中，通常会有几个项目的公共组件是一样的，而我们平常就是通过复制粘贴的方式来使用组件，会显得比较繁琐、累赘；我们也想像iview、vux这些第三方库一样，直接install，在需要使用的地方引入组件或者调用方法即可使用。接下来我们就来封装一个简单的库发布到npm，在项目中install即可使用。</p>
+<h4 id="toc_h4_2">2.组件简介</h4>
+<p>组件是可复用的 Vue 实例，且带有一个名字，它提供了一种抽象，让我们可以使用独立可复用的小组件来构建大型应用，任意类型的应用界面都可以抽象为一个组件树。</p>
+<h4 id="toc_h4_3">3.优点</h4>
+<p>2.1、提高开发效率2.2、方便重复使用2.3、简化调试步骤2.4、提升整个项目的可维护性2.5、便于协同开发</p>
+<h4 id="toc_h4_4">4.封装</h4>
+<p>因为组件是可复用的 Vue 实例，所以它们与 new Vue接收相同的选项，例如 data、computed、watch、methods 以及生命周期钩子等。仅有的例外是像 el这样根实例特有的选项。</p>
+<h5 id="toc_h5_5">4.1、开发组件</h5>
+<p>4.1.1、定义好你需要使用者传入的数据</p>
+<p>4.1.2、定义好你提供给使用者的方法</p>
+<p>4.1.3、写好组件的内部逻辑</p>
+<pre><code>// dialog组件
+&lt;template&gt;
+ &lt;div class="dialog-mask" v-if="showDialog"&gt;
+    &lt;div class="dialog-box"&gt;
+	&lt;div class="header" v-html="title" v-if="title"&gt;&lt;/div&gt;
+	 &lt;article class="body" :class="{'tl':textLeft}" v-html="text" v-if="text"&gt;&lt;/article&gt;
+	 &lt;article class="edit-block" v-if="type === 'input'" :class="text ? '' : 'pt-15'"&gt;
+	 	&lt;textarea class="edit-el" :rows="row" :placeholder="placeholder" v-model.trim="content"&gt;&lt;/textarea&gt;
+	 &lt;/article&gt;
+	 &lt;div class="list" v-if="list.length&gt;0"&gt;
+	 	&lt;div class="listItem" v-for="(item,index) in list" :key="index"&gt;{{item.cardInfoName}}&lt;/div&gt;
+	 &lt;/div&gt;
+	 &lt;footer class="footer"&gt;
+	 	&lt;div class="my-cancel-btn fl" v-show="showCancelBtn" v-text="cancelText" @click="cancelClick"&gt;
+		 &lt;/div&gt;
+		 &lt;div class="confirm-btn fl" :style="{width: showCancelBtn ? '50%' : '100%'}" v-text="confirmText" @click="confirmClick" :class="showCancelBtn ? 'dib' : ''"&gt;
+		 &lt;/div&gt;
+	 &lt;/footer&gt;
+	 &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+ 	name: 'dialog-box',
+	 props: {
+	 	title: {
+		 	type: String,
+			 required: true
+		 },
+		 text: {
+		 	type: String,
+			 required: true
+		 },
+		 showCancelBtn: {
+		 	type: Boolean,
+			 default: true
+		 }
+	 },
+ 	data () {
+	 	return {
+		 	 showDialog: true,
+			 type: '',
+			 // title: '',
+			 // text: '',
+			 content: '',
+			 // showCancelBtn: true,
+			 confirmText: '确定',
+			 cancelText: '取消',
+			 placeholder: '请输入...（最多20个字）',
+			 confirm: null,
+			 cancel: null,
+			 row: 3,
+			 list: [],
+			 textLeft: false
+		 }
+	 },
+ 	methods: {
+	 	cancelClick () {
+		 	this.$emit('hideDialog', 'cancel')
+			 this.showDialog = false
+		 },
+		 confirmClick () {
+		 	this.$emit('hideDialog', 'confirm')
+			 this.showDialog = false
+		 }
+	}
+}
+</code></pre>
+<h5 id="toc_h5_6">4.2、扩展组件</h5>
+<p>4.2.1、通过extends继承原组件的属性或方法并去扩展组件</p>
+<pre><code>// base.vue
+&lt;template&gt;
+ &lt;div class="base-view"&gt;
+ 	&lt;h2&gt;{{ title }}&lt;/h2&gt;
+	 &lt;a href="javascript:;" @click="add"&gt;点我&lt;/a&gt;
+	 &lt;p&gt;{{ num }}&lt;/p&gt;
+ &lt;/div&gt;
+&lt;/template&gt;
+​
+&lt;script&gt;
+export default {
+ 	data () {
+		 return {
+		 	title: 'basePage',
+			num: 0
+		 }
+	 },
+	 methods: {
+	 	add () {
+		 	this.num++
+		 }
+	 },
+	 created () {
+	 	console.log('base')
+	 }
+}
+&lt;/script&gt;
+</code></pre>
+<pre><code>// extendsBase.vue
+&lt;script&gt;
+import Base from './base'
+export default {
+ extends: Base,
+ data () {
+ 	return {
+	title: 'extendsPage'
+ }
+ },
+ methods: {
+ 	add () {
+	 	this.num += 2
+	}
+ },
+ created () {
+ 	console.log('extends')
+ }
+}
+&lt;/script&gt;
+</code></pre>
+<p>在使用extends的时候注意以下两个点：</p>
+<p>1、方法和属性的定义是直接覆盖的</p>
+<p>2、原组件和继承之后的组件都会被调用，原组件先调用</p>
+<p>4.2.2、使用插槽（slot）实现分发内容，使组件更有灵活性与可复用性</p>
+<p>插槽可分为:</p>
+<p>匿名插槽：组件只需要用一个插槽的话可用匿名插槽</p>
+<p>具名插槽：组件需要用到多个插槽的时候, 需要用到具名插槽</p>
+<p>作用域插槽：需要让插槽内容能够访问到子组件中的数据，需要用到作用域插槽</p>
+<pre><code>
+// list.vue
+&lt;template&gt;
+ &lt;div class="list-view"&gt;
+ 	&lt;h3&gt;{{ title }}&lt;/h3&gt;
+	 &lt;ul&gt;
+	 	&lt;li v-for="(item, index) in list" :key="index"&gt;
+		 	&lt;!-- &lt;span&gt;{{ item.name }}&lt;/span&gt; --&gt;
+			 &lt;slot :item="item"&gt;&lt;/slot&gt;
+		 &lt;/li&gt;
+	 &lt;/ul&gt;
+	 &lt;body&gt;
+	 	&lt;slot name="body"&gt;&lt;/slot&gt;
+	 &lt;/body&gt;
+	 &lt;footer&gt;
+	 	&lt;slot name="footer"&gt;&lt;/slot&gt;
+	 &lt;/footer&gt;
+ &lt;/div&gt;
+&lt;/template&gt;
+​
+&lt;script&gt;
+export default {
+ name: 'list',
+ props: {
+ 	title: {
+	 	type: String
+	},
+	list: {
+	 	type: Array
+	}
+ },
+ data () {
+ 	return {
+	 }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<pre><code>&lt;template&gt;
+ &lt;div class="use-view"&gt;
+ 	&lt;List title="APP列表" :list="appList"&gt;
+ 		&lt;!-- 作用域插槽 --&gt;
+		 &lt;!-- &lt;span slot-scope="props"&gt;
+		 {{ props.item.name }}
+		 &lt;/span&gt; --&gt;
+		 &lt;div slot-scope="props" class="clearfix slot-view"&gt;
+		 &lt;span class="fl"&gt;
+		 {{ props.item.name }}
+		 &lt;/span&gt;
+		 &lt;span class="fr"&gt;下载量：{{ props.item.value }}&lt;/span&gt;
+		 &lt;/div&gt;
+		 &lt;template v-slot:body&gt;
+		 我是body具名插槽
+		 &lt;/template&gt;
+		 &lt;template v-slot:footer&gt;
+		 我是footer具名插槽
+		 &lt;/template&gt;
+ 	&lt;/List&gt;
+ &lt;/div&gt;
+&lt;/template&gt;
+​
+&lt;script&gt;
+import List from '../myPlugin/list/list'
+export default {
+ 	 name: 'example',
+	 data () {
+	 	return {
+		 appList: [
+		 	{
+			 name: '车智汇APP',
+			 value: 100000
+			 },
+			 {
+			 name: '车智会APP',
+			 value: 200000
+			 },
+			 {
+			 name: '车管家APP',
+			 value: 10000
+			 }
+		 ]
+		}
+	 },
+	 components: { List }
+}
+&lt;/script&gt;
+</code></pre>
+<p>使用插槽的优点：</p>
+<p>1、可以优雅的包装原生的 HTML 标签</p>
+<p>2、组件标签可以嵌套，就像使用原生 HTML 标签一样</p>
+<p>3、插槽作用域让组件更加的通用和可复用</p>
+<p>插槽作用域可以让我们在父组件中访问子组件的数据，就像利用 props 属性让子组件访问到父组件的数据一样;需要修改数据结构也好，添加不同的内容也罢，我们都可以完美的完成，而且不用修改我们的子组件，只需要在外部调用时填充我们需要的内容即可。</p>
+<h4 id="toc_h4_7">5.使用</h4>
+<h5 id="toc_h5_8">5.1、通过import引入组件，使用Vue.components注册组件</h5>
+<p>在页面中引用组件，通过父组件与子组件之间的通信进行交互，父组件通过 <code>prop</code> 给子组件下发数据，子组件通过<code>$emit</code>触发事件给父组件发送消息，即 <code>prop</code> 向下传递，事件向上传递。（推荐）</p>
+<p>父组件中的逻辑要放在父组件处理，子组件基于父组件的数据做的逻辑放在子组件中处理； 这样既降低了耦合性，也保证了各自的数据不被污染。</p>
+<pre><code>
+// 使用dialog组件
+&lt;template&gt;
+ &lt;div&gt;
+ &lt;Button @getDialog="getDialog"&gt;&lt;/Button&gt;
+ &lt;Dialog v-if="showDialog" title="标题" text="内容" @hideDialog="hideDialog"&gt;&lt;/Dialog&gt;
+ &lt;/div&gt;
+&lt;/template&gt;
+​
+&lt;script&gt;
+import Button from '../myPlugin/button/button'
+import Dialog from './dialog'
+export default {
+ data () {
+ return {
+ showDialog: false
+ }
+ },
+ components: { Dialog, Button },
+ methods: {
+ getDialog () {
+ this.showDialog = true
+ },
+ hideDialog (data) {
+ if (data === 'confirm') {
+ console.log('点击了确定')
+ } else {
+ console.log('点击了取消')
+ }
+ this.showDialog = false
+ }
+ }
+}
+&lt;/script&gt;
+</code></pre>
+<p>父子组件之间的通信还有其他的一些方法：</p>
+<p>5.1.1、通过ref通信</p>
+<p>父组件设置ref，通过$refs对象来获取子组件的数据或调用子组件的方法</p>
+<p>注意：这个方法只用在父组件，组件的思想是 独立的，要封装可复用的组件，这个还是不实用的</p>
+<p>5.1.2、通过 Vuex 通信</p>
+<p>Vuex 是一个专为 Vue.js 应用程序开发的<strong>状态管理模式</strong>。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</p>
+<p>因为 Vuex 类似于一个全局变量，会一直占用内存 在写入数据庞大的 state 的时候，就会产生内存泄露， 当页面刷新的时候，Vuex 会初始化，同时也会丢失编辑过的数据，所以视情况而用。</p>
+<p>注意：组件思想，是封装一个独立的、可复用的功能模块，与Vuex是不同的概念，不要被误导。</p>
+<p>5.1.3、.sync 父子组件数据双向绑定</p>
+<p>父组件向子组件props数据的时候，加一个 .sync 修饰符，然后在子组件显示的调用$emit 来修改他。</p>
+<pre><code>
+&lt;template&gt;
+ &lt;div&gt;
+ &lt;Button @getDialog="getDialog"&gt;&lt;/Button&gt;
+ &lt;Dialog ref="dialog" v-if="showDialog" title="标题" :text.sync="content" type="input" @hideDialog="hideDialog"&gt;&lt;/Dialog&gt;
+ &lt;/div&gt;
+&lt;/template&gt;
+​
+&lt;script&gt;
+import Button from '../myPlugin/button/button'
+import Dialog from './dialog'
+export default {
+ data () {
+ return {
+ showDialog: false,
+ content: ''
+ }
+ },
+ components: { Dialog, Button },
+ methods: {
+ getDialog () {
+ this.content = ''
+ this.showDialog = true
+ },
+ hideDialog (data) {
+ if (data === 'confirm') {
+ console.log('点击了确定')
+ console.log(this.$refs.dialog.text)
+ } else {
+ console.log('点击了取消')
+ }
+ this.showDialog = false
+ }
+ }
+}
+&lt;/script&gt;
+</code></pre>
+<h5 id="toc_h5_9">5.2、通过方法使用组件</h5>
+<p>要通过方法调用组件，使用Vue.extend(component)来进行</p>
+<p>在与dialog.vue组件同级，新建一个js文件，引入dialog.vue组件，然后通过Vue.extend()方法创建了一个构造器DialogConstructor，其次我们再通过new DialogConstructor()创建了vm实例，通过instance.$mount()手动将组件挂载到DOM上面，代码如下</p>
+<pre><code>
+import Vue from 'vue'
+import Main from './main.vue'
+​
+let DialogConstructor = Vue.extend(Main)
+​
+let instance
+const Dialog = function (options) {
+ options = options || {}
+ instance = new DialogConstructor({
+ data: options
+ })
+ instance.vm = instance.$mount()
+ document.body.appendChild(instance.vm.$el)
+ return instance.vm
+}
+export default Dialog
+</code></pre>
+<p>在需要的地方引入该文件，即可调用</p>
+<pre><code>
+// 引入
+import Dialog from '../myPlugin/dialog'
+​
+// 使用
+Dialog({
+ title: '温馨提示',
+ text: '温馨提示的内容',
+ showCancelBtn: false,
+ confirmText: '确认',
+ confirm () {
+ alert(1)
+ }
+})
+</code></pre>
+<h5 id="toc_h5_10">5.3、通过vue原型链使用组件</h5>
+<p>很多场景是在组件内部通过import调用，但是使用率很高的组件（如dialog、alert、loading）一般我们希望全局注册后直接就可以在相应页面使用。</p>
+<p>5.3.1、公共方法少的情况下，可以在main.js把4.2封装好的方法挂载在vue的原型链上</p>
+<pre><code>
+// 引入
+import Dialog from '../myPlugin/dialog'
+​
+Vue.prototype.$dialog = Dialog
+</code></pre>
+<p>注意给原型链添加属性或者方法时，都要带一个$符，防止组件中的属性与此冲突</p>
+<p>5.3.2、在组件中使用</p>
+<pre><code>
+// 使用
+this.$dialog({
+ title: '温馨提示',
+ text: '温馨提示的内容',
+ // type: 'input',
+ // placeholder: '请输入内容文本...',
+ // length: 10,
+ showCancelBtn: false,
+ confirmText: '确认',
+ confirm () {
+ alert(1)
+ }
+})
+</code></pre>
+<p>考虑到扩展性，我们可以通过插件来进行封装</p>
+<p>5.3.3、Vue的插件需要有一个公开方法install</p>
+<p>新建一个plugin.js文件，在install函数中将方法挂载在vue的原型链上，并导出</p>
+<pre><code>
+// 引入
+import Dialog from '../myPlugin/dialog'
+​
+export default {
+ install (Vue) {
+ Vue.prototype.$dialog = Dialog
+ }
+}
+</code></pre>
+<p>5.3.4、在main.js文件引入plugin.js，通过全局方法 Vue.use() 即可使用该插件，其自动会调用install方法。</p>
+<pre><code>
+import dialog from './myPlugin'
+​
+Vue.use(dialog)
+</code></pre>
+<p>5.3.5、在组件中使用</p>
+<pre><code>
+// 使用
+this.$dialog({
+ title: '温馨提示',
+ text: '温馨提示的内容',
+ // type: 'input',
+ // placeholder: '请输入内容文本...',
+ // length: 10,
+ showCancelBtn: false,
+ confirmText: '确认',
+ confirm () {
+ alert(1)
+ }
+})
+</code></pre>
+<h4 id="toc_h4_11">6.封装简单的库进行npm发布</h4>
+<p>考虑到我们的组件或者公共方法在之后项目中会存在全局使用和局部使用，我们在封装和导出的时候要做好区别</p>
+<p>1、在上面编写插件的plugin.js文件添加一些工具类、公共属性等（用于全局使用）</p>
+<pre><code>
+// 引入
+import Dialog from './dialog/src/main'
+import Button from './button/button'
+​
+const components = [
+ Button,
+ Dialog
+]
+​
+const YmPlugin = {
+ install: function(Vue, options) {
+ // 添加全局变量
+ Vue.prototype.appName = 'aaaaa'
+ // 添加实例方法
+ Vue.prototype.$dialog = Dialog
+​
+ // 工具类
+ Vue.prototype.$Utils = {
+ // 判断安卓或者ios终端
+ ckos () {
+ let u = navigator.userAgent
+ let isAndroid = u.indexOf('Android') &gt; -1 || u.indexOf('Adr') &gt; -1 // android终端
+ let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) // ios终端
+ if (isAndroid) {
+ return 'android'
+ } else if (isiOS) {
+ return 'ios'
+ } else {
+ return 'pc'
+ }
+ }
+ }
+ // 正则表达式
+ Vue.prototype.$reg = {
+ name: /^([\u4E00-\u9FFF]|[a-zA-Z]){2,11}$/, // 包含中文的姓名正则
+ password: /^[\x21-\x7E]{8,16}$/, //密码,8-16字母或数字
+ }
+ // 全局注册组件
+ components.forEach(component =&gt; {
+ // name就是组件中定义的name值
+ Vue.component(component.name, component);
+ })
+ } 
+}
+​
+// function aa(Vue) {
+//  Vue.prototype.$dialog = Dialog
+// }
+​
+export default YmPlugin
+</code></pre>
+<p>上述使用了两种方法封装插件：</p>
+<p>1.1、将这个插件的逻辑封装成一个对象，在install编写业务代码暴露给Vue对象。这样做的好处是可以添加任意参数在这个对象上方便将install函数封装得更加精简，可拓展性也比较高。</p>
+<p>1.2、将所有逻辑都编写成一个函数暴露给Vue。</p>
+<p>其实两种方法原理都一样，无非第二种就是将这个插件直接当成install函数来处理。</p>
+<p>2、再建一个index.js文件，将要发布的组件及插件引入，进行导出</p>
+<pre><code>
+import Vue from 'vue'
+import Button from './button/button'
+import Dialog from './dialog/src/main'
+import YmPlugin from './plugin.js'
+import DialogPlugin from './dialog/index'
+​
+​
+export { Button, Dialog, DialogPlugin }
+export default YmPlugin
+</code></pre>
+<p>注意：export 和export default 的区别在于：</p>
+<p>export 可以导出多个命名模块，引入不可以匿名，需要对应导出名称，且需要大括号括起来。</p>
+<p>export default 只能导出一个默认模块，这个模块可以匿名，引入的时候可以给这个模块取任意名字，且不需要用大括号括起来。</p>
+<h4 id="toc_h4_12">7.修改配置文件</h4>
+<p>1、修改webpack.base.config.js文件配置如下：</p>
+<pre><code>
+// 设置不同环境不同的入口文件
+entry: {
+ app: process.env.NODE_ENV === 'production' ? './src/myPlugin/index.js' : './src/main.js'
+}
+</code></pre>
+<p>2、修改webpack.prod.conf.js文件配置如下：</p>
+<pre><code>
+ouput: {
+ // 打包后的js文件
+ fileName: 'ym-components.min.js',
+ // 指定的就是你使用require时的模块名
+ library: 'ym-components',
+ // 配置webpack打包内容的模块方式的参数
+ libraryTarget: 'umd'
+}
+​
+plugins: [
+ new ExtractTextPlugin({
+ // 打包后的css文件
+ filename: 'ym-components.min.css'
+ })
+]
+</code></pre>
+<p>3、修改package.json文件</p>
+<pre><code>
+"name": "ym-components",
+"version": "1.0.0",
+"author": 'xxx',
+// 发布开源需要将这个字段改为 false
+"private": false,
+​
+// 这个指 import xxxx 的时候它会去检索的路径
+"main": "dist/ym-components.min.js",
+​
+"license": 'MIT',
+"keywords": [
+ "ym",
+ "vue",
+ "components"
+]
+</code></pre>
+<p>4、修改好配置，使用npm run build进行打包，在该项目目录下看到打包好的dist文件会有两个文件，分别是我们再配置文件设置的js文件名与css文件名</p>
+<h4 id="toc_h4_13">8.npm发布包</h4>
+<p>1、注册npm账号，进行邮箱验证（没有验证的话是不能发布代码）</p>
+<p>2、切换到需要发包的项目根目录下，登录npm账号。执行npm login ，输入用户名、密码、邮箱</p>
+<p>3、上面输入验证信息正确后，执行npm publish，看成功与否；成功后可在npm官网登录账号看到自己发布的包</p>
+<p>需要注意的事项</p>
+<p>【注意点1】不能和已有的包的名字重名！</p>
+<p>【注意点2】还有一点要注意的是npm对包名的限制：不能有大写字母/空格/下滑线!</p>
+<p>【注意点3】你的项目里有部分私密的代码不想发布到npm上？</p>
+<p>将它写入.gitignore 或.npmignore中，上传就会被忽略了</p>
+<h4 id="toc_h4_14">9.npm撤销包</h4>
+<p>npm unpublish 包名</p>
+<p>注意取消发布包并不像你想象得那么容易，这种操作是受到诸多限制的，撤销发布的包被认为是一种不好的行为</p>
+<p><strong>（试想一下你撤销了发布的包[假设它已经在社区内有了一定程度的影响]，这对那些已经深度使用并依赖你发布的包的团队是件多么崩溃的事情！）</strong></p>
+<p>直接删除，npm官方会直接拒绝，需要在后面加上--force，进行强行删除后，在npm搜索已找不到你的包了。</p>
+<p>【注意点1】根据规范，只有在发包的<strong>24小时内才允许</strong>撤销发布的包</p>
+<p>【注意点2】<strong>即使</strong>你撤销了发布的包，<strong>发包的时候也不能再和被撤销的包的名称和版本重复了</strong>（即不能名称相同，版本相同，因为这两者构成的唯一标识已经被“占用”了）</p>
+<p>使用npm unpublish这个命令很不友好，因此推荐替代命令为：npm deprecate 包名 提示信息</p>
+<p>使用这个命令，并不会在社区里撤销你已有的包，但会在任何人尝试安装这个包的时候得到警告</p>
+<h4 id="toc_h4_15">10.npm更新发布后的包</h4>
+<p>npm更新包和发布包的命令是一样的，都是npm publish,不同之处在于，你需要修改包的版本</p>
+<p>1、修改包的版本（package.json里的version字段）</p>
+<p>version的字段表现为：”version“:"x.y.z"</p>
+<p>1.1、有很大的改动，无法向后兼容,增加x</p>
+<p>1.2、增加了新特性，但仍能向后兼容，增加y</p>
+<p>1.3、修复bug,小改动，增加z</p>
+<p>2、npm版本控制</p>
+<p>通过npm version &lt;update_type&gt;自动改变版本，update-type为patch、minor、major其中之一；</p>
+<p>分别表示</p>
+<p>补丁——patch，对应version中的z</p>
+<p>小改——minor，对应version中的y</p>
+<p>大改——major，对应version中的x</p>
+<p>3、再次执行npm run build打包</p>
+<p>4、执行npm publish命令</p>
+<h4 id="toc_h4_16">11.使用已发布包</h4>
+<p>1、在需要使用的项目中使用 npm install 包名</p>
+<p>2、经过上面的封装我们可以通过全局去使用，也可以局部使用</p>
+<p>2.1、全局使用，在main.js中引入</p>
+<pre><code>
+import YmPlugin from 'ym-components'
+import 'ym-components/dist/ym-components.min.css'
+​
+Vue.use(YmPlugin)
+</code></pre>
+<p>2.2、局部使用，在需要使用的组件中引入</p>
+<pre><code>import Vue from 'vue'
+
+import { Button, DialogPlugin } from 'ym-components'
+Vue.use(DialogPlugin)
+</code></pre>
+<h4 id="toc_h4_17">12.总结与展望</h4>
+<p>通过以上步骤已经成功封装了一个简单的库，可能我们会觉得iview、vux这些第三方库高深莫测，只要我们在封装组件的时候充分考虑到他的扩展性与其内部逻辑的处理，相信通过慢慢积累与完善我们都能封装好属于我们自己的库。</p>
+                        <div>
+                            <hr>
+
+标题：VUE组件及插件的封装并发布到npm的流程<br>
+作者：<a href="https://ymfed.github.io" target="_blank">qinyueman</a><br>
+地址：<a href="https://ymfed.github.io/articles/2019/10/18/1571392612597.html" target="_blank">https://ymfed.github.io/articles/2019/10/18/1571392612597.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                        </div>
+                </div>
+
+                <footer class="tags">
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/vue">
+                            vue</a>
+
+                    <div class="rel fn-clear ft__center">
+                            <a href="https://ymfed.github.io/articles/2019/10/17/1571310065783.html" rel="prev"
+                               class="fn-left vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="11个有用的Vue开发技巧">
+                                旧一篇
+                            </a>
+                            <a href="https://ymfed.github.io/articles/2019/10/28/1572251416380.html" rel="next"
+                               class="fn-right vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="10月内训——《Vue 组件及插件的封装并发布到 npm 的流程》">
+                                新一篇
+                            </a>
+                    </div>
+                </footer>
+                    <div id="b3logsolocomments"></div>
+                    <div id="vcomment" data-name="qinyueman" data-postId="1571392612597"></div>
+                <br>
+                <div id="externalRelevantArticles" class="list"></div>
+                <div id="relevantArticles" class="list"></div>
+                <div id="randomArticles" class="list"></div>
+            </article>
+        </main>
+<aside>
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#toc_h3_0">VUE组件、插件封装</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_1">1.前言</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_2">2.组件简介</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_3">3.优点</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_4">4.封装</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_5">4.1、开发组件</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_6">4.2、扩展组件</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_7">5.使用</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_8">5.1、通过import引入组件，使用Vue.components注册组件</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_9">5.2、通过方法使用组件</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_10">5.3、通过vue原型链使用组件</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_11">6.封装简单的库进行npm发布</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_12">7.修改配置文件</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_13">8.npm发布包</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_14">9.npm撤销包</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_15">10.npm更新发布后的包</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_16">11.使用已发布包</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_17">12.总结与展望</a>
+        </li>
+</ul></aside>
+    </div>
+</div>
+<footer class="footer fn-clear">
+    &copy; 2020
+    <a href="https://ymfed.github.io">亚美大前端（FED）</a>
+    
+    <br/>
+    Powered by <a href="https://solo.b3log.org" target="_blank">YMFED</a>
+    <span class="ft-warn">&heartsuit;</span>
+    Theme
+    <sup>[<a href="javascript:;" target="_blank">ref</a>]</sup>
+    by <a href="javascript:;" target="_blank">亚美Web团队</a>
+</footer>
+<div class="icon-up" onclick="Util.goTop()"></div>
+<script>
+  var Label = {
+    servePath: "https://ymfed.github.io",
+    staticServePath: "https://ymfed.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "3.9.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
+</script>
+<script src="https://ymfed.github.io/skins/9IPHP/js/common.min.js?1585645466987"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+<script type="text/javascript">
+    Util.addScript('https://ymfed.github.io/js/page.min.js?1585645466987', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1571392612597",
+        "blogHost": "https://ymfed.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initToc()
+    page.share()
+    });
+</script>
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 35ms, 2020/06/24 15:11:33 -->

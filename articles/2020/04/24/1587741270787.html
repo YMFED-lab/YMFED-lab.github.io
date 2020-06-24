@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>基本数据结构和算法 - 亚美大前端（FED）</title><meta name="description" content="随著应用程序越来越複杂和数据越来越丰富，有三个问题需要应对~"/><meta property="og:description" content="随著应用程序越来越複杂和数据越来越丰富，有三个问题需要应对~"/>    <meta name="keywords" content="YM,亚美,前端,博客"/><link rel="dns-prefetch" href="https://ymfed.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ymfed.github.io"><link rel="icon" type="image/png" href="http://fed.ym/images/czh-fed-logo.png"/><link rel="apple-touch-icon" href="http://fed.ym/images/czh-fed-logo.png"><link rel="shortcut icon" type="image/x-icon" href="http://fed.ym/images/czh-fed-logo.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="基本数据结构和算法 - 亚美大前端（FED）"/><meta property="og:site_name" content="亚美大前端（FED）"/><meta property="og:url"      content="https://ymfed.github.io/articles/2020/04/24/1587741270787.html?"/><meta property="og:image" content="http://fed.ym/images/czh-fed-logo.png"/><link rel="search" type="application/opensearchdescription+xml" title="基本数据结构和算法 - 亚美大前端（FED）" href="/opensearch.xml"><link href="https://ymfed.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ymfed.github.io/manifest.json">        <link rel="canonical" href="https://ymfed.github.io/articles/2020/04/24/1587741270787.html">        <link rel="stylesheet"
+              href="https://ymfed.github.io/skins/9IPHP/css/base.css?1585645466987"/>
+            <link rel="prev" title="2020年后的第一场内训——《基本数据结构和算法》" href="https://ymfed.github.io/articles/2020/04/24/1587711679404.html">
+            <link rel="next" title="如何瞬间让网站变色" href="https://ymfed.github.io/articles/2020/04/26/1587864347928.html">
+    </head>
+<body>
+<header>
+    <div class="banner">
+        <div class="fn-clear wrapper">
+            <a href="https://ymfed.github.io" class="logo" rel="start"></a>
+            <h2 class="subtitle-wrap">
+                <p class="subtitle">亚美大前端（FED）</p>
+                <p class="description">既要埋头干事，也要抬头看路</p>
+            </h2>
+            <div class="fn-right">
+                    <a class="fn__flex-inline" href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i>&nbsp;开始使用
+                    </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="fn-clear wrapper">
+            <nav class="fn-left">
+                <a href="https://ymfed.github.io">
+                    <i class="icon-home"></i>
+                    首页
+                </a>
+                <a href="https://ymfed.github.io/tags.html" rel="section">
+                    <i class="icon-tags"></i> 标签墙
+                </a>
+                <a href="https://ymfed.github.io/archives.html">
+                    <i class="icon-inbox"></i> 存档
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/links.html">
+                    <i class="icon-link"></i> 友情链接
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/team.html">
+                    <i class="icon-category"></i> 团队介绍
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/join.html">
+                    <i class="icon-register"></i> 加入我们
+                </a>
+            </nav>
+            <div class="fn-right">
+                <form class="form" action="https://ymfed.github.io/search">
+                    <input placeholder="搜索" id="search" type="text" name="keyword"/>
+                    <button type="submit"><i class="icon-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="responsive fn-none">
+    <i class="icon-list"></i>
+    <ul class="list">
+                <li>
+                    <a href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i> 开始使用
+                    </a>
+                </li>
+        <li>
+            <a href="https://ymfed.github.io">
+                <i class="icon-home"></i>
+                首页
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/tags.html" rel="section">
+                <i class="icon-tags"></i> 标签墙
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/archives.html">
+                <i class="icon-inbox"></i> 存档
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/links.html">
+                <i class="icon-link"></i> 友情链接
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/team.html">
+                <i class="icon-category"></i> 团队介绍
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/join.html">
+                <i class="icon-register"></i> 加入我们
+            </a>
+        </li>
+    </ul>
+</div><div class="wrapper">
+    <div class="main-wrap">
+        <main>
+            <article class="post">
+                <header>
+                    <h2>
+                        <a rel="bookmark" href="https://ymfed.github.io/articles/2020/04/24/1587741270787.html">
+                            基本数据结构和算法
+                        </a>
+                    </h2>
+                    <div class="meta">
+                                <span class="vditor-tooltipped vditor-tooltipped__n"
+                                      aria-label="更新日期">
+                                    <i class="icon-date"></i>
+                                    <time>
+                                    2020-04-26
+                                    </time>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="评论数">
+                                    <i class="icon-comments"></i>
+                                    <a href="https://ymfed.github.io/articles/2020/04/24/1587741270787.html#b3logsolocomments">
+                                        <span data-uvstatcmt="1587741270787">0</span> 评论</a>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="浏览数">
+                                    <i class="icon-views"></i>
+                        <span data-uvstaturl="https://ymfed.github.io/articles/2020/04/24/1587741270787.html">0</span> 浏览
+                                </span>
+                    </div>
+                </header>
+
+                <div class="vditor-reset post__content">
+                    <p><img src="https://img.hacpai.com/bing/20190430.jpg?imageView2/1/w/960/h/540/interlace/1/q/100" alt=""></p>
+<p><img src="https://img.hacpai.com/file/2020/04/banner-888777e7.jpg" alt="banner.jpg"></p>
+<h1 id="toc_h1_0">数据结构</h1>
+<p>随著应用程序越来越複杂和数据越来越丰富，有三个问题需要应对：</p>
+<ul>
+<li><strong>数据搜索</strong> - 考虑到仓库裡面有一百万的库存的项目数据。如果应用程序在搜索一条项目数据的时候，它每次要在一百万的数据里面查找一条数据，这会降低搜索的速度。伴随著数据的增长，搜索会更慢。</li>
+<li><strong>处理器的速度</strong> - 虽然处理器的运行速度总是非常快的，但是数据增长到以亿计的时候，将会因为限制而降低速度。</li>
+<li><strong>多条请求</strong> - 数千的用户可以同时在一台 <code>web</code> 服务器上面搜索数据。在搜索数据的时候，即使是性能很好的服务器也会失败。</li>
+</ul>
+<p>为了解决上面提出的问题，<code>数据结构</code> 应势而生。数据被很好的组织在 <code>数据结构</code> 里，在那里，请求的数据可以很快的被搜索到。</p>
+<p>那么~</p>
+<p><strong>数据结构</strong>是计算机存储、组织数据的方式。</p>
+<p><strong>数据结构</strong>是指相互之间存在一种或者多种特殊关係的数据元素的集合。</p>
+<p>通常情况下，精心选择 <code>数据结构</code> 可以带来更高的运行或者存储效率。</p>
+<p><code>数据结构</code> 可以分为 <code>线性结构</code> 和 <code>非线性结构</code>。</p>
+<ol>
+<li><strong>线性结构</strong>是一个有序数据元素的集合。它应该满足下面的特征：</li>
+</ol>
+<ul>
+<li>集合中必存在唯一的一个 <code>第一个元素</code></li>
+<li>集合中必存在唯一的一个 <code>最后的元素</code></li>
+<li>除最后一个元素之外，其他数据元素均有唯一的 <code>后继</code></li>
+<li>除第一个元素之外，其他数据元素均有唯一的 <code>前驱</code></li>
+</ul>
+<p>按照百度百科的定义，我们知道符合条件的数据结构有栈、队列等。</p>
+<ol>
+<li><strong>非线性结构</strong>其逻辑特征是一个节点元素可以有多个直接前驱或多个直接后继。</li>
+</ol>
+<p>那么符合条件的数据结构就有图、树等。</p>
+<p>嗯~有这么个概念就行了，下面我们来了解下<strong>数据结构</strong>。</p>
+<blockquote>
+<p>⚠️ 此处的<strong>集合</strong>跟我们即将要了解的<strong>数据结构-集合</strong>是不同的</p>
+</blockquote>
+<h2 id="toc_h2_1">数组</h2>
+<p><img src="https://img.hacpai.com/file/2020/04/array-cfaaaaeb.jpg" alt="array.jpg"></p>
+<p>数组是一种 <code>线性结构</code>，以中国年生肖为例，其排序固定为 <code>鼠、牛、虎、兔、龙、蛇、马、羊、猴、鸡、狗、猪</code>。</p>
+<p>我们来创建一个数组并且打印下结果就清晰了：</p>
+<pre><code class="language-javascript">let arr = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+arr.forEach((item, index) =&gt; {
+	console.log(`[ ${index} ] =&gt; ${item}`);
+});
+
+// [ 0 ] =&gt; 鼠
+// [ 1 ] =&gt; 牛
+// [ 2 ] =&gt; 虎
+// [ 3 ] =&gt; 兔
+// [ 4 ] =&gt; 龙
+// [ 5 ] =&gt; 蛇
+// [ 6 ] =&gt; 马
+// [ 7 ] =&gt; 羊
+// [ 8 ] =&gt; 猴
+// [ 9 ] =&gt; 鸡
+// [ 10 ] =&gt; 狗
+// [ 11 ] =&gt; 猪
+</code></pre>
+<blockquote>
+<p>⚠️ 啰嗦下：数组的下标是从 <strong>0</strong> 开始的</p>
+</blockquote>
+<p>数组中常用的属性和一些方法，直接调用即可。</p>
+<h3 id="toc_h3_2">常用属性</h3>
+<ul>
+<li><strong>length</strong> 表示数组的长度</li>
+</ul>
+<p>一般用做条件判断，显示或者隐藏某些内容。</p>
+<h3 id="toc_h3_3">常用方法</h3>
+<ul>
+<li><strong>splice(index, howmany, item, ...itemx)</strong></li>
+</ul>
+<p><code>splice</code> 方法自认为是数组中最强大的方法。可以实现数组的添加、删除和替换。</p>
+<ul>
+<li><strong>indexOf(searchValue, formIndex)</strong></li>
+</ul>
+<p><code>indexOf</code> 方法返回某个指定字符串在数组中的位置。<code>lastIndexOf</code> 有异曲同工之妙，不过是从数组尾部开始搜索。</p>
+<ul>
+<li><strong>concat(array1, ...arrayn)</strong></li>
+</ul>
+<p><code>concat</code> 方法用于连接两个或以上的数组。</p>
+<ul>
+<li><strong>push(newElement1, ...newElementN)</strong></li>
+</ul>
+<p><code>push</code> 方法可向<strong>数组末尾</strong>添加一个或者多个元素。</p>
+<ul>
+<li><strong>unshift(newElement1, ...newElementN)</strong></li>
+</ul>
+<p><code>unshift</code> 方法可以向<strong>数组开头</strong>添加一个或者多个元素。</p>
+<ul>
+<li><strong>pop()</strong></li>
+</ul>
+<p><code>pop</code> 方法用于删除并返回<strong>数组中的最后一个元素</strong>。</p>
+<ul>
+<li><strong>shift()</strong></li>
+</ul>
+<p><code>shift</code> 方法用于删除并返回<strong>数组的第一个元素</strong>。</p>
+<ul>
+<li><strong>reverse()</strong></li>
+</ul>
+<p><code>reverse</code> 方法用于数组的反转。</p>
+<ul>
+<li><strong>sort(sortFn)</strong></li>
+</ul>
+<p><code>sort</code> 方法是对数组元素排序。参数 <code>sortFn</code> 可选，用于规定排序的顺序（升序抑或降序），必须是函数。</p>
+<pre><code class="language-javascript">let values = [0, 1, 5, 10, 15]
+values.sort()
+console.log(values) // [0, 1, 10, 15, 5]
+
+// ❓为什麽会出现这种排序结果呢？
+// ❓不是默认是升序？
+// 在忽略sortFn的情况下，元素会按照装换为字符串的各个字符串的Unicode位点进行排序，如下
+let equalValues = ['0', '1', '5', '10', '15']
+equalValues.sort()
+console.log(equalValues) //  ["0", "1", "10", "15", "5"]
+
+// equalValues.sort()等同下面的代码
+let arr = [1, 0, 10, 15, 5]
+const compare = (el1, el2) =&gt; el1 &gt;= el2 ? 1 : -1 // 升序排列
+arr.sort(compare)
+console.log(arr) // [0, 1, 5, 10, 15]
+
+// 再来个降序的操作
+arr.sort((el1, el2) =&gt; el2 &gt;= el1 ? 1 : -1) // 降序排序
+console.log(arr); // [15, 10, 5, 1, 0]
+</code></pre>
+<ul>
+<li><strong>forEach(fn(currentValue, index, arr), thisValue)</strong></li>
+</ul>
+<p><code>forEach</code> 方法用于调用数组的每个元素，并将元素传递给回调函数。</p>
+<ul>
+<li><strong>every(fn(currentValue, index, arr), thisValue)</strong></li>
+</ul>
+<p><code>every</code> 方法用于检测数组中所有元素是否符合指定条件，如果数组中检测到有一个元素不满足，则整个表达式返回 <code>false</code>，且剩余的元素不再检查。如果所有的元素都满足条件，则返回 <code>true</code>。</p>
+<ul>
+<li><strong>some(fn(currentValue, index, arr), thisValue)</strong></li>
+</ul>
+<p><code>some</code> 方法用于检测数组中元素是否满足指定条件。只要有一个符合就返回 <code>true</code>，剩余的元素不再检查。如果所有元素都不符合条件，则返回 <code>false</code>。</p>
+<ul>
+<li><strong>reduce(fn(accumulator, currentValue, currentIndex, arr), initialValue)</strong></li>
+</ul>
+<p><code>reduce</code> 方法接收一个函数作为累加器，数组中的每个值（从左往右）开始缩减，最终一个值。回调函数的四个参数的意义如下：<code>accumulator</code> 必需，累加器累计回调的返回值，它是上一次上次调用时返回的累计值，或者 <code>initialValue</code>；<code>currentValue</code>，必需，数组中正在处理的元素；<code>currentIndex</code>，可选，数组中正在处理的当前元素的索引，如果提供了 <code>initialValue</code>，则索引号为 0，否则为 1；<code>arr</code>,可选，当前元素所属的数组对象。<code>initialValue</code>，可选，传递给函数的初始值。</p>
+<pre><code class="language-javascript">let arr = [1, 2, 3, 4]
+const reducer = (accumulator, currentValue) =&gt; accumulator + currentValue
+
+// 1 + 2 + 3 + 4
+console.log(arr.reduce(reducer)); // 10
+
+// 5 + 1 + 2 + 3 + 4
+console.log(arr.reduce(reducer, 5)); // 15
+</code></pre>
+<p>与数组相关的业务上使用这些属性和方法，能够 <code>hold</code> 住大多数业务了。</p>
+<blockquote>
+<p>PS：理解和熟练使用数组很重要，因为后面讲到的数据结构或多或少都有数组的影子</p>
+</blockquote>
+<h2 id="toc_h2_4">栈</h2>
+<p><img src="https://img.hacpai.com/file/2020/04/stack-baf9bdff.jpg" alt="stack.jpg"></p>
+<p>栈是一种后进先出(LIFO)线性表，是一种基于数组的数据结构。</p>
+<ul>
+<li>**LIFO(Last In First Out)**表示后进先出，后进来的元素第一个被弹出栈空间。类似于自动餐托盘，最后放上去的托盘，往往先被拿出来使用。</li>
+<li>仅允许在表的一端插入和移除数据。这一端被称为<strong>栈顶</strong>，相对地，把另一端称为<strong>栈底</strong>。</li>
+<li>向一个栈插入新数据称为<strong>进栈、入栈或压栈</strong>，这是将新元素放在栈顶元素上面，使之成为新的栈顶元素。</li>
+<li>从一个栈删除元素又称为<strong>出栈或退栈</strong>，它是把栈顶元素删除掉，使其相邻的元素成为新的栈顶元素。</li>
+</ul>
+<p>代码操作熟悉下：</p>
+<pre><code class="language-javascript">class Stack {
+  constructor(){
+    this.items = [];
+  }
+  // 入栈操作
+  push(element = ''){
+    if(!element) return;
+    this.items.push(element);
+    return this;
+  }
+  // 出栈操作
+  pop(){
+    this.items.pop();
+    return this;
+  }
+  // 栈顶元素
+  peek(){
+    return this.items[this.size() - 1];
+  }
+  // 输出
+  print(){
+    return this.items.join(' ');
+  }
+  // 是否空栈
+  isEmpty(){
+    return this.items.length == 0;
+  }
+  // 栈的大小
+  size(){
+    return this.items.length;
+  }
+}
+
+let stack = new Stack(),
+  arr = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+arr.forEach(item =&gt; {
+  stack.push(item);
+});
+
+console.log(stack.print()); // 鼠 牛 虎 兔 龙 蛇 马 羊 猴 鸡 狗 猪
+console.log(stack.peek()); // 猪
+
+stack.pop().pop().pop().pop();
+console.log(stack.print()); // 鼠 牛 虎 兔 龙 蛇 马 羊
+console.log(stack.isEmpty()); // false
+console.log(stack.size()); // 8
+</code></pre>
+<blockquote>
+<p>⚠️ 栈这裡的 <code>push</code> 和 <code>pop</code> 方法要和数组裡面的 <code>push</code> 和 <code>pop</code> 方法区分下。</p>
+</blockquote>
+<h2 id="toc_h2_5">队列</h2>
+<p><img src="https://img.hacpai.com/file/2020/04/queue-44d244f4.jpg" alt="queue.jpg"></p>
+<p><strong>队列</strong>是一种先进先出(FIFO)受限的线性表。受限体现于其允许在表的前端（front，队首）进行删除操作，在表的末尾（rear，队尾）进行插入操作。</p>
+<blockquote>
+<p>⚠️ 优先队列等操作可不在队首和队尾操作。</p>
+</blockquote>
+<p>代码演示如下：</p>
+<pre><code class="language-javascript">class Queue {
+  constructor(){
+    this.items = [];
+  }
+  // 入队
+  enqueue(element = ''){
+    if(!element) return;
+    this.items.push(element);
+    return this;
+  }
+  // 出队
+  dequeue(){
+    this.items.shift();
+    return this;
+  }
+  // 队首元素
+  front(){
+    return this.items[0];
+  }
+  // 是否空队
+  isEmpty(){
+    return this.items.length == 0;
+  }
+  // 队列长度
+  len(){
+    return this.items.length;
+  }
+  // 打印
+  print(){
+    return this.items.join(' ');
+  }
+}
+
+let queue = new Queue(),
+  arr = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪'];
+arr.forEach(item =&gt; {
+  queue.enqueue(item);
+});
+
+console.log(queue.print()); // 鼠 牛 虎 兔 龙 蛇 马 羊 猴 鸡 狗 猪
+console.log(queue.isEmpty()); // false
+console.log(queue.len()); // 12
+
+queue.dequeue().dequeue();
+console.log(queue.front()); // 虎
+console.log(queue.print()); // 虎 兔 龙 蛇 马 羊 猴 鸡 狗 猪
+</code></pre>
+<h2 id="toc_h2_6">链錶</h2>
+<p><img src="https://img.hacpai.com/file/2020/04/linkedlist-dcadb6ec.jpg" alt="linkedlist.jpg"></p>
+<p>在进入正题之前，我们先来聊聊数组的优缺点。</p>
+<h3 id="toc_h3_7">优点</h3>
+<ul>
+<li>存储多个元素，比较常用</li>
+<li>访问便捷，使用下标 <code>[index]</code> 即可访问</li>
+</ul>
+<h3 id="toc_h3_8">缺点</h3>
+<ul>
+<li>数组的创建通常需要申请一段连续的内存空间，并且大小是固定的 <code>（大多数的编程语言数组都是固定的）</code>，所以在进行扩容的时候难以掌控。<code>(一般情况下，申请一个更大的数组，会是之前数组的倍数，比如两倍。然后，再将数组中的元素複製过去)</code></li>
+<li>插入数据越是靠前，其成本越高，因为需要进行大量元素的位移。</li>
+</ul>
+<p>相对数组，<strong>链錶</strong>也可以存储多个元素，而且存储的元素在内容中不必是连续的空间；在插入和删除数据时，<code>时间複杂度</code> 可以达到 <code>O(1)</code>。在查找元素的时候，还是需要从头开始遍历的，比数组在知道下标的情况下要快，但是数组如果不确定下标的话，那就另说了...</p>
+<p><strong>链錶</strong>是由一组节点组成的集合。每个节点都使用一个对象的引用指向它的后继。</p>
+<p>我们还是使用十二生肖来了解：</p>
+<pre><code class="language-javascript">// 链錶
+class Node {
+  constructor(element){
+    this.element = element;
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor(){
+    this.length = 0; // 链錶长度
+    this.head = new Node('head'); // 表头节点
+  }
+  /**
+  * @method find 查找元素
+  * @param { String } item 要查找的元素
+  * @return { Object } 返回查找到的节点，找不到的情况下直接返回链尾节点
+  */
+  find(item = ''){
+    let currNode = this.head;
+    while(currNode.element != item &amp;&amp; currNode.next){
+      currNode = currNode.next;
+    }
+    return currNode;
+  }
+  /**
+  * @method findPrevious 查找链錶指定元素的前一个节点
+  * @param { String } item 指定元素
+  * @return { Object } 返回查找到的元素的前一个节点，找不到的情况下直接返回链尾节点
+  */
+  findPrevious(item){
+    let currNode = this.head;
+    while((currNode.next != null) &amp;&amp; (currNode.next.element != item)){
+      currNode = currNode.next;
+    }
+    return currNode;
+  }
+  /**
+  * @method insert 插入元素
+  * @param { String } newElement 要插入的元素
+  * @param { String } item 想要追加在后面的元素（此元素不一定存在）
+  */
+  insert(newElement = '', item){
+    if(!newElement) return;
+    let newNode = new Node(newElement),
+      currNode = this.find(item);
+    newNode.next = currNode.next;
+    currNode.next = newNode;
+    this.length++;
+    return this;
+  }
+  // 打印
+  display(){
+    let currNode = this.head,
+      arr = [];
+    while(currNode.next != null){
+      arr.push(currNode.next.element);
+      currNode = currNode.next;
+    }
+    return arr.join(' ');
+  }
+  // 链錶长度
+  size(){
+    return this.length;
+  }
+  // 链錶是否为空
+  isEmpty(){
+    return this.length == 0;
+  }
+  /**
+  * @method indexOf 查看链錶中元素的索引
+  * @param { String } element 要查找的元素
+  */
+  indexOf(element){
+    let currNode = this.head,
+      index = 0;
+    while(currNode.next != null){
+      index++;
+      if(currNode.next.element == element){
+        return index;
+      }
+      currNode = currNode.next;
+    }
+    return -1;
+  }
+  /**
+  * @method removeEl 移除指定元素
+  * @param { String } element 
+  */
+  removeEl(element){
+    let preNode = this.findPrevious(element);
+    preNode.next = preNode.next != null ? preNode.next.next : null;
+  }
+}
+
+let linkedlist = new LinkedList();
+console.log(linkedlist.isEmpty()); // true
+linkedlist.insert('鼠').insert('虎').insert('牛', '鼠');
+console.log(linkedlist.display()); // 鼠 牛 虎
+console.log(linkedlist.find('猪')); // Node { element: '虎', next: null }
+console.log(linkedlist.find('鼠')); // Node { element: '鼠', next: Node { element: '牛', next: Node { element: '虎', next: null } } }
+console.log(linkedlist.size()); // 3
+console.log(linkedlist.indexOf('鼠')); // 1
+console.log(linkedlist.indexOf('猪')); // -1
+console.log(linkedlist.findPrevious('虎')); // Node { element: '牛', next: Node { element: '虎', next: null } }
+linkedlist.removeEl('鼠');
+console.log(linkedlist.display()); // 牛 虎
+</code></pre>
+<h2 id="toc_h2_9">字典</h2>
+<p><img src="https://img.hacpai.com/file/2020/04/dictionary-7ce6fa92.jpg" alt="dictionary.jpg"></p>
+<p><strong>字典</strong>的主要特点是键值对一一对应。可以比喻成我们现实学习中查的 <code>中华字典</code>。这裡字典的键 <code>(key)</code> 理论上是可以使用任意的内容，但是还是建议语义化一点。比如上图的十二生肖图。</p>
+<p>相关的演示代码如下：</p>
+<pre><code class="language-javascript">class Dictionary {
+  constructor(){
+    this.items = {};
+  }
+  /**
+  * @method set 设置键值对
+  * @param { String } key 键
+  * @param {*} value 值
+  */
+  set(key = '', value = ''){
+    this.items[key] = value;
+    return this;
+  }
+  /**
+  * @method get 获取某个值
+  * @param { String } key 键
+  */
+  get(key = ''){
+    return this.has(key) ? this.items[key] : undefined;
+  }
+  /**
+  * @method has 判断是否包含某个键的值
+  * @param { String } key 键
+  */
+  has(key = ''){
+    return this.items.hasOwnProperty(key);
+  }
+  /**
+  * @method remove 移除元素
+  * @param { String } key 
+  */
+  remove(key){
+    if(!this.has(key))  return false;
+    delete this.items[key];
+    return true;
+  }
+  // 展示字典的键
+  keys(){
+    return Object.keys(this.items).join(' ');
+  }
+  // 字典的大小
+  size(){
+    return Object.keys(this.items).length;
+  }
+  // 展示字典的值
+  values(){
+    return Object.values(this.items).join(' ');
+  }
+  // 清空字典
+  clear(){
+    this.items = {};
+    return this;
+  }
+}
+
+let dictionary = new Dictionary(),
+  arr = [{ key: 'mouse', value: '鼠'}, {key: 'ox', value: '牛'}, {key: 'tiger', value: '虎'}, {key: 'rabbit', value: '兔'}, {key: 'dragon', value: '龙'}, {key: 'snake', value: '蛇'}, {key: 'horse', value: '马'}, {key: 'sheep', value: '羊'}, {key: 'monkey', value: '猴'}, {key: 'chicken', value: '鸡'}, {key: 'dog', value: '狗'}, {key: 'pig', value: '猪'}];
+
+  // 设置键值对
+  arr.forEach(item =&gt; {
+      dictionary.set(item.key, item.value);
+  });
+
+console.log(dictionary.keys()); // mouse ox tiger rabbit dragon snake horse sheep monkey chicken dog pig
+console.log(dictionary.values()); // 鼠 牛 虎 兔 龙 蛇 马 羊 猴 鸡 狗 猪
+console.log(dictionary.has('dragon')); // true
+console.log(dictionary.get('tiger')); // 虎
+console.log(dictionary.remove('pig')); // true
+console.log(dictionary.size()); // 11
+console.log(dictionary.clear().size()); // 0
+</code></pre>
+<h2 id="toc_h2_10">集合</h2>
+<p><img src="https://img.hacpai.com/file/2020/04/set-752ef36b.jpg" alt="set.jpg"></p>
+<p><strong>集合</strong>通常是一组无序的，不能重複的元素构成。一些常见的集合操作有 <code>交集、子集、并集和补集</code>。</p>
+<p><code>es6</code> 中已经封装好了可用的 <a href="http://es6.ruanyifeng.com/#docs/set-map" target="_blank">Set 类</a>。下面，我们来动手写下相关的逻辑。</p>
+<pre><code class="language-javascript">class Set {
+  constructor(){
+    this.items = [];
+  }
+  /**
+  * @method add 添加元素
+  * @param { String } element 
+  * @return { Boolean }
+  */
+  add(element = ''){
+    if(this.items.indexOf(element) &gt;= 0) return false;
+    this.items.push(element);
+    return true;
+  }
+  // 集合的大小
+  size(){
+    return this.items.length;
+  }
+  // 集合是否包含指定的元素
+  has(element = ''){
+    return this.items.indexOf(element) &gt;= 0;
+  }
+  // 展示集合
+  show(){
+    return this.items.join(' ');
+  }
+  // 移除某个元素
+  remove(element){
+    let pos = this.items.indexOf(element);
+    if(pos &lt; 0) return false;
+    this.items.splice(pos, 1);
+    return true;
+  }
+  /**
+  * @method union 并集
+  * @param { Array } set 数组集合
+  * @return { Object } 返回并集的对象
+  */
+  union(set = []){
+    let tempSet = new Set();
+    for(let i = 0; i &lt; this.items.length; i++){
+      tempSet.add(this.items[i]);
+    }
+    for(let i = 0; i &lt; set.items.length; i++){
+      if(tempSet.has(set.items[i])) continue;
+      tempSet.items.push(set.items[i]);
+    }
+    return tempSet;
+  }
+  /**
+  * @method intersect 交集
+  * @param { Array } set 数组集合
+  * @return { Object } 返回交集对象
+  */
+  intersect(set = []){
+    let tempSet = new Set();
+    for(let i = 0; i &lt; this.items.length; i++){
+      if(set.has(this.items[i])){
+        tempSet.add(this.items[i]);
+      }
+    }
+    return tempSet;
+  }
+  /**
+  * @method isSubsetOf 【A】是【B】的子集？
+  * @param { Array } set 数组集合
+  * @return { Boolean } 真假值
+  */
+  isSubsetOf(set = []){
+    if(this.size() &gt; set.size()) return false;
+    this.items.forEach*(item =&gt; {
+      if(!set.has(item)) return false;
+    });
+    return true;
+  }
+}
+
+let set = new Set(),
+  arr = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴'];
+arr.forEach(item =&gt; {
+  set.add(item);
+});
+console.log(set.show()); // 鼠 牛 虎 兔 龙 蛇 马 羊 猴
+console.log(set.has('猪')); // false
+console.log(set.size()); // 9
+set.remove('鼠');
+console.log(set.show()); // 牛 虎 兔 龙 蛇 马 羊 猴
+
+let setAnother = new Set(),
+  anotherArr = ['马', '羊', '猴', '鸡', '狗', '猪'];
+anotherArr.forEach(item =&gt; {
+  setAnother.add(item);
+});
+console.log(set.union(setAnother).show()); // 牛 虎 兔 龙 蛇 马 羊 猴 鸡 狗 猪
+console.log(set.intersect(setAnother).show()); // 马 羊 猴
+console.log(set.isSubsetOf(setAnother)); // false
+</code></pre>
+<h2 id="toc_h2_11">散列表/哈希表</h2>
+<p><img src="https://img.hacpai.com/file/2020/04/hash-34df1055.jpg" alt="hash.jpg"></p>
+<p>散列是一种常用的存储技术，散列使用的数据结构叫做<strong>散列表/哈希表</strong>。在散列表上 <code>插入、删除和取用</code> 数据非常快，但是对于 <code>查找</code> 操作来说却效率低下，比如查找一组数据中的最大值和最小值。查找的操作得求助其他的数据结构，比如下面提到的<strong>二叉树</strong>。</p>
+<p>切入一个案例来感受下哈希表：</p>
+<p><strong>加入一家公司有 1000 个员工，现在我们需要把这些员工的信息使用某种数据结构来保存起来。你会採用什么数据结构呢？</strong></p>
+<ul>
+<li>方案一：数组</li>
+<li>按照顺序将所有的员工信息依次存入一个长度为 <code>1000</code> 的数组中。每个员工的信息都保存在改数组的某个位置上。</li>
+<li>但是我们要查看某个员工的信息怎么办？一个个查找吗？太好找。</li>
+<li>数组最大的优势是什么？通过下标获取信息。</li>
+<li>所以为了可以通过数组快速定位到某个员工，最好给员工信息添加一个员工编号，而 <code>编号</code> 对应的就是员工的 <code>下标值index</code>。</li>
+<li>当查找某个员工信息时，通过员工号可以快速定位到员工的信息位置。</li>
+<li>方案二：链錶</li>
+<li>链錶对插入和删除数据有一定的优势</li>
+<li>但是对于获取员工的信息，每次都必须从头遍历到尾，这种方式显然不是特别适合我们这种场景。</li>
+<li>最终方案</li>
+<li>这么看来，最终方案似乎就是数组了，但是数组还是有缺点，什么呢？</li>
+<li>假如我们想查看下张三这位员工的信息，但是我们不知道张三的员工编号，怎么办？</li>
+<li>当然，我们可以问他的员工编号。但是我们没查一个员工都要问下员工的编号吗？不合适 <code>【PS：那我们还不如直接问他的信息得了】</code></li>
+<li>能不能有一种方法，让张三的名字和他的员工编号产生直接的关係呢？</li>
+<li>也就是通过张三这个名字，我们就能获取到他的索引值，然后再通过索引值就能获取张三的信息呢？</li>
+<li>这样的方案已经存在了，就是使用<strong>哈希函数</strong>，让某个 <code>key</code> 的信息和索引值对应起来。</li>
+</ul>
+<p>那么，下面了解下散列表的原理和实现。</p>
+<p>我们下面的散列表是基于数组完成的，我们从数组这裡切入解析下。<code>数组可以通过下标直接定位到相应的空间</code>，哈希表的做法就是类似的实现。哈希表把 <code>(key)键</code> 通过一个固定的算法函数（此函数称为哈希函数/散列函数）转换成一个整型数字，然后就将该数字对数组长度进行<strong>取馀</strong>,取馀结果就当做数组的下标，将 <code>(value)值</code> 存储在改数字为下标的数组空间裡，而当使用哈希表进行查询的时候，就再次使用哈希函数将 <code>key</code> 转换为对应的数组下标，并定位到改空间获取 <code>value</code>。</p>
+<p>结合下面的代码，我们会更加容易理解：</p>
+<pre><code class="language-javascript">class HashTable {
+  constructor(){
+    this.table = new Array(137);
+  }
+  /**
+  * @method hashFn 哈希函数
+  * @param { String } data 传入的字符串
+  * @return { Number } 返回取馀数字
+  */
+  hashFn(data){
+    let total = 0;
+    for(let i = 0; i &lt; data.length; i++){
+      total += data.charCodeAt(i);
+    }
+    return total % this.table.length;
+  }
+  /**
+  * 
+  * @param { String } data 传入字符串
+  */
+  put(data){
+    let pos = this.hashFn(data);
+    this.table[pos] = data;
+    return this;
+  }
+  // 展示
+  show(){
+    this.table &amp;&amp; this.table.forEach((item, index) =&gt; {
+      if(item != undefined){
+        console.log(index + ' =&gt; ' + item);
+      }
+    })
+  }
+  // ...获取值get函数等，看官感兴趣的话自己补充测试下啦
+}
+
+let hashtable = new HashTable(),
+  arr = ['mouse', 'ox', 'tiger', 'rabbit', 'dragon', 'snake', 'horse', 'sheep', 'monkey', 'chicken', 'dog', 'pig'];
+arr.forEach(item =&gt; {
+  hashtable.put(item);
+});
+hashtable.show();
+// 5 =&gt; mouse
+// 40 =&gt; dog
+// 46 =&gt; pig
+// 80 =&gt; rabbit
+// 87 =&gt; dragon
+// 94 =&gt; ox
+// 111 =&gt; monkey
+// 119 =&gt; snake
+// 122 =&gt; sheep
+// 128 =&gt; tiger
+// 134 =&gt; horse
+
+// 那么问题来了，十二生肖裡面的_小鸡_去哪裡了呢❓
+// 被_小狗_给覆盖了，因为其位置也是40（这个可以自己证明下）
+// 问题又来了，那么应该如何解决这种被覆盖的冲突呢❓
+</code></pre>
+<p>针对上面的问题，我们存储数据的时候，产生衝突的话，可以像下面这样解决：</p>
+<p><strong>1. 线性探测法</strong></p>
+<p>当发生 <code>碰撞（冲突）</code> 时，线性探测法检测散列表中的下一个位置 <code>【有可能是非顺序查找位置，不一定是下一个位置】</code> 是否为空。如果为空，就将数据存入该位置；如果不为空，则继续检查下一个位置，直到找到下一个空的位置为止。该技术是基于一个事实：<strong>每个散列表都有很多空的单元格，可以使用它们来存储数据。</strong></p>
+<p><strong>2. 开链法</strong></p>
+<p>当发生 <code>碰撞（冲突）</code> 时，我们仍然希望将 <code>key（键）</code> 存储到通过哈希函数产生的索引位置上，那么我们可以使用<strong>开链法</strong>。<strong>开链法</strong>是指实现哈希表底层的数组中，每个数组元素又是一个新的数据结构，比如是另一个数组 <code>（这样结合起来就是二维数组了）</code>,链表等，这样就能存储多个键了。使用这种技术，即使两个 <code>key（键）</code> 散列后的值相同，依然是被保存在相同的位置，只不过它们是被保存在另一个数据结构上而已。以另一个数据结构是数组为例，存储的数据如下：</p>
+<p><img src="https://img.hacpai.com/file/2020/04/openlinked-b37a0eaf.jpg" alt="openlinked.jpg"></p>
+<h2 id="toc_h2_12">二叉查找树</h2>
+<p><img src="https://img.hacpai.com/file/2020/04/tree-ea105dfe.jpg" alt="tree.jpg"></p>
+<h3 id="toc_h3_13">树</h3>
+<ul>
+<li>树的定义：</li>
+<li>树（Tree）：<code>n(n &gt;= 0)</code> 个节点构成的有限集合。</li>
+<li>当 <code>n = 0</code> 时，称为空树；</li>
+<li>对任意一棵非空树 <code>(n &gt; 0)</code>，具备以下性质：</li>
+<li>树中有各一个称为**根（Root）**的特殊节点，用 <code>r(root)</code> 表示；</li>
+<li>其馀节点可分为 <code>m(m &gt; 0)</code> 个互不相交的有限集 <code>T1, T2, ...Tm</code>，其中每个集合本身又是一棵树，称为原来树的<strong>子树（SubTree）</strong></li>
+<li>注意：</li>
+<li>子树之间 <code>不可以相交</code></li>
+<li>除了根节点以外，每个节点有且仅有一个父节点；</li>
+<li>一个 <code>N</code> 个节点的树有 <code>N-1</code> 条边。</li>
+<li>树的术语：</li>
+<li>节点的度（Degree）：节点的子树个数。</li>
+<li>树的度：树的所有节点中最大的度数（树的度通常为节点个数的 <code>N-1</code>）</li>
+<li>叶节点（Leaf）：度为 <code>0</code> 的节点（也称为叶子节点）</li>
+<li>父节点（Parent）：有子树的节点是其子树的父节点</li>
+<li>子节点（Child）：若 <code>A</code> 节点是 <code>B</code> 节点的父节点，则称 <code>B</code> 节点是 <code>A</code> 节点的子节点</li>
+<li>兄弟节点（Sibling）：具有同一个父节点的各节点彼此是兄弟节点</li>
+<li>路径和路径长度：从节点 <code>n1</code> 到 <code>nk</code> 的路径为一个节点序列 <code>n1,n2,n3,...,nk</code>，<code>ni</code> 是 <code>ni+1</code> 的父节点。路径所包含边的个数为路径的长度</li>
+<li>节点的层次（Level）：规定根节点在 <code>第0层</code>，它的子节点是 <code>第1层</code>，子节点的子节点是 <code>第2层</code>，以此类推</li>
+<li>树的深度（Depth）：树中所有节点中的最大层次是这棵树的深度 <code>（因为上面是从0层开始，深度 = 第最大层数 + 1）</code></li>
+</ul>
+<blockquote>
+<p>⚠️ 类比我们的家族谱就很容易理解了</p>
+</blockquote>
+<h3 id="toc_h3_14">二叉树</h3>
+<ul>
+<li>二叉树的定义：</li>
+<li>二叉树可以为空，也就是没有节点</li>
+<li>二叉树若不为空，则它是由根节点和称为其左子树 <code>TL</code> 和右子树 <code>RT</code> 的两个不相交的二叉树组成</li>
+<li>二叉树每个节点的子节点 <code>不允许超过两个</code></li>
+<li>二叉树的五种形态</li>
+<li>空</li>
+<li>只有根节点</li>
+<li>只有左子树</li>
+<li>只有右子树</li>
+<li>左右子树都有</li>
+</ul>
+<p>对应下面的图（从左到右）：</p>
+<p><img src="https://img.hacpai.com/file/2020/04/bst-abaadba3.jpg" alt="bst.jpg"></p>
+<p>我们接下来要了解的是<strong>二叉查找树（BST, Binary Search Tree）</strong>。二叉查找树，也称为 <code>二叉搜索树或二叉排序树</code>，是一种特殊的二叉树，相对值 <code>小</code> 的值保存在 <code>左</code> 节点中，<code>大</code> 的值保存在 <code>右</code> 节点中。二叉查找树特殊的结构使得它能够快速地进行查找、插入和删除数据。</p>
+<p>用代码实现理解下：</p>
+<pre><code class="language-javascript">// 辅助节点类
+class Node {
+  constructor(data, left, right){
+    this.data = data;
+    this.left = left;
+    this.right = right;
+  }
+  // 展示节点信息
+  show(){
+    return this.data;
+  }
+}
+class BST {
+  constructor(){
+      this.root = null;
+  }
+  // 插入数据
+  insert(data){
+    let n = new Node(data, null, null);
+    if(this.root == null){
+      this.root = n;
+    }else{
+      let current = this.root,
+        parent = null;
+      while(true){
+        parent = current;
+        if(data &lt; current.data){
+          current = current.left;
+          if(current == null){
+            parent.left = n;
+            break;
+          }
+        }else{
+          current = current.right;
+          if(current == null){
+            parent.right = n;
+            break;
+          }
+        }
+      }
+    }
+    return this;
+  }
+  // 中序遍历
+  inOrder(node){
+    if(!(node == null)){
+      this.inOrder(node.left);
+      console.log(node.show());
+      this.inOrder(node.right);
+    }
+  }
+  // 先序遍历
+  preOrder(node){
+    if(!(node == null)){
+      console.log(node.show());
+      this.preOrder(node.left);
+      this.preOrder(node.right);
+    }
+  }
+  // 后序遍历
+  postOrder(node){
+    if(!(node == null)){
+      this.postOrder(node.left);
+      this.postOrder(node.right);
+      console.log(node.show());
+    }
+  }
+  // 获取最小值
+  getMin(){
+    let current = this.root;
+    while(!(current.left == null)){
+      current = current.left;
+    }
+    return current.data;
+  }
+  // 获取最大值
+  getMax(){
+    let current = this.root;
+    while(!(current.right == null)){
+      current = current.right;
+    }
+    return current.data;
+  }
+  // 查找给定的值
+  find(data){
+    let current = this.root;
+    while(current != null){
+      if(current.data == data){
+        return current;
+      }else if(data &lt; current.data){
+        current = current.left;
+      }else{
+        current = current.right;
+      }
+    }
+    return null;
+  }
+  // 移除给定的值
+  remove(data){
+    root = this.removeNode(this.root, data);
+    return this;
+  }
+  // 移除给定值得辅助函数
+  removeNode(node, data){
+    if(node == null){
+      return null;
+    }
+    if(data == node.data){
+      // 叶子节点
+      if(node.left == null &amp;&amp; node.right == null){
+        return null; // 此节点置空
+      }
+      // 没有左子树
+      if(node.left == null){
+        return node.right;
+      }
+      // 没有右子树
+      if(node.right == null){
+        return node.left;
+      }
+      // 有两个子节点的情况
+      let tempNode = this.getSmallest(node.right); // 获取右子树
+      node.data = tempNode.data; // 将其右子树的最小值赋值给删除的那个节点值
+      node.right = this.removeNode(node.right, tempNode.data); // 删除指定节点下的最小值，也就是将其置空
+      return node;
+    }else if(data &lt; node.data){
+      node.left = this.removeNode(node.left, data);
+      return node;
+    }else{
+      node.right = this.removeNode(node.right, data);
+      return node;
+    }
+  }
+  // 获取给定节点下的二叉树最小值的辅助函数
+  getSmallest(node){
+    if(node.left == null){
+      return node;
+    }else{
+      return this.getSmallest(node.left);
+    }
+  }
+}
+
+let bst = new BST();
+bst.insert(56).insert(22).insert(10).insert(30).insert(81).insert(77).insert(92);
+bst.inOrder(bst.root); // 10, 22, 30, 56, 77, 81, 92
+console.log('--中序和先序遍历分割线--');
+bst.preOrder(bst.root); // 56, 22, 10, 30, 81, 77, 92
+console.log('--先序和后序遍历分割线--');
+bst.postOrder(bst.root); // 10, 30, 22, 77, 92, 81, 56
+console.log('--后序遍历和获取最小值分割线--');
+console.log(bst.getMin()); // 10
+console.log(bst.getMax()); // 92
+console.log(bst.find(22)); // Node { data: 22, left: Node { data: 10, left: null, right: null }, right: Node { data: 30, left: null, right: null } }
+// 我们删除节点值为22，然后先序遍历的方法遍历，如下
+console.log('--移除22的分割线--')
+console.log(bst.remove(22).inOrder(bst.root)); // 10, 30, 56, 77, 81, 92
+</code></pre>
+<p>看了上面的代码之后，你是否感觉有些懵圈呢？</p>
+<p>我们借助几张图来了解下，或许你就豁然开朗了。</p>
+<p>在遍历的时候，我们分为三种遍历方法 -- <strong>先序遍历，中序遍历和后序遍历</strong>：</p>
+<p><img src="https://img.hacpai.com/file/2020/04/bstsearch-62bc863f.jpg" alt="bstsearch.jpg"></p>
+<p>删除节点是一个比较複杂的操作，考虑的情况比较多：</p>
+<ul>
+<li>该节点没有子节点的情况，直接将该节点置空</li>
+<li>该节点只有左子树的情况，直接将该节点赋予左子树</li>
+<li>该节点只有右子树的情况，直接将该节点赋予右子树</li>
+<li>该节点左右子树都有的情况，有两种方法可以处理</li>
+<li>方案一：从待删除节点的 <code>左</code> 子树找到节点值 <code>最大</code> 的节点 <code>A</code>，替换待删除节点值，并删除节点 <code>A</code></li>
+<li>方案二：从待删除节点的 <code>右</code> 子树找到节点值 <code>最小</code> 的节点 <code>A</code>，替换待删除节点值，并删除节点 <code>A</code>。<code>【上面代码演示的删除就是这种方案】</code></li>
+</ul>
+<p>删除两个节点的图解 <code>（方案二）</code> 如下：</p>
+<p><img src="https://img.hacpai.com/file/2020/04/bstremove-f1a27667.jpg" alt="bstremove.jpg"></p>
+<h2 id="toc_h2_15">图</h2>
+<p><img src="https://img.hacpai.com/file/2020/04/graph-2dae5880.jpg" alt="graph.jpg"></p>
+<p><strong>图</strong>由边的集合以及顶点的集合组成。</p>
+<p>我们来了解下图的相关术语：</p>
+<ul>
+<li>顶点：图中的一个节点</li>
+<li>边：表示顶点和顶点之间的连线</li>
+<li>相邻顶点：由一条边连接在一个的顶点称为相邻顶点</li>
+<li>度：一个顶点的度是相邻顶点的数量。比如 <code>0</code> 顶点和其他两个顶点相连，<code>0</code> 顶点的度就是 <code>2</code></li>
+<li>路径：路径是顶点 <code>v1,v2,...,vn</code> 的一个连续序列</li>
+<li>简单路径：简单路径要求不包含重複的顶点</li>
+<li>迴路：第一个顶点和最后一个顶点相同的路径称为迴路</li>
+<li>有向图和无向图</li>
+<li>有向图表示图中的 <code>边</code> 是 <code>有</code> 方向的</li>
+<li>无向图表示图中的 <code>边</code> 是 <code>无</code> 方向的</li>
+<li>带权图和无权图</li>
+<li>带权图表示图中的 <code>边</code> 是 <code>有</code> 权重的</li>
+<li>无权图表示图中的 <code>边</code> 是 <code>无</code> 权重的</li>
+</ul>
+<p>图可以用于现实中的很多系统建模，比如：</p>
+<ul>
+<li>对交通限流建模</li>
+<li>顶点可以表示街道的十字路口，边表示街道</li>
+<li>加权的边可以表示限速或者车道的数量或街道的距离</li>
+<li>建模人员可以用这个系统来判定最佳路线以及可能拥堵的街道</li>
+</ul>
+<p>我们用代码来加深理解：</p>
+<pre><code class="language-javascript">class Graph{
+  constructor(v){
+    this.vertices = v; // 顶点个数
+    this.edges = 0; // 边的个数
+    this.adj = []; // 邻接表或邻接数组
+    this.marked = []; // c存储顶点是否被访问过的标识
+    this.init();
+  }
+  init(){
+    for(let i = 0; i &lt; this.vertices; i++){
+      this.adj[i] = [];
+      this.marked[i] = false;
+    }
+  }
+  // 添加边
+  addEdge(v, w){
+    this.adj[v].push(w);
+    this.adj[w].push(v);
+    this.edges++;
+    return this;
+  }
+  // 展示图
+  showGraph(){
+    for(let i = 0; i &lt; this.vertices; i++){
+      for(let j = 0; j &lt; this.vertices; j++){
+        if(this.adj[i][j] != undefined){
+          console.log(i +' =&gt; ' + this.adj[i][j]);
+        }
+      }
+    }
+  }
+  // 深度优先搜索
+  dfs(v){
+    this.marked[v] = true;
+    if(this.adj[v] != undefined){
+      console.log("visited vertex: " + v);
+    }
+    this.adj[v].forEach(w =&gt; {
+      if(!this.marked[w]){
+        this.dfs(w);
+      }
+    })
+  }
+  // 广度优先搜索
+  bfs(v){
+    let queue = [];
+    this.marked[v] = true;
+    queue.push(v); // 添加到队尾
+    while(queue.length &gt; 0){
+      let v = queue.shift(); // 从队首移除
+      if(v != undefined){
+        console.log("visited vertex: " + v);
+      }
+      this.adj[v].forEach(w =&gt; {
+        if(!this.marked[w]){
+          this.marked[w] = true;
+          queue.push(w);
+        }
+      })
+    }
+  }
+}
+
+let graphFirstInstance = new Graph(5)
+graphFirstInstance.addEdge(0, 1).addEdge(0, 2).addEdge(1, 3).addEdge(2, 4)
+graphFirstInstance.showGraph()
+// 0 =&gt; 1
+// 0 =&gt; 2
+// 1 =&gt; 0
+// 1 =&gt; 3
+// 2 =&gt; 0
+// 2 =&gt; 4
+// 3 =&gt; 1
+// 4 =&gt; 2
+// ❓为什麽会被出现这种数据呢？它对应的图是什麽呢？可以思考🤔下，动手画画图什麽的
+console.log('--展示图和深度优先搜索的分割图--')
+graphFirstInstance.dfs(0); // 从顶点 0 开始的深度搜索
+// visited vertex: 0
+// visited vertex: 1
+// visited vertex: 3
+// visited vertex: 2
+// visited vertex: 4
+console.log('--深度优先搜索和广度优先搜索的分割线--')
+let graphSecondInstance = new Graph(5)
+graphSecondInstance.addEdge(0, 1).addEdge(0, 2).addEdge(1, 3).addEdge(2, 4)
+graphSecondInstance.bfs(0) // 从顶点 0 开始的广度搜索
+// visited vertex: 0
+// visited vertex: 1
+// visited vertex: 2
+// visited vertex: 3
+// visited vertex: 4
+</code></pre>
+<p>对于搜索图，在上面我们介绍了<strong>深度优先搜索 - DFS（Depth First Search）和广度优先搜索 - BFS（Breadth First Search）</strong>，结合下面的图再回头看下上面的代码，你会更加容易理解这两种搜索图的方式。</p>
+<p><img src="https://img.hacpai.com/file/2020/04/graphsearch-22c20d45.jpg" alt="graphsearch.jpg"></p>
+<h1 id="toc_h1_16">算法</h1>
+<p>对于算法，百度百科中这麽解析：<strong>算法（Algorithm）是指解题方案的准确而完整的描述，是一系列解决问题的清晰指令，算法代表著用系统的方法描述解决问题的策略机制。</strong></p>
+<p>上面我们已经了解了基本的数据结构，那麽它们会被算法应用到：</p>
+<ul>
+<li><strong>搜索（查找）</strong> - 算法用来搜索数据结构的数据</li>
+<li><strong>排序</strong> - 算法以指定的命令去排序</li>
+<li><strong>插入</strong> - 算法在数据结构中插入一条数据</li>
+<li><strong>更新</strong> - 算法更新存在数据结构的一条数据</li>
+<li><strong>删除</strong> - 算法可以删除数据结构中存在的数据</li>
+</ul>
+<p>上面在了解数据结构的过程中，我们或多或少已经运用到了算法。下面我们主要是了解 <code>排序</code> 和 <code>搜索</code>~</p>
+<h2 id="toc_h2_17">排序算法</h2>
+<p>排序介绍：</p>
+<ul>
+<li>一旦我们将数据放置再某个数据结构（比如数组）中存储起来后，就可以根据需求对数据进行不同方式的排序</li>
+<li>比如对姓氏按照字母</li>
+<li>比如对商品按照价格排序</li>
+<li>etc</li>
+</ul>
+<p>排序算法又分为 <code>简单排序</code> 和 <code>高级排序</code>。其中简单排序包括 <code>冒泡排序、选择排序和插入排序</code>。高级排序包含 <code>希尔排序、归併排序和快速排序</code>。</p>
+<blockquote>
+<p>⚠️ 这裡仅仅介绍六种排序算法</p>
+</blockquote>
+<p>下面我们逐个了解下：</p>
+<h3 id="toc_h3_18">冒泡排序</h3>
+<p>之所以叫做 <code>冒泡排序</code>，是因为使用这种排序算法时，数据值就会像气泡那样从数组的一端漂浮到另一端。</p>
+<p>假设正在将一组数据按照升序排列，较大的值会浮动在数组的右侧，而较小的值则会浮动到数组的左侧。产生这种冒泡的现象是因为算法会多次在数组中移动，比较相邻的数据，当左侧值大于右侧值得时候，将它们互换。</p>
+<blockquote>
+<p>后面说到的排序算法如果没有额外说明，则默认为升序</p>
+</blockquote>
+<p>比如下面的简单列表的例子。</p>
+<p><code>E A D B H</code></p>
+<p>经过第一次的排序之后，列表会变成：</p>
+<p><code>A E D B H</code></p>
+<p>前面两个元素进行了交换。接下来再次排序：</p>
+<p><code>A D E B H</code></p>
+<p>第二个元素和第三个元素进行了交换。继续进行排序：</p>
+<p><code>A D B E H</code></p>
+<p>第三个元素和第四个元素进行了交换。这一轮最后进行排序：</p>
+<p><code>A D B E H</code></p>
+<p>五个数据的位置没有发生变动。因为第四个元素比最后一个元素小，所以比较后保持各自所在的位置。反复对第一个元素执行上面的操作**（已经固定的值不参与排序，如第一轮固定的 <code>H</code> 不参与第二轮的比较了）**，得到的最终结果：</p>
+<p><code>A B D E H</code></p>
+<p>相关的动图如下：</p>
+<p><img src="https://img.hacpai.com/file/2020/04/bubble-551e12c6.gif" alt="bubble.gif"></p>
+<p>关键代码如下：</p>
+<pre><code class="language-javascript">bubbleSort() {
+  let numElements = this.arr.length;
+  for(let outer = numElements-1; outer &gt;= 2; --outer) {
+    for(let inner = 0; inner &lt;= outer-1; ++inner) {
+      if(this.arr[inner] &gt; this.arr[inner+1]) {
+        this.swap(inner, inner+1); // 交换数组两个元素
+      }
+    }
+  }
+}
+</code></pre>
+<h3 id="toc_h3_19">选择排序</h3>
+<p><code>选择排序</code> 从数组的开头开始，将第一个元素和其他元素进行比较。检查完所有的元素之后，最小的元素会被放在数组的第一个位置，然后算法会从第二个位置继续。这个过程进行到数组的倒数第二个位置时，所有的数据便完成了排序。</p>
+<p><strong>原理：</strong></p>
+<p><code>选择排序</code> 依然使用双层循环。外循环从数组的第一个元素移动到倒数第二个元素；内循环从 <code>当前外循环指定元素的第二个元素</code> 开始移动到最后一个元素，查找比当前外循环所指元素 <code>小</code> 的元素。每次循环迭代后，数组中最小的值都会被赋值到合适的位置。</p>
+<p>下面是对五个元素的列表进行 <code>选择排序</code> 的简单例子。初始列表为：</p>
+<p><code>E A D H B</code></p>
+<p>第一次排序会找到最小值，并将它和列表的第一个元素进行交换位置：</p>
+<p><code>A E D H B</code></p>
+<p>接下来查找第一个元素后面的最小值**（第一个元素此时已经就位了）**，并对它们进行交换：</p>
+<p><code>A B D H E</code></p>
+<p><code>D</code> 已经就位了，因此下一步会对 <code>E、H</code> 进行交换，列表的顺序排列好，如下：</p>
+<p><code>A B D E H</code></p>
+<p>通过动图可能容易理解：</p>
+<p><img src="https://img.hacpai.com/file/2020/04/selection-44580915.gif" alt="selection.gif"></p>
+<p>关键的代码如下：</p>
+<pre><code class="language-javascript">selectionSort() {
+  let min,
+    numElements = this.arr.length;
+  for(let outer = 0; outer &lt;= numElements-2; outer++) {
+    min = outer;
+    for(let inner = outer+1; inner &lt;= numElements-1; inner++) {
+      if(this.arr[inner] &lt; this.arr[min]) {
+        min = inner;
+      }
+    }
+    this.swap(outer, min);
+  }
+}
+</code></pre>
+<h3 id="toc_h3_20">插入排序</h3>
+<p><code>插入排序</code> 类似我们按照数字或字母的顺序对数据进行降序或者升序排序整理~</p>
+<p><strong>原理：</strong></p>
+<p>插入排序也用到了嵌套循环。外循环将数组挨个移动，而内循环则对外循环中选中的元素以及内循环数组后面的那个元素进行比较。如果外循环中选中的元素比内循环中选中的元素要小，那麽内循环的数组元素会向右移动，腾出一个外置给外循环选定的元素。</p>
+<p>上面表达得令人晦涩难懂。**简单来说，插入排序就是未排序的元素对已经排序好的序列数据进行合适位置的插入。**如果还是难懂，结合下面的排序示例来理解下：</p>
+<p>下面对五个元素进行插入排序。初始列表如下：</p>
+<p><code>E B A H D</code></p>
+<p>第一次插入排序，第二个元素会挪动到第一位：</p>
+<p><code>B E A H D</code></p>
+<p>第二次插入排序是对 <code>A</code> 进行操作：</p>
+<p><code>B A E H D</code></p>
+<p><code>A B E H D</code></p>
+<p>第三次是对 <code>H</code> 进行操作，因为它比之前的元素都大，所以保持位置。最后一次是对 <code>D</code> 元素进行插入排序了，过程和最后结果如下：</p>
+<p><code>A B E D H</code></p>
+<p><code>A B D E H</code></p>
+<p>结合相关的 <code>GIF</code> 图了解下：</p>
+<p><img src="https://img.hacpai.com/file/2020/04/insertion-d23931dc.gif" alt="insertion.gif"></p>
+<p>相关的代码如下：</p>
+<pre><code class="language-javascript">insertionSort() {
+  let temp,
+    inner,
+    numElements = this.arr.length;
+  for(let outer = 1; outer &lt;= numElements-1; outer++) {
+    temp = this.arr[outer];
+    inner = outer;
+    while(inner &gt; 0 &amp;&amp; this.arr[inner-1] &gt;= temp) {
+      this.arr[inner] = this.arr[inner-1];
+      inner--;
+    }
+    this.arr[inner] = temp;
+  }
+}
+</code></pre>
+<h3 id="toc_h3_21">希尔排序</h3>
+<p><code>希尔排序</code> 是插入排序的优化版，但是，其核心理念和 <code>插入排序</code> 不同，希尔排序首先会比较距离较远的元素，而非相邻的元素。</p>
+<p><strong>原理：</strong></p>
+<p>希尔排序通过定义一个间隔序列来表示数据在排序过程中进行比较的元素之间有多远的间隔。<code>我们可以动态定义间隔序列，不过对于大部分的实际应用场景，算法用到的间隔序列可以提前定义好</code>。</p>
+<p>如下演示希尔排序中，间隔序列是如何运行的：</p>
+<p><img src="https://img.hacpai.com/file/2020/04/shellseq-7510098f.jpg" alt="shellseq.jpg"></p>
+<p>结合下面的 <code>GIF</code> 图或许会有新的体会：</p>
+<p><img src="https://img.hacpai.com/file/2020/04/shell-d0c3cd84.gif" alt="shell.gif"></p>
+<p>实现的代码如下：</p>
+<pre><code class="language-javascript">shellSort() {
+  let temp,
+    j,
+    numElements = this.arr.length;
+  for(let g = 0; g &lt; this.gaps.length; ++g) {
+    for(let i = this.gaps[g]; i &lt; numElements; ++i) {
+      temp = this.arr[i];
+      for(j = i; j &gt;= this.gaps[g] &amp;&amp; this.arr[j - this.gaps[g]] &gt; temp; j -= this.gaps[g]){ // 之前的已经排好序了
+        this.arr[j] = this.arr[j - this.gaps[g]];
+      }
+      this.arr[j] = temp; // 这裡和上面的两个for循环是互换两个数据位置
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>😕 思考：[6, 0, 2, 9, 3, 5, 8, 0, 5, 4] 间隔为 3 的排序结果是什麽呢？</p>
+</blockquote>
+<h3 id="toc_h3_22">归并排序</h3>
+<p><strong>原理：</strong></p>
+<p>把一系列排好的子序列合併成一个大的有序序列。从理论上讲，这个算法很容易实现。我们需要两个排好序的子数组，然后通过比较数据的大小，从最小的数据开始插入，最后合併得到第三个数组。然而实际上操作数据量相当大的时候，使用归併排序示很耗内存的，我们这裡了解下就行了。</p>
+<p><img src="https://img.hacpai.com/file/2020/04/merge-89fec9cf.gif" alt="merge.gif"></p>
+<p>实现归併排序一般有两种方法，一种是<strong>自顶向下</strong>，另一种是<strong>自底向上</strong>。</p>
+<p>上面的 <code>GIF</code> 图演示的是<strong>自顶向下</strong>的方法，那麽，何为自顶向下呢？</p>
+<p><code>自顶向下</code> 的归併排序算法就是把数组元素不断的 <code>二分</code>，直到数组的元素个数为一个，因为这个时候子数组必定是有序的，然后再将两个有序的序列合併成一个新的有序序列，又接著两个有序序列又可以合併成一个新的有序序列，以此类推，直到合併成一个有序的数组。如下图分解：</p>
+<p><img src="https://img.hacpai.com/file/2020/04/mergetobottom-5b60463f.jpg" alt="mergetobottom.jpg"></p>
+<p><code>自底向上</code> 的归併排序算法的思想是将数组先一个一个归併成两两有序的序列，两两有序的序列归併成四个四个有序的序列，以此类推，直到归併的长度 <code>大于</code> 整个数组的长度，此时整个数组有序。</p>
+<blockquote>
+<p>⚠️ 数组按照归併长度划分，最后一个子数组可能不满足长度要求，这种情况要特殊处理了。</p>
+</blockquote>
+<p><img src="https://img.hacpai.com/file/2020/04/mergetotop-63897a62.jpg" alt="mergetotop.jpg"></p>
+<h3 id="toc_h3_23">快速排序</h3>
+<p><code>快速排序</code> 是处理大数据集最快的排序算法之一，<strong>时间複杂度</strong>最好的情况也是和归併排序一样，为 <code>O(nlogn)</code>。</p>
+<p><strong>原理：</strong></p>
+<p><code>快速排序</code> 是一种**分而治之（分治）**的算法，通过递归的方式将数据依次分解为包含较小元素和较大元素的不同子序列，然后不断重複这个步骤，直到所有的数据都是有序的。</p>
+<p>可以更清晰地表达 <code>快速排序</code> 算法的步骤如下：</p>
+<ol>
+<li>选择一个基准元素**（pivot，枢纽）**，将列表分隔为两个子序列</li>
+<li>对列表重新排列，将所有小于基准值的元素放在基准值的前面，将所有大于基准值的元素放在基准值的后面</li>
+<li>分别对较小元素的子序列和较大元素的子序列重複步骤 <code>1和2</code></li>
+</ol>
+<p><img src="https://img.hacpai.com/file/2020/04/quick-e47089ff.gif" alt="quick.gif"></p>
+<p>我们来用代码实现下：</p>
+<pre><code class="language-javascript">// 快速排序
+quickSort() {
+  this.arr = this.quickAux(this.arr)
+}
+
+// aux函数 - 快排的辅助函数
+quickAux(arr) {
+  let numElements = arr.length；
+  if(numElements === 0) {
+    return []
+  }
+  let left = [],
+    right = [],
+    pivot = arr[0]; // 取数组的第一个元素作为基准值
+  for(let i = 1; i &lt; numElements; i++) {
+    if(arr[i] &lt; pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
+  }
+  return this.quickAux(left).concat(pivot, this.quickAux(right));
+}
+</code></pre>
+<p>以上介绍了六种排序的算法，当然还有很多其他的排序算法，你可以到<a href="https://zhuanlan.zhihu.com/p/52884590" target="_blank">视屏 | 手撕九大经典排序算法，看我就够了!</a>文章中查看。</p>
+<h1 id="toc_h1_24">搜索算法</h1>
+<p>在列表中查找数据又有两种方式：<strong>顺序查找</strong>和<strong>二分查找</strong>。</p>
+<p><strong>顺序查找</strong>适用于元素随机排列的列表；而<strong>二分查找</strong>适用于元素已排序的列表，<strong>二分查找</strong>效率更高，但是我们必须在进行查找之前花费额外的时间将列表中的元素进行排序。</p>
+<h3 id="toc_h3_25">顺序查找</h3>
+<p>对于查找数据来说，最简单的就是从列表中的第一个元素开始对列表元素逐个进行判断，直到找到了想要的元素，或者直到列表结尾都没有找到。这种方法称为 <code>顺序查找</code> 或者 <code>线性查找</code>。</p>
+<p>这种查找的代码实现很简单，如下：</p>
+<pre><code class="language-javascript">/*
+* @param { Array } arr 目标数组
+* @param { Number } data 要查找的元素
+* @return { Boolean } 是否查找成功
+**/
+function seqSearch(arr, data){
+  for(let i = 0; i &lt; arr.length; i++){
+    if(arr[i] === data){
+    return true;
+    }
+  }
+  return false;
+}
+</code></pre>
+<p>当然，看到上面的代码，如果你是个简洁主义者，你会改写成下面：</p>
+<pre><code class="language-javascript">const seqSearch = (arr, data) =&gt; arr.indexOf(data) &gt;= 0
+</code></pre>
+<p>是的，实现的方法和体现的形式有很多种，但是原理都是一样的：<strong>要从第一个元素开始遍历，有可能会遍历到最后一个元素都找不到要查找的元素</strong>。这是一种 <code>暴力查找技巧</code>。</p>
+<p>那麽，有什麽更加高效的查找方法吗？有，就是下面我们要了解的~</p>
+<h3 id="toc_h3_26">二分查找算法</h3>
+<p>在开始之前，我们来玩一个 <code>猜数字游戏</code>：</p>
+<ul>
+<li>规则：在数字 <code>1-100</code> 之间，你朋友选择要猜的数字之后，由你来猜数字。你每猜一个数字，你的朋友将会作出下面的三种回应之一：</li>
+<li>才对了</li>
+<li>猜大了</li>
+<li>猜小了</li>
+</ul>
+<p>这个游戏很简单，如果我们使用二分查找的策略进行的话，我们只需经过短短的几次就能确定我们要查找的数据了。</p>
+<p>那麽，<strong>二分查找</strong>的原理是什麽呢？</p>
+<p>二分查找又称为 <code>折半查找</code>，对 <code>有序的列表</code> 每次进行对半查找~</p>
+<p>代码实现走一波：</p>
+<pre><code class="language-javascript">/*
+* @param { Array } arr  ⚠️有序的数组
+* @param { Number } data 要查找的数据
+* @return { Number } 返回要查找的数据位置
+**/
+function binSearch(arr, data){
+  let upperBound = arr.length -1,
+    lowerBound = 0;
+	while(lowerBound &lt;= upperBound){
+    let mid = Math.floor((upperBound + lowerBound) / 2);
+    if(arr[mid] &lt; data){
+      lowerBound = mid + 1;
+    }else if(arr[mid] &gt; data){
+      upperBound = mid + 1;
+    }else{
+      return mid;
+    }
+  }
+  return -1; // 你朋友选要猜的数据在1-100范围之外
+}
+</code></pre>
+<pre><code># 时间复杂度
+
+一个算法的优劣可以用**空间复杂度**和**时间复杂度**来衡量。
+
+&gt; 时间复杂度：评估执行程序所需的时间。可以估算出程序对处理器的使用程度。
+
+&gt; 空间复杂度：评估执行程序所需的存储空间。可以估算出程序对计算机内存的使用程度。
+
+算法设计时，时间复杂要比空间复杂度更容易复杂。没有特殊说明，`复杂度指时间复杂度`
+
+**一个算法在执行过程中所消耗的时间取决于下面的因素：**
+
+1. 算法所需数据输入的时间
+2. 算法编译为可执行程序的时间
+3. 计算机执行每条指令所需的时间
+4. 算法语句重复执行的次数
+
+上面的因素中，`1`依赖于输入设备的性能，若是[脱机]([https://baike.baidu.com/item/%E8%84%B1%E6%9C%BA%E5%A4%84%E7%90%86/10173514?fr=aladdin](https://baike.baidu.com/item/脱机处理/10173514?fr=aladdin))输入，则输入数据的时间可以忽略不计；`2, 3`取决于计算机本身执行的速度和编译程序的性能。因此，习惯上将**算法语句重复执行的次数**作为算法的时间度量。
+
+比如：
+
+```javascript
+// 'x = x + 1'执行一次
+function add(x, y){
+  x = x + 1
+}
+
+// 'x = x + 1'执行n次
+function map_add(x, n) {
+  for(let i = 0; i &lt; n; i++){
+    x = x + 1
+  }
+}
+
+// 'x = x + 1'执行n²
+function loop_add(x, n) {
+  for(let i = 0; i &lt; n; i++) {
+    for(let j = 0; j &lt; n; j++) {
+      x = x + 1
+    }
+  }
+}
+</code></pre>
+<p>上面功能代码只是演示了下 <code>x + 1</code> 执行的次数**(频度)**，那上面的功能代码总共执行了多少次呢？见下面：</p>
+<pre><code class="language-javascript">function add(x, y){
+  x = x + 1 // 执行1次
+  // 总执行1次
+}
+
+function map_add(x, n) {
+  for(let i = 0; i &lt; n; i++) { // 执行n+1次
+    x = x + 1 // 执行n 次
+  }
+  // 总执行(n+1)+n，即2n+1次
+}
+
+function loop_add(x, n) {
+  for(let i = 0; i &lt; n; i++) { // 执行n+1次
+    for(let j = 0; j &lt; n; j++) { // 执行n*(n+1)次
+      x = x + 1 // 执行 n*n
+    }
+  }
+    // 总执行(n+1)+n*(n+1)+n*n，即2n²+2n+1
+}
+</code></pre>
+<blockquote>
+<p>⚠️ 时间频度： 一个算法中的语句执行次数称为语句频度或时间频度。</p>
+</blockquote>
+<p>这就涉及到<strong>大 O 记号</strong>表示算法的的时间性能了。</p>
+<p>推导<strong>大 O 阶</strong>，按照下面的三个规则来推导：</p>
+<ol>
+<li>运行时间中所有的 <code>加减法常数</code> 用常数 1 代替</li>
+<li>只保留最高阶项</li>
+<li>去除最高项常数</li>
+</ol>
+<p>下面对几个常见的时间复杂度说明下：</p>
+<h3 id="toc_h3_27">O(1)常数阶</h3>
+<pre><code class="language-javascript">temp = i;
+i = j;
+j = temp;
+</code></pre>
+<p>以上三条单语句的频度均为 <code>1</code>，该程序段的执行时间是一个与问题规模 n 无关的常数。算法的时间复杂度为常数阶，记作 <code>T(n)=O(1)</code>。</p>
+<blockquote>
+<p>⚠️ 如果算法的执行时间不随着问题规模 n 的增加而增长，即使算法中有上千条语句，其执行时间也不过是一个较大的常数。此类算法的时间复杂度是 <code>O(1)</code></p>
+</blockquote>
+<h3 id="toc_h3_28">O(n)线性阶</h3>
+<p>线性阶主要分析循环结构的运行情况，如下：</p>
+<pre><code class="language-javascript">a = 0; b = 1; ①
+for(i = 1; i &lt;= n; i++) ②
+{
+  s = a + b; ③
+  b = a; ④
+  a = s; ⑤
+}
+</code></pre>
+<ul>
+<li>语句 ①的频度是：2</li>
+<li>语句 ②的频度是：n</li>
+<li>语句 ③的频度是：n-1</li>
+<li>语句 ④的频度是：n-1</li>
+<li>语句 ⑤的频度是：n-1</li>
+</ul>
+<p>循环体内的 <code>③、④、⑤</code> 都是 <code>O(1)</code> 常数阶。</p>
+<p><code>T(n) = 2+n+3(n-1) = 4n-1 = O(n)</code> 即 <strong>T(n) = O(n)</strong></p>
+<h3 id="toc_h3_29">O(n ²)平方阶</h3>
+<p>平方阶一般出现在嵌套的循环中，如下：</p>
+<pre><code class="language-javascript">for(i = 1; i &lt; n; i++)
+{
+  y = y + 1; ①
+  for(j = 0; j &lt;= 2n; j++)
+    x++; ②
+}
+</code></pre>
+<ul>
+<li>语句 ①的频度是：n-1</li>
+<li>语句 ②的频度是：(n-1)*(2n+1) = 2n ²-n-1</li>
+</ul>
+<p>则有：<code>f(n) = n-1+2n²-n-1 = 2n²-2</code> =&gt; <code>O(2n²-2) = n²</code> 即有 <strong>T(n)=O(n2)</strong></p>
+<blockquote>
+<p>⚠️ 当有若干个循环语句时，算法的时间复杂度是由嵌套层数最多的循环语句中最内层语句的 <code>频度f(n)</code> 决定的。</p>
+</blockquote>
+<h3 id="toc_h3_30">O(n3)立方阶</h3>
+<p>应用上面 <code>O(n²)平方阶</code> 的注意规则，可以得到下面三层嵌套的 <code>大O阶</code> 表示法。</p>
+<pre><code class="language-javascript">for(i=0;i&lt;n;i++)
+{  
+  for(j=0;j&lt;i;j++)  
+  {
+    for(k=0;k&lt;j;k++)
+        x=x+2;  ①
+  }
+}
+</code></pre>
+<p>时间复杂度为 <code>O(n3)</code>。</p>
+<h3 id="toc_h3_31">O(logn)对数阶</h3>
+<pre><code class="language-javascript">i = 1; ①
+while(i &lt; n)
+  i = i * 2; ②
+</code></pre>
+<ul>
+<li>语句 ①的频度是：1</li>
+<li>语句 ②的频度：<code>2^f(n) &lt;= n</code> =&gt; <code>f(n) &lt;= log₂n</code> =&gt; 取最大值 <code>log₂n</code></li>
+</ul>
+<p>则有 <code>T(n) = 1 + log₂n = O(log₂n)</code> 即 <strong>T(n) = O(log ₂n)</strong></p>
+<h3 id="toc_h3_32">其他的常见时间复杂度</h3>
+<p>f(n)=nlogn 时，时间复杂度为 O(nlogn)，可以称为 nlogn 阶。</p>
+<p>f(n)=2 ⁿ时，时间复杂度为 O(2 ⁿ)，可以称为指数阶。</p>
+<p>f(n)=n!时，时间复杂度为 O(n!)，可以称为阶乘阶。</p>
+<p>f(n)=(√n 时，时间复杂度为 O(√n)，可以称为平方根阶</p>
+<h3 id="toc_h3_33">时间复杂度的比较</h3>
+<p>如下图：</p>
+<p><img src="https://img.hacpai.com/file/2020/04/timecomplexity-c3ef679e.png" alt="timecomplexity.png"></p>
+<p>通过图片很直观的得到常用的时间复杂度按照消耗时间的多少从少到多排序依次是：</p>
+<p><strong>O(1) &lt; O(logn) &lt; O(√n) &lt; O(n) &lt; O(nlogn) &lt; O(n ²) &lt; O(n ³) &lt; O(2 ⁿ) &lt; O(n!)</strong></p>
+<h3 id="toc_h3_34">参考链接</h3>
+<ul>
+<li><a href="https://baijiahao.baidu.com/s?id=1609024533531824968&amp;wfr=spider&amp;for=pc" target="_blank">https://baijiahao.baidu.com/s?id=1609024533531824968&amp;wfr=spider&amp;for=pc</a></li>
+<li><a href="https://blog.csdn.net/qq_30815237/article/details/90766878" target="_blank">https://blog.csdn.net/qq_30815237/article/details/90766878</a></li>
+<li><a href="https://blog.csdn.net/zolalad/article/details/11848739" target="_blank">https://blog.csdn.net/zolalad/article/details/11848739</a></li>
+</ul>
+<pre><code>
+
+</code></pre>
+                        <div>
+                            <hr>
+
+标题：基本数据结构和算法<br>
+作者：<a href="https://ymfed.github.io" target="_blank">reng99</a><br>
+地址：<a href="https://ymfed.github.io/articles/2020/04/24/1587741270787.html" target="_blank">https://ymfed.github.io/articles/2020/04/24/1587741270787.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                        </div>
+                </div>
+
+                <footer class="tags">
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/JS">
+                            JS</a>
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">
+                            数据结构</a>
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/%E7%AE%97%E6%B3%95">
+                            算法</a>
+
+                    <div class="rel fn-clear ft__center">
+                            <a href="https://ymfed.github.io/articles/2020/04/24/1587711679404.html" rel="prev"
+                               class="fn-left vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="2020年后的第一场内训——《基本数据结构和算法》">
+                                旧一篇
+                            </a>
+                            <a href="https://ymfed.github.io/articles/2020/04/26/1587864347928.html" rel="next"
+                               class="fn-right vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="如何瞬间让网站变色">
+                                新一篇
+                            </a>
+                    </div>
+                </footer>
+                    <div id="b3logsolocomments"></div>
+                    <div id="vcomment" data-name="reng99" data-postId="1587741270787"></div>
+                <br>
+                <div id="externalRelevantArticles" class="list"></div>
+                <div id="relevantArticles" class="list"></div>
+                <div id="randomArticles" class="list"></div>
+            </article>
+        </main>
+<aside>
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#toc_h1_0">数据结构</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">数组</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_2">常用属性</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">常用方法</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_4">栈</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_5">队列</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_6">链錶</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_7">优点</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_8">缺点</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_9">字典</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_10">集合</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_11">散列表/哈希表</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_12">二叉查找树</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_13">树</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_14">二叉树</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_15">图</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#toc_h1_16">算法</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_17">排序算法</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_18">冒泡排序</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_19">选择排序</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_20">插入排序</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_21">希尔排序</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_22">归并排序</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_23">快速排序</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#toc_h1_24">搜索算法</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_25">顺序查找</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_26">二分查找算法</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_27">O(1)常数阶</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_28">O(n)线性阶</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_29">O(n ²)平方阶</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_30">O(n3)立方阶</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_31">O(logn)对数阶</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_32">其他的常见时间复杂度</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_33">时间复杂度的比较</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_34">参考链接</a>
+        </li>
+</ul></aside>
+    </div>
+</div>
+<footer class="footer fn-clear">
+    &copy; 2020
+    <a href="https://ymfed.github.io">亚美大前端（FED）</a>
+    
+    <br/>
+    Powered by <a href="https://solo.b3log.org" target="_blank">YMFED</a>
+    <span class="ft-warn">&heartsuit;</span>
+    Theme
+    <sup>[<a href="javascript:;" target="_blank">ref</a>]</sup>
+    by <a href="javascript:;" target="_blank">亚美Web团队</a>
+</footer>
+<div class="icon-up" onclick="Util.goTop()"></div>
+<script>
+  var Label = {
+    servePath: "https://ymfed.github.io",
+    staticServePath: "https://ymfed.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "3.9.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
+</script>
+<script src="https://ymfed.github.io/skins/9IPHP/js/common.min.js?1585645466987"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+<script type="text/javascript">
+    Util.addScript('https://ymfed.github.io/js/page.min.js?1585645466987', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1587741270787",
+        "blogHost": "https://ymfed.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initToc()
+    page.share()
+    });
+</script>
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 49ms, 2020/06/24 15:11:33 -->

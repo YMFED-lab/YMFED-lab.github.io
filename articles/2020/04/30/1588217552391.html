@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>你可能不知的CSS技巧(1)！！！ - 亚美大前端（FED）</title><meta name="description" content="知之为知之，不知为不知，是知也。-- 不知的 CSS 技巧"/><meta property="og:description" content="知之为知之，不知为不知，是知也。-- 不知的 CSS 技巧"/>    <meta name="keywords" content="YM,亚美,前端,博客"/><link rel="dns-prefetch" href="https://ymfed.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ymfed.github.io"><link rel="icon" type="image/png" href="http://fed.ym/images/czh-fed-logo.png"/><link rel="apple-touch-icon" href="http://fed.ym/images/czh-fed-logo.png"><link rel="shortcut icon" type="image/x-icon" href="http://fed.ym/images/czh-fed-logo.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="你可能不知的CSS技巧(1)！！！ - 亚美大前端（FED）"/><meta property="og:site_name" content="亚美大前端（FED）"/><meta property="og:url"      content="https://ymfed.github.io/articles/2020/04/30/1588217552391.html?"/><meta property="og:image" content="http://fed.ym/images/czh-fed-logo.png"/><link rel="search" type="application/opensearchdescription+xml" title="你可能不知的CSS技巧(1)！！！ - 亚美大前端（FED）" href="/opensearch.xml"><link href="https://ymfed.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ymfed.github.io/manifest.json">        <link rel="canonical" href="https://ymfed.github.io/articles/2020/04/30/1588217552391.html">        <link rel="stylesheet"
+              href="https://ymfed.github.io/skins/9IPHP/css/base.css?1585645466987"/>
+            <link rel="prev" title="如何瞬间让网站变色" href="https://ymfed.github.io/articles/2020/04/26/1587864347928.html">
+            <link rel="next" title="你可能不知的CSS技巧(2)！！！" href="https://ymfed.github.io/articles/2020/04/30/1588237662694.html">
+    </head>
+<body>
+<header>
+    <div class="banner">
+        <div class="fn-clear wrapper">
+            <a href="https://ymfed.github.io" class="logo" rel="start"></a>
+            <h2 class="subtitle-wrap">
+                <p class="subtitle">亚美大前端（FED）</p>
+                <p class="description">既要埋头干事，也要抬头看路</p>
+            </h2>
+            <div class="fn-right">
+                    <a class="fn__flex-inline" href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i>&nbsp;开始使用
+                    </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="fn-clear wrapper">
+            <nav class="fn-left">
+                <a href="https://ymfed.github.io">
+                    <i class="icon-home"></i>
+                    首页
+                </a>
+                <a href="https://ymfed.github.io/tags.html" rel="section">
+                    <i class="icon-tags"></i> 标签墙
+                </a>
+                <a href="https://ymfed.github.io/archives.html">
+                    <i class="icon-inbox"></i> 存档
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/links.html">
+                    <i class="icon-link"></i> 友情链接
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/team.html">
+                    <i class="icon-category"></i> 团队介绍
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/join.html">
+                    <i class="icon-register"></i> 加入我们
+                </a>
+            </nav>
+            <div class="fn-right">
+                <form class="form" action="https://ymfed.github.io/search">
+                    <input placeholder="搜索" id="search" type="text" name="keyword"/>
+                    <button type="submit"><i class="icon-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="responsive fn-none">
+    <i class="icon-list"></i>
+    <ul class="list">
+                <li>
+                    <a href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i> 开始使用
+                    </a>
+                </li>
+        <li>
+            <a href="https://ymfed.github.io">
+                <i class="icon-home"></i>
+                首页
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/tags.html" rel="section">
+                <i class="icon-tags"></i> 标签墙
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/archives.html">
+                <i class="icon-inbox"></i> 存档
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/links.html">
+                <i class="icon-link"></i> 友情链接
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/team.html">
+                <i class="icon-category"></i> 团队介绍
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/join.html">
+                <i class="icon-register"></i> 加入我们
+            </a>
+        </li>
+    </ul>
+</div><div class="wrapper">
+    <div class="main-wrap">
+        <main>
+            <article class="post">
+                <header>
+                    <h2>
+                        <a rel="bookmark" href="https://ymfed.github.io/articles/2020/04/30/1588217552391.html">
+                            你可能不知的CSS技巧(1)！！！
+                        </a>
+                    </h2>
+                    <div class="meta">
+                                <span class="vditor-tooltipped vditor-tooltipped__n"
+                                      aria-label="更新日期">
+                                    <i class="icon-date"></i>
+                                    <time>
+                                    2020-05-07
+                                    </time>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="评论数">
+                                    <i class="icon-comments"></i>
+                                    <a href="https://ymfed.github.io/articles/2020/04/30/1588217552391.html#b3logsolocomments">
+                                        <span data-uvstatcmt="1588217552391">0</span> 评论</a>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="浏览数">
+                                    <i class="icon-views"></i>
+                        <span data-uvstaturl="https://ymfed.github.io/articles/2020/04/30/1588217552391.html">0</span> 浏览
+                                </span>
+                    </div>
+                </header>
+
+                <div class="vditor-reset post__content">
+                    <p>近日，特意针对一些好用的 CSS 做个统计，这些实现效果严重让我怀疑我学的是假的 CSS，学海无涯 CSS 做舟，绝对能让你的开发效率提高。别急，先看看大纲？以下效果均本地测试过。</p>
+<ol>
+<li>文本排布及行进方向 —— writing-mode</li>
+<li>控制数字 —— font-variant-numeric</li>
+<li>剪切区域 —— clip-path</li>
+<li>文字环绕（非正常形状）—— shape-outside</li>
+<li>背景扩充 —— background-clip</li>
+</ol>
+<h3 id="toc_h3_0">文本排布及行进方向 —— writing-mode</h3>
+<p><code>writing-mode</code> 属性定义了文本水平或垂直排布以及在块级元素中文本的行进方向。</p>
+<p>可取值：</p>
+<p><code>horizontal-tb</code>——内容按从左到右水平从上到下垂直流动。下一条水平线位于上一条线的下方。</p>
+<p><code>vertical-rl</code>——内容按从上到下垂直流动，水平从右到左。下一条垂直线位于前一行的左侧。</p>
+<p><code>vertical-lr</code>——内容按从上到下垂直流动，水平从左到右。下一条垂直线位于上一行的右侧。</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode" target="_blank">点击查看相关文档</a><br>
+实现的效果<br>
+<img src="https://img.hacpai.com/file/2020/04/image-d88bb002.png" alt="image.png"></p>
+<pre><code>css实现:
+1.直思路:宽度仅刚好放一个字
+div {
+  display: inline-block;
+  width: 20px;
+  font-size: 14px;
+}
+2.使用 writing-mode
+div {
+  width: 30%;
+  font-size: 14px;
+  writing-mode: vertical-lr
+}
+</code></pre>
+<h3 id="toc_h3_1">控制数字 —— font-variant-numeric</h3>
+<p>CSS 属性控制数字，分数和序号标记的替代字形的用法。(需要搭配不同的 <code>font-family</code> 使用)</p>
+<p>可取值：</p>
+<p><code>normal</code> 这个关键字导致使用这些替代符号的失效。</p>
+<p><code>ordinal</code> 这个关键字强制使用特殊的符号作为序号标记，比如英语中的第一、第二、第三、第四或意大利语中的 1a。它对应于 OpenType 值 <code>ordn</code>...</p>
+<p><code>slashed-zero</code> 此关键字强制使用带有斜杠的 0；这在需要明确区分 O 和 0 时非常有用。它对应于 OpenType 值 <code>zero</code>.</p>
+<p><em>&lt;numeric-figure-values</em>&gt; 这些值控制用于数字的数字。有两个值是可能的：</p>
+<ul>
+<li><code>lining-nums</code> 激活数字都在基线上的一组数字。它对应于 OpenType 值 <code>lnum</code>。</li>
+<li><code>oldstyle-nums</code> 激活一组数字，其中一些数字，如 3,4,7,9 有下降。它对应于 OpenType 值 <code>onum</code>。</li>
+</ul>
+<p><em>&lt;numeric-spacing-values</em> &gt; 这些值控制用于数字的数字的大小。两个值是可能的：</p>
+<ul>
+<li><code>proportional-nums</code> 激活数字不是全部相同大小的一组数字。它对应于 OpenType 值 <code>pnum</code>。</li>
+<li><code>tabular-nums</code> 激活一组数字，其中的数字都是相同的大小，使他们可以像表中一样轻松对齐。它对应于 OpenType 值 <code>tnum</code>。</li>
+</ul>
+<p><em>&lt;numeric-fraction-values</em> &gt; 这些值控制用于显示分数的字形。两个值是可能的：</p>
+<ul>
+<li><code>diagonal-fractions</code> 激活分子和分母变得更小并用斜线分隔的一组数字。它对应于 OpenType 值 <code>frac</code>。</li>
+<li><code>stacked-fractions</code> 激活一组数字，其中分子和分母被缩小，堆叠并用一条水平线分开。它对应于 OpenType 值</li>
+</ul>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric" target="_blank">点击查看相关文档</a><br>
+实现的效果<br>
+<img src="https://img.hacpai.com/file/2020/04/image-9a513728.png" alt="image.png"><br>
+<img src="https://img.hacpai.com/file/2020/04/image-780c0d11.png" alt="image.png"></p>
+<pre><code>CSS实现
+1. 通过sub、sup实现或者通过position和font-size实现
+&lt;p&gt;1 &lt;sup&gt;st&lt;/sup&gt;, 2&lt;sup&gt;nd&lt;/sup&gt;, 3&lt;sup&gt;rd&lt;/sup&gt;, 4&lt;sup&gt;th&lt;/sup&gt;, 5&lt;sup&gt;th&lt;/sup&gt;&lt;/p&gt;
+
+2. font-variant-numeric实现
+&lt;p class="ordinal"&gt;1st, 2nd, 3rd, 4th, 5th&lt;/p&gt;
+.ordinal {
+    font-variant-numeric: ordinal;
+    font-family: consolas, "Liberation Mono", courier, monospace;
+    text-align: center;
+}
+</code></pre>
+<h3 id="toc_h3_2">剪切区域 —— clip-path</h3>
+<p>首先来个思考题？ 如何绘制三角形、五角星、tips 提示框。<br>
+可以创建一个只有元素的部分区域可以显示的剪切区域。区域内的部分显示，区域外的隐藏。</p>
+<p>可取值：<br>
+<code>circle() | ellipse() | polygon() | path() | url()</code>。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path" target="_blank">查看更多详细信息</a><br>
+实现的效果：<br>
+<img src="https://img.hacpai.com/file/2020/04/image-a4a712c2.png" alt="image.png"></p>
+<pre><code>1.常规思路:
+向上的三角形: border
+.up {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid red;
+}
+五角星: border ::before ::after  transform
+#star-five{
+	width: 0;
+	height: 0;
+	color: red;
+	margin: 50px 0;
+	position: relative;
+	display: block;
+	border-left: 100px solid transparent;
+	border-right: 100px solid transparent;
+	border-bottom: 70px solid red;
+	transfrom:rotate(35deg);
+}
+
+#star-five:before{
+	width: 0;
+	height: 0;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	border-bottom: 80px solid red;
+	position: absolute;
+	top: -45px;
+	left: -65px;
+	color: white;
+	display: block;
+	content: "";
+	transform:rotate(-35deg);
+}
+
+#star-five:after{
+	width: 0;
+	height: 0;
+	display: block;
+	position: absolute;
+	color: red;
+	top: 3px;
+	left: -105px;
+	border-left: 100px solid transparent;
+	border-right: 100px solid transparent;
+	border-bottom: 70px solid red;
+	content: "";
+	transform:rotate(-70deg);
+}
+tip提示框: 原理同三角形, 此时调整三角形边即可，定位到合适位置。
+
+2.使用clip-path
+    .clip1{
+        -webkit-clip-path: polygon(50% 0,0 100%, 100% 100%);
+        clip-path: polygon(50% 0,0 100%, 100% 100%);
+    }
+    .clip2{
+        -webkit-clip-path: circle(50% at 50% 50%);
+       clip-path: circle(50% at 50% 50%); 
+    }
+    .clip3{
+        -weblit-clip-path:ellipse(25% 40% at 50% 50%);
+        clip-path:ellipse(45% 40% at 50% 50%);
+    }
+    .clip4{
+        -webkit-clip-path:inset(10% 10% 10% 10%);
+        clip-path:inset(10% 10% 10% 10%);
+    }
+    .clip5{
+        -webkit-clip-path: inset(25% 0 25% 0 round 0 25% 0 25%);
+        clip-path: inset(25% 0 25% 0 round 0 25% 0 25%);
+    }
+    .clip6{
+        -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .clip7{
+        -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+        clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+    }
+    .clip8{
+        -webkit-clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
+        clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);
+    }
+</code></pre>
+<h4 id="toc_h4_3">clip-path 过渡动画</h4>
+<p>clip-path 另外一个强大之处在于可以进行 CSS transtion 与 CSS animation，也就是过渡和动画。</p>
+<p>实现效果<br>
+<img src="https://images2018.cnblogs.com/blog/1442391/201809/1442391-20180912172452814-629789585.gif" alt="动画"></p>
+<pre><code>html:
+&lt;hgroup class="triangle2rect"&gt;
+    &lt;div class="a"&gt;&lt;/div&gt;
+    &lt;div class="b"&gt;&lt;/div&gt;
+    &lt;div class="c"&gt;&lt;/div&gt;
+    &lt;div class="d"&gt;&lt;/div&gt;
+&lt;/hgroup&gt;
+
+CSS:
+.triangle2rect {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: aniContainer 2s infinite alternate;
+}
+.triangle2rect div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.a {
+    background: #99cccc;
+    clip-path: polygon(0% 0%, 0% 100%, 50% 50%);
+    animation: a 2s infinite alternate;
+}
+.b {
+    background: #99cccc;
+    clip-path: polygon(0% 0%, 100% 0%, 50% 50%);
+    animation: b 2s infinite alternate;
+}
+.c {
+    background: #99cccc;
+    clip-path: polygon(100% 0%, 100% 100%, 50% 50%);
+    animation: c 2s infinite alternate;
+}
+.d {
+    background: #99cccc;
+    clip-path: polygon(100% 100%, 0% 100%, 50% 50%);
+    animation: d 2s infinite alternate;
+}
+@keyframes a {
+    0%, 10% {
+        background: #99cccc;
+        clip-path: polygon(0% 0%, 0% 100%, 50% 50%);
+    }
+    90%, 100% {
+        background: #000;
+        clip-path: polygon(0% 100%, 25% 100%, 12.5% 0%);
+    }
+}
+@keyframes b {
+    0%, 10% {
+        background: #99cccc;
+        clip-path: polygon(0% 0%, 100% 0%, 50% 50%);
+    }
+    90%, 100% {
+        background: #000;
+        clip-path: polygon(25% 0%, 50% 0%, 37.5% 100%);
+    }
+}
+@keyframes c {
+    0%, 10% {
+        background: #99cccc;
+        clip-path: polygon(100% 0%, 100% 100%, 50% 50%);
+    }
+    90%, 100% {
+        background: #000;
+        clip-path: polygon(62.5% 0%, 75% 100%, 50% 100%);
+    }
+}
+@keyframes d {
+    0%, 10% {
+        background: #99cccc;
+        clip-path: polygon(100% 100%, 0% 100%, 50% 50%);
+    }
+    90%, 100% {
+        background: #000;
+        clip-path: polygon(100% 0%, 87.5% 100%, 75% 0%);
+    }
+}
+@keyframes aniContainer {
+    0%, 10% {
+        width: 100px;
+        height: 100px;
+    }
+    90%, 100% {
+        width: 250px;
+        height: 60px;
+    }
+}
+</code></pre>
+<h3 id="toc_h3_4">文字环绕（非正常形状）—— shape-outside</h3>
+<p><code>shape-outside</code> 的 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">CSS</a> 属性定义了一个可以是非矩形的形状，相邻的内联内容应围绕该形状进行包装。 默认情况下，内联内容包围其边距框; <code>shape-outside</code> 提供了一种自定义此包装的方法，可以将文本包装在复杂对象周围而不是简单的框中。</p>
+<p>它采用与 <code>clip-path</code> 相同的值。</p>
+<p><code>clip-path</code> 定义用户如何查看元素，<code>shape-outside</code> 定义其他 HTML 元素如何查看元素。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/shape-outside" target="_blank">详细信息参考</a></p>
+<p>实现效果<br>
+<img src="https://img.hacpai.com/file/2020/04/image-8c0885a5.png" alt="image.png"></p>
+<pre><code>HTML:
+&lt;div class="main"&gt;
+  &lt;div class="left"&gt;&lt;/div&gt;
+  &lt;div class="right"&gt;&lt;/div&gt;
+  &lt;p&gt;
+    Sometimes a web page's text content appears to be
+    funneling your attention towards a spot on the page
+    to drive you to follow a particular link. Sometimes
+    you don't notice.
+  &lt;/p&gt;
+&lt;/div&gt;
+
+CSS: 
+.main {
+  width: 500px;
+}
+
+.left,
+.right {
+  width: 40%;
+  height: 12ex;
+  background-color: lightgray;
+}
+
+.left {
+  -webkit-shape-outside: polygon(0 0, 100% 100%, 0 100%);
+  shape-outside: polygon(0 0, 100% 100%, 0 100%);
+  float: left;
+  -webkit-clip-path: polygon(0 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.right {
+  -webkit-shape-outside: polygon(100% 0, 100% 100%, 0 100%);
+  shape-outside: polygon(100% 0, 100% 100%, 0 100%);
+  float: right;
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+p {
+  text-align: center;
+}
+</code></pre>
+<h3 id="toc_h3_5">背景扩充 —— background-clip</h3>
+<p><code>backgroundclip</code> CSS 属性设置元素的背景是否扩展到其 <code>border</code> 、<code>padding</code> 或 <code>content</code> 框之下。</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip" target="_blank">查看详细文档</a></p>
+<p>实现的效果<br>
+<img src="https://user-gold-cdn.xitu.io/2020/4/29/171c34077e562347?imageslim" alt="效果"></p>
+<p>ps: 此外：还有常用的 user-select、vertical-align 等。<br>
+有兴趣的同学可根据上叙 5 种属性和 user-select、vertical-align 完成以下布局。<br>
+(<img src="https://img.hacpai.com/file/2020/04/image-caff446c.png" alt="image.png"><br>
+)</p>
+                        <div>
+                            <hr>
+
+标题：你可能不知的CSS技巧(1)！！！<br>
+作者：<a href="https://ymfed.github.io" target="_blank">zhang-mol</a><br>
+地址：<a href="https://ymfed.github.io/articles/2020/04/30/1588217552391.html" target="_blank">https://ymfed.github.io/articles/2020/04/30/1588217552391.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                        </div>
+                </div>
+
+                <footer class="tags">
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/CSS">
+                            CSS</a>
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/Web">
+                            Web</a>
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/%E5%B8%83%E5%B1%80">
+                            布局</a>
+
+                    <div class="rel fn-clear ft__center">
+                            <a href="https://ymfed.github.io/articles/2020/04/26/1587864347928.html" rel="prev"
+                               class="fn-left vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="如何瞬间让网站变色">
+                                旧一篇
+                            </a>
+                            <a href="https://ymfed.github.io/articles/2020/04/30/1588237662694.html" rel="next"
+                               class="fn-right vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="你可能不知的CSS技巧(2)！！！">
+                                新一篇
+                            </a>
+                    </div>
+                </footer>
+                    <div id="b3logsolocomments"></div>
+                    <div id="vcomment" data-name="zhang-mol" data-postId="1588217552391"></div>
+                <br>
+                <div id="externalRelevantArticles" class="list"></div>
+                <div id="relevantArticles" class="list"></div>
+                <div id="randomArticles" class="list"></div>
+            </article>
+        </main>
+<aside>
+<ul class="article__toc">
+        <li class="toc__h3">
+            <a href="#toc_h3_0">文本排布及行进方向 —— writing-mode</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_1">控制数字 —— font-variant-numeric</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_2">剪切区域 —— clip-path</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_3">clip-path 过渡动画</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_4">文字环绕（非正常形状）—— shape-outside</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_5">背景扩充 —— background-clip</a>
+        </li>
+</ul></aside>
+    </div>
+</div>
+<footer class="footer fn-clear">
+    &copy; 2020
+    <a href="https://ymfed.github.io">亚美大前端（FED）</a>
+    
+    <br/>
+    Powered by <a href="https://solo.b3log.org" target="_blank">YMFED</a>
+    <span class="ft-warn">&heartsuit;</span>
+    Theme
+    <sup>[<a href="javascript:;" target="_blank">ref</a>]</sup>
+    by <a href="javascript:;" target="_blank">亚美Web团队</a>
+</footer>
+<div class="icon-up" onclick="Util.goTop()"></div>
+<script>
+  var Label = {
+    servePath: "https://ymfed.github.io",
+    staticServePath: "https://ymfed.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "3.9.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
+</script>
+<script src="https://ymfed.github.io/skins/9IPHP/js/common.min.js?1585645466987"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+<script type="text/javascript">
+    Util.addScript('https://ymfed.github.io/js/page.min.js?1585645466987', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1588217552391",
+        "blogHost": "https://ymfed.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initToc()
+    page.share()
+    });
+</script>
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 39ms, 2020/06/24 15:11:33 -->

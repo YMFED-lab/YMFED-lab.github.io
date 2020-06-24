@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>11月内训-从零开始创建一个flutter应用程序 - 亚美大前端（FED）</title><meta name="description" content="Flutter是谷歌的移动UI框架，可以快速在iOS和Android上构建高质量的原生用户界面。"/><meta property="og:description" content="Flutter是谷歌的移动UI框架，可以快速在iOS和Android上构建高质量的原生用户界面。"/>    <meta name="keywords" content="YM,亚美,前端,博客"/><link rel="dns-prefetch" href="https://ymfed.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ymfed.github.io"><link rel="icon" type="image/png" href="http://fed.ym/images/czh-fed-logo.png"/><link rel="apple-touch-icon" href="http://fed.ym/images/czh-fed-logo.png"><link rel="shortcut icon" type="image/x-icon" href="http://fed.ym/images/czh-fed-logo.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="11月内训-从零开始创建一个flutter应用程序 - 亚美大前端（FED）"/><meta property="og:site_name" content="亚美大前端（FED）"/><meta property="og:url"      content="https://ymfed.github.io/articles/2019/11/19/1574155856959.html?"/><meta property="og:image" content="http://fed.ym/images/czh-fed-logo.png"/><link rel="search" type="application/opensearchdescription+xml" title="11月内训-从零开始创建一个flutter应用程序 - 亚美大前端（FED）" href="/opensearch.xml"><link href="https://ymfed.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ymfed.github.io/manifest.json">        <link rel="canonical" href="https://ymfed.github.io/articles/2019/11/19/1574155856959.html">        <link rel="stylesheet"
+              href="https://ymfed.github.io/skins/9IPHP/css/base.css?1585645466987"/>
+            <link rel="prev" title="从零开始搭建JENKINS+GITHUB持续集成环境【多图】" href="https://ymfed.github.io/articles/2019/11/19/1574142122396.html">
+            <link rel="next" title="11月内训—利用Jenkins对前端应用做自动化构建" href="https://ymfed.github.io/articles/2019/11/29/1575010147913.html">
+    </head>
+<body>
+<header>
+    <div class="banner">
+        <div class="fn-clear wrapper">
+            <a href="https://ymfed.github.io" class="logo" rel="start"></a>
+            <h2 class="subtitle-wrap">
+                <p class="subtitle">亚美大前端（FED）</p>
+                <p class="description">既要埋头干事，也要抬头看路</p>
+            </h2>
+            <div class="fn-right">
+                    <a class="fn__flex-inline" href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i>&nbsp;开始使用
+                    </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="fn-clear wrapper">
+            <nav class="fn-left">
+                <a href="https://ymfed.github.io">
+                    <i class="icon-home"></i>
+                    首页
+                </a>
+                <a href="https://ymfed.github.io/tags.html" rel="section">
+                    <i class="icon-tags"></i> 标签墙
+                </a>
+                <a href="https://ymfed.github.io/archives.html">
+                    <i class="icon-inbox"></i> 存档
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/links.html">
+                    <i class="icon-link"></i> 友情链接
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/team.html">
+                    <i class="icon-category"></i> 团队介绍
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/join.html">
+                    <i class="icon-register"></i> 加入我们
+                </a>
+            </nav>
+            <div class="fn-right">
+                <form class="form" action="https://ymfed.github.io/search">
+                    <input placeholder="搜索" id="search" type="text" name="keyword"/>
+                    <button type="submit"><i class="icon-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="responsive fn-none">
+    <i class="icon-list"></i>
+    <ul class="list">
+                <li>
+                    <a href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i> 开始使用
+                    </a>
+                </li>
+        <li>
+            <a href="https://ymfed.github.io">
+                <i class="icon-home"></i>
+                首页
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/tags.html" rel="section">
+                <i class="icon-tags"></i> 标签墙
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/archives.html">
+                <i class="icon-inbox"></i> 存档
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/links.html">
+                <i class="icon-link"></i> 友情链接
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/team.html">
+                <i class="icon-category"></i> 团队介绍
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/join.html">
+                <i class="icon-register"></i> 加入我们
+            </a>
+        </li>
+    </ul>
+</div><div class="wrapper">
+    <div class="main-wrap">
+        <main>
+            <article class="post">
+                <header>
+                    <h2>
+                        <a rel="bookmark" href="https://ymfed.github.io/articles/2019/11/19/1574155856959.html">
+                            11月内训-从零开始创建一个flutter应用程序
+                        </a>
+                    </h2>
+                    <div class="meta">
+                                <span class="vditor-tooltipped vditor-tooltipped__n"
+                                      aria-label="更新日期">
+                                    <i class="icon-date"></i>
+                                    <time>
+                                    2019-11-20
+                                    </time>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="评论数">
+                                    <i class="icon-comments"></i>
+                                    <a href="https://ymfed.github.io/articles/2019/11/19/1574155856959.html#b3logsolocomments">
+                                        <span data-uvstatcmt="1574155856959">0</span> 评论</a>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="浏览数">
+                                    <i class="icon-views"></i>
+                        <span data-uvstaturl="https://ymfed.github.io/articles/2019/11/19/1574155856959.html">99</span> 浏览
+                                </span>
+                    </div>
+                </header>
+
+                <div class="vditor-reset post__content">
+                    <h2 id="toc_h2_0">前言</h2>
+<p>目前跨平台（移动端）的实现方案分为三种：</p>
+<table>  
+&nbsp;&nbsp;&nbsp;&nbsp;<tbody><tr><th>技术类型</th><th>ui渲染方式</th><th>性能</th><th>&nbsp;&nbsp;&nbsp;&nbsp;  
+开发效率</th><th>框架代表</th></tr>  
+<tr>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>H5+原生</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>webview渲染</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>一般</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>高</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>Cordova,Ionic</td>  
+</tr>  
+<tr>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>javascript+原生渲染</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>原生控件渲染</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>好</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>高</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>RN,Weex</td>  
+</tr>  
+<tr>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>自绘ui+原生</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>调用系统api渲染</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>好</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>flutter高</td>  
+&nbsp;&nbsp;&nbsp;&nbsp;<td>QT,Flutter</td>  
+</tr>  
+</tbody></table>  
+<font size="3">  
+&gt; Flutter是谷歌的移动UI框架，可以快速在iOS和Android上构建高质量的原生用户界面。 Flutter可以与现有的代码一起工作。在全世界，Flutter正在被越来越多的开发者和组织使用，并且Flutter是完全免费、开源的。&nbsp;&nbsp;中文网：[https://flutterchina.club/](https://flutterchina.club/)  
+&gt;&nbsp;&nbsp;&nbsp;  
+&gt; flutter的优点非常明显，如果选择一个跨平台框架，与众多基于html的跨平台框架相比，flutter是体验最好，性能与构建思路几乎最接近原生开发的框架。&nbsp;&nbsp;&nbsp;  
+<p>-&nbsp;&nbsp;<strong>性能强大，流畅</strong>&nbsp;&nbsp;&nbsp;&nbsp;<br>
+flutter对比weex和react native相比，性能的强大是有目共睹的。基于dom树渲染原生组件，很难与直接在原生视图上绘图比肩性能，google作为一个轮子大厂，直接在两个平台上重写了各自的uikit，对接到平台底层，减少ui层的多层转换，ui性能可以比肩原生，这个优势在滑动和播放动画时尤为明显。&nbsp;&nbsp;&nbsp;</p>
+<p>-&nbsp;&nbsp;<strong>路由设计优秀</strong>&nbsp;&nbsp;<br>
+flutter的路由传值非常方便，push一个路由，会返回一个future对象（也就是promise对象），使用await或者.then就可以在目标路由pop，回到当前页面时收到返回值。这个反向传值的设计基本是甩了微信小程序一条街了。弹出dialog等一些操作也是使用的路由方法，几乎不用担心出现传值困难。&nbsp;&nbsp;</p>
+<p>-&nbsp;<strong>单例模式</strong>&nbsp;&nbsp;<br>
+flutter支持单例模式，单例模式的实现也非常简单。单例模式很好的解决了一些问题。相比之下，js的单例则并不是一个真正的单例，或者说不是一个简单的单例，这也是受限于js所运行的环境。单例模式并不总是合理的，容易被滥用。但是在app的初期开发中，往往一个容易实现的单例可以帮助我们快速完成一些逻辑的搭建。&nbsp;&nbsp;&nbsp;</p>
+<p>-&nbsp;<strong>可选静态的语言，语言特性优秀</strong>&nbsp;&nbsp;<br>
+dart是一个静态语言，这也是相对于js的一个优势。dart可以被编译成js，但是看起来更像java。静态语言可以避免错误，获得更多的编辑器提示词，极大的增加可维护性。很多js库也已经用ts重写了，vue3.0的底层也将全部使用ts编写，静态语言的优势不言而喻。</p>
+<h2 id="toc_h2_1">dart基础语法</h2>
+<h3 id="toc_h3_2">入口函数</h3>
+<p><a href="https://dart.dev/tools/dartpad" target="_blank">dartpad</a>&nbsp;在线编辑dart代码,main() {}为入口函数。</p>
+<h3 id="toc_h3_3">输出</h3>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;console.log();//js  
+&nbsp;&nbsp;&nbsp;&nbsp;print();//Dart  
+</code></pre>
+<h3 id="toc_h3_4">变量</h3>
+<p>dart是类型安全(可不指定类型，但必须为系统能够解析的类型)，例如int a = 123或者var b = 123;</p>
+<h3 id="toc_h3_5">数组</h3>
+<p>Dart没有数组，直接用集合起步。&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;void main() {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List list = new List();//不指定类型时，不报错，默认为List&lt;Object&gt;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list.add("aa");  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list.add(1);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list.add(1.2);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(list);&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;void main() {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&lt;int&gt; list = new List&lt;int&gt;();  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list.add("aa");//编译报错  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list.add(1);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list.add(1.2);//编译报错  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(list);&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<h3 id="toc_h3_6">Map</h3>
+<p>dart中的map使用和js中一样，直接指定key进行赋值就可以，并且支持key-value的泛型。&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;Map&lt;String,Object&gt; map = new Map&lt;String,Object&gt;();  
+&nbsp;&nbsp;&nbsp;&nbsp;map['abc'] = 'bbb';  
+&nbsp;&nbsp;&nbsp;&nbsp;print(map);  
+&nbsp;&nbsp;&nbsp;&nbsp;map.containsKey("abc"); //是否存在当前key&nbsp;&nbsp;true  
+&nbsp;&nbsp;&nbsp;&nbsp;map.containsValue("bbb");//是否存在当前value true  
+&nbsp;&nbsp;&nbsp;&nbsp;map.isEmpty;//false  
+&nbsp;&nbsp;&nbsp;&nbsp;map.isNotEmpty;//true  
+&nbsp;&nbsp;&nbsp;&nbsp;map.keys;//获取所有的key [abc]  
+&nbsp;&nbsp;&nbsp;&nbsp;map.values;//获取所有的value [bbb]  
+</code></pre>
+<h3 id="toc_h3_7">Set</h3>
+<p>与java语法几乎一样。&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;void main(){  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set set = new Set();  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set newSet = new Set();  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;newSet.add("bac");  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set.add("daba");  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set.remove("daba");  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set.add(1);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set.add(1);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set.add([1,2,3]);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set unionSet = set.union(newSet);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(set);//{1, [1, 2, 3]}  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(unionSet);//{1, [1, 2, 3], bac}  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<h3 id="toc_h3_8">集合遍历</h3>
+<p>使用for或者foreach循环。&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;void main(){  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Map&lt;String,Object&gt; map = new Map&lt;String,Object&gt;();  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map['abc'] = 'abc';  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map['bbb'] = 'abc';  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.forEach((key,value){  
+&nbsp;&nbsp;&nbsp;&nbsp;print(key+",value:"+value);//abc,value:1&nbsp;&nbsp;&nbsp;bbb,value:3  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List list = ['1','a','pdc'];  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int i = 0;i&lt;list.length;i ++){  
+&nbsp;&nbsp;&nbsp;&nbsp;print('value:'+list[i]); //value:1 value:a value:pdc  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;}
+</code></pre>
+<h3 id="toc_h3_9">默认值</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;var name; //js&nbsp;&nbsp;undefined<br>
+&nbsp;&nbsp;&nbsp;&nbsp;var name;//dart&nbsp;&nbsp;&nbsp;null</p>
+<h3 id="toc_h3_10">true或false判断</h3>
+<p>在js中,1或任何非null对象的值被视为true</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;var zero = 0;  
+&nbsp;&nbsp;&nbsp;&nbsp;if(!zero){  
+&nbsp;&nbsp;&nbsp;&nbsp;console.log('0 is treated as false');  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>在dart中，只有布尔值“true”被视为true</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;var mynull = null;  
+&nbsp;&nbsp;&nbsp;&nbsp;if(mynull == null){  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print('use "== null" to check null');  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<h3 id="toc_h3_11">dart null检查最佳实践</h3>
+<p>从dart 1.12开始，null-aware运算符可以帮助我们做null检查。</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;bool isconnected(a,b){  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool outconn = outgoing[a]?.contains(b) ?? false;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool inconn = incoming[a]?.contains(b) ?? false;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return outconn || inconn;  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>?.运算符在左边为null的情况下会阻断右边的调用，??运算符的主要作用是在左侧表达式为null时为其设置默认值。&nbsp;&nbsp;<br>
+对于表达式outgoing[a]?.contains(b)，<br>
+如果outgoing为null或者outgoing[a]为null或contains(b)为null,都会导致表达式为null。</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;print(null ?? false);//false  
+&nbsp;&nbsp;&nbsp;&nbsp;print(false ?? 11);//false  
+&nbsp;&nbsp;&nbsp;&nbsp;print(true ?? false);//true  
+</code></pre>
+<h3 id="toc_h3_12">functions</h3>
+<p>dart和js函数类似，主要区别是声明</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;//dart  
+&nbsp;&nbsp;&nbsp;&nbsp;fn(){  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true;  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;//can also be written as  
+&nbsp;&nbsp;&nbsp;&nbsp;bool fn(){  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true;  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<h2 id="toc_h2_13">异步编程</h2>
+<h3 id="toc_h3_14">futures</h3>
+<p>与js一样，dart支持单线程执行，在js中，promise对象表示异步操作的最终完成（或失败）及其结果值，dart使用future来表示异步操作：</p>
+<p>&nbsp;//js</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;_getipaddress = () =&gt; {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const url = 'https://www.baidu.com';  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return fetch(url)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.then(res =&gt; res.json())  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.then(res =&gt; {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(res.origin);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.catch(err =&gt; {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(err);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;//dart</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;_getipaddress() {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final url = 'https://www.baidu.com';  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;httprequest.request(url).then((value) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(json.decode(value.responsetext)['origin']);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}).catcherror((error) =&gt; print(error));  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<h3 id="toc_h3_15">async和await</h3>
+<p>async函数声明定义了一个异步函数。&nbsp;&nbsp;<br>
+在js中，async函数返回一个promise，await运算符是用来等待promise：</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;//js  
+&nbsp;&nbsp;&nbsp;&nbsp;async _getipaddress(){  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const url = 'https://httpbin.org/ip';  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const res = await fetch(url);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const json = await res.json();  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const data = await json.origin;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(data);  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>在dart中，async函数返回一个future，函数主体是稍后执行，await运算符用于等待future:&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;//dart  
+&nbsp;&nbsp;&nbsp;&nbsp;_getipaddress() async {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final url = 'https://httpbin.org/ip';  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var req = await httprequest.request(url);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string ip = json.decode(req.responsetext)['origin'];  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(ip);  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<h2 id="toc_h2_16">声明式ui</h2>
+<p>声明式ui与响应式ui是对应的概念，ios是很纯粹的命令式，例如new view，addsubview，new view，addsubview。&nbsp;&nbsp;<br>
+安卓里面xml声明了ui，这是声明式的部分；但程序运行时如果要修改某个view，仍是取到这个view，再去命令式地修改。&nbsp;&nbsp;<br>
+命令式ui修改视图例子：&nbsp;&nbsp;<br>
+<img src="https://upload.zcool.com.cn/image/9914082/3/community/01590d5d998606a8012060be320f21.png@1280w_1l_2o_100sh.png" alt="">&nbsp;&nbsp;<br>
+为了将上图左侧样式改变成右边样式，在命令式样式中，通常会获取到viewb的实力，然后改变其颜色，然后将启动的元素移除，再添加viewc c3:</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;b.setcolor(red);  
+&nbsp;&nbsp;&nbsp;&nbsp;b.clearchildren();  
+&nbsp;&nbsp;&nbsp;&nbsp;viewc c3 = new viewc(...);  
+&nbsp;&nbsp;&nbsp;&nbsp;b.add(c3);  
+</code></pre>
+<p>在声明式ui中，视图配置（例如futter的widget）是不可变的，并且只是轻量级的“蓝图”，要更改ui，widget会在自身上触发重建（最常见的是通过在flutter中的statefulwidgets上调用setstate()）并构造一个新的widget树：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;return viewb(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: red,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child: viewc(...),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br>
+这里，flutter构建新的widget实例，而不是在ui更改时改变旧实例b。该框架使用renderobjects管理传统ui对象的许多职责（例如维护布局的状态）。renderobjects在帧之间保持不变，flutter的轻量级widgets告诉框架在状态之间改变renderobjects,接下来flutter框架会处理其余部分。</p>
+<p>flutter框架：&nbsp;&nbsp;<br>
+<img src="https://upload.zcool.com.cn/image/9914082/3/community/0107815d99b7a9a801211d53bafb57.png@1280w_1l_2o_100sh.png" alt="">&nbsp;&nbsp;<br>
+flutter的ui框架吸取了react的理念，即 ui是关于状态的函数。</p>
+<h2 id="toc_h2_17">安装环境</h2>
+<h3 id="toc_h3_18">window安装</h3>
+<p>1.&nbsp;安卓环境：JDK -&gt; Android SDK -&gt; Flutter -&gt; IDE ;<br>
+2.&nbsp;由于在国内访问Flutter有时可能会受到限制，Flutter官方为中国开发者搭建了临时镜像，大家可以将如下环境变量加入到用户环境变量中：&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;export PUB_HOSTED_URL=https://pub.flutter-io.cn&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn 
+</code></pre>
+<p>2.&nbsp;获取Flutter SDK；<br>
+3.&nbsp;安装Android Studio，在编辑器中安装Flutter和Dart插件；<br>
+4.&nbsp;设置Android模拟器；<br>
+5.&nbsp;如果Android Studio安装Android SDK失败，可以自行下载JDK，Android SDK安装。</p>
+<h3 id="toc_h3_19">macOS</h3>
+<p>1.&nbsp;设置镜像：&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;export PUB_HOSTED_URL=https://pub.flutter-io.cn&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+</code></pre>
+<p>2.&nbsp;获取Flutter SDK；<br>
+3.&nbsp;更新环境变量；<br>
+4.&nbsp;安装 Xcode；<br>
+5.&nbsp;设置iOS模拟器。</p>
+<h2 id="toc_h2_20">创建 Flutter app</h2>
+<h3 id="toc_h3_21">第一步：创建新应用</h3>
+<p>1.&nbsp;选择 File&gt;New Flutter Project；<br>
+2.&nbsp;选择 Flutter application 作为 project 类型, 然后点击 Next；<br>
+3.&nbsp;输入项目名称 (如 myapp), 然后点击 Next；<br>
+4.&nbsp;点击 Finish；<br>
+5.&nbsp;等待Android Studio安装SDK并创建项目。<br>
+上述命令创建一个Flutter项目，项目名为myapp，其中包含一个使用Material 组件的简单演示应用程序。</p>
+<h4 id="toc_h4_22">编写hellow world</h4>
+<p>删除lib / main.dart中的所有代码，然后替换为下面的代码，它将在屏幕的中心显示“Hello World”。</p>
+<pre><code>import 'package:flutter/material.dart';  
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;void main() =&gt; runApp(new MyApp());  
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;class MyApp extends StatelessWidget {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@override  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Widget build(BuildContext context) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new MaterialApp(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: 'Welcome to Flutter',  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home: new Scaffold(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appBar: new AppBar(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text('Welcome to Flutter'),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: new Center(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child: new Text('Hello World'),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<h4 id="toc_h4_23">运行应用</h4>
+<p>点击run按钮运行应用程序，你应该看到如下界面:&nbsp;&nbsp;<br>
+<img src="https://upload.zcool.com.cn/image/9914082/3/community/0136ab5d9ada48a8012060bed38014.png@1280w_1l_2o_100sh.png" alt="">&nbsp;&nbsp;<br>
+<img src="https://upload.zcool.com.cn/image/9914082/3/community/01db755d9b047aa8012060be289326.png@1280w_1l_2o_100sh.png" alt=""></p>
+<h4 id="toc_h4_24">分析</h4>
+<p>-&nbsp;本示例创建一个Material APP。Material是一种标准的移动端和web端的视觉设计语言。 Flutter提供了一套丰富的Material widgets。</p>
+<p>-&nbsp;main函数使用了(=&gt;)符号, 这是Dart中单行函数或方法的简写。</p>
+<p>-&nbsp;该应用程序继承了 StatelessWidget，这将会使应用本身也成为一个widget。 在Flutter中，大多数东西都是widget，包括对齐(alignment)、填充(padding)和布局(layout)</p>
+<p>-&nbsp;Scaffold 是 Material library 中提供的一个widget, 它提供了默认的导航栏、标题和包含主屏幕widget树的body属性。widget树可以很复杂。</p>
+<p>-&nbsp;widget的主要工作是提供一个build()方法来描述如何根据其他较低级别的widget来显示自己。</p>
+<p>-&nbsp;本示例中的body的widget树中包含了一个Center widget, Center widget又包含一个 Text 子widget。 Center widget可以将其子widget树对其到屏幕中心。<br>
+-&nbsp;widget介绍：<a href="https://flutter.dev/docs/development/ui/widgets-intro" target="_blank">https://flutter.dev/docs/development/ui/widgets-intro</a></p>
+<h3 id="toc_h3_25">第二步：利用外部的第三方库</h3>
+<blockquote>
+<p>pubSite 网站可查找第三方插件或库，在这一步中，您将开始使用一个名为english_words的开源软件包 ，其中包含数千个最常用的英文单词以及一些实用功能。&nbsp;&nbsp;</p>
+</blockquote>
+<p>&nbsp;1.&nbsp;pubspec文件管理Flutter应用程序的assets(资源，如图片、package等)。 在pubspec.yaml中，将english_words（3.1.0或更高版本）添加到依赖项列表：&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;dependencies:  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flutter:  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sdk: flutter  
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cupertino_icons: ^0.1.0  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;english_words: ^3.1.0 
+</code></pre>
+<p>2.&nbsp;在Android Studio的编辑器视图中查看pubspec时，单击右上角的 Packages get，这会将依赖包安装到您的项目。您可以在控制台中看到以下内容：</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;flutter packages get  
+&nbsp;&nbsp;&nbsp;&nbsp;Running "flutter packages get" in startup_namer...  
+&nbsp;&nbsp;&nbsp;&nbsp;Process finished with exit code 0  
+</code></pre>
+<p>3.&nbsp;在 lib/main.dart 中, 引入 english_words:</p>
+<pre><code>import 'package:english_words/english_words.dart';
+</code></pre>
+<p>4.&nbsp;使用 English words 包生成文本来替换字符串“Hello World”.</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;import 'package:flutter/material.dart';  
+&nbsp;&nbsp;&nbsp;&nbsp;import 'package:english_words/english_words.dart';  
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;void main() =&gt; runApp(new MyApp());  
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;class MyApp extends StatelessWidget {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@override  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Widget build(BuildContext context) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final wordPair = new WordPair.random(); 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new MaterialApp(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: 'Welcome to Flutter',  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home: new Scaffold(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appBar: new AppBar(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text('Welcome to Flutter'),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: new Center(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//child: new Text('Hello World'),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child: new Text(wordPair.asPascalCase),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<h4 id="toc_h4_26">使用热重载加快开发周期.</h4>
+<p>如果应用程序正在运行，请使用热重载按钮 (lightning bolt icon) 更新正在运行的应用程序。每次单击热重载或保存项目时，都会在正在运行的应用程序中随机选择不同的单词对:&nbsp;&nbsp;<br>
+<img src="https://upload.zcool.com.cn/image/9914082/3/community/01039b5d9b047aa801211d53661adf.png@1280w_1l_2o_100sh.png" alt=""></p>
+<h3 id="toc_h3_27">第三步：实现一个<strong>有状态的widget</strong>，为应用增加交互.</h3>
+<blockquote>
+<p>Stateless widgets 是不可变的, 这意味着它们的属性不能改变 - 所有的值都是最终的.&nbsp;&nbsp;<br>
+&nbsp;<br>
+Stateful widgets 持有的状态可能在widget生命周期中发生变化. 实现一个 stateful widget 至少需要两个类:<br>
+&nbsp;</p>
+<ul>
+<li>一个 StatefulWidget类。</li>
+<li>一个 State类。 StatefulWidget类本身是不变的，但是 State类在widget生命周期中始终存在。&nbsp;&nbsp;<br>
+&nbsp;<br>
+在这一步中，将添加一个有状态的widget-RandomWords，它创建其State类RandomWordsState。State类将最终为widget维护建议的和喜欢的单词对。&nbsp;&nbsp;</li>
+</ul>
+</blockquote>
+<p>1.&nbsp;添加有状态的 RandomWords widget 到 main.dart。 它也可以在MyApp之外的文件的任何位置使用，但是本示例将它放到了文件的底部。RandomWords widget除了创建State类之外几乎没有其他任何东西：&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;class RandomWords extends StatefulWidget {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@override  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createState() =&gt; new RandomWordsState();  
+&nbsp;&nbsp;&nbsp;&nbsp;}   
+</code></pre>
+<p>2.&nbsp;添加 RandomWordsState 类.该应用程序的大部分代码都在该类中， 该类持有RandomWords widget的状态。这个类将保存随着用户滚动而无限增长的生成的单词对， 以及喜欢的单词对，用户通过重复点击心形 ❤️ 图标来将它们从列表中添加或删除。&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;class RandomWordsState extends State&lt;RandomWords&gt; {  
+&nbsp;&nbsp;&nbsp;&nbsp;}
+</code></pre>
+<p>3.&nbsp;在添加状态类后，IDE会提示该类缺少build方法。接下来添加一个基本的build方法，该方法通过将生成单词对的代码从MyApp移动到RandomWordsState来生成单词对。将build方法添加到RandomWordState中，如下面高亮代码所示：&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;class RandomWordsState extends State&lt;RandomWords&gt; {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@override  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Widget build(BuildContext context) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final wordPair = new WordPair.random();  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Text(wordPair.asPascalCase);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>4.&nbsp;通过下面高亮显示的代码，将生成单词对代的码从MyApp移动到RandomWordsState中:</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;class MyApp extends StatelessWidget {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@override  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Widget build(BuildContext context) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final wordPair = new WordPair.random();&nbsp;&nbsp;// 删除此行  
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new MaterialApp(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: 'Welcome to Flutter',  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home: new Scaffold(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appBar: new AppBar(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text('Welcome to Flutter'),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: new Center(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//child: new Text(wordPair.asPascalCase),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child: new RandomWords(),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>5.&nbsp;重新加载应用，显示单词对。</p>
+<p><img src="https://upload.zcool.com.cn/image/9914082/3/community/01cdd95d9b047aa8012060be8fc3b1.png@1280w_1l_2o_100sh.png" alt=""></p>
+<h3 id="toc_h3_28">第四步：用listview和listtiles创建一个延迟加载的无限滚动列表.</h3>
+<blockquote>
+<p>在这一步扩展（继承）RandomWordsState类，以生成并显示单词对列表。 当用户滚动时，ListView中显示的列表将无限增长。 ListView的builder工厂构造函数允许您按需建立一个懒加载的列表视图。&nbsp;&nbsp;</p>
+</blockquote>
+<p>1.&nbsp;向<cite>RandomWordsState</cite>类中添加一个<cite><em>suggestions</em></cite><em>列表以保存建议的单词对。 该变量以下划线（</em>）开头，在Dart语言中使用下划线前缀标识符，会强制其变成私有的。&nbsp;&nbsp;另外，添加一个<cite>biggerFont</cite>变量来增大字体大小&nbsp;&nbsp;</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;class RandomWordsState extends State&lt;RandomWords&gt; {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final _suggestions = &lt;WordPair&gt;[]; 
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final _biggerFont = const TextStyle(fontSize: 18.0);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>2.&nbsp;向<cite>RandomWordsState</cite>类添加一个<cite> _buildSuggestions() </cite>函数. 此方法构建显示建议单词对的<cite>ListView</cite>。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<cite>ListView</cite>类提供了一个builder属性，itemBuilder 值是一个匿名回调函数， 接受两个参数- BuildContext和行迭代器i。迭代器从0开始， 每调用一次该函数，i就会自增1，对于每个建议的单词对都会执行一次。该模型允许建议的单词对列表在用户滚动时无限增长。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;添加如下高亮的行:</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;class RandomWordsState extends State&lt;RandomWords&gt; {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Widget _buildSuggestions() {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new ListView.builder(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: const EdgeInsets.all(16.0), 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 对于每个建议的单词对都会调用一次itemBuilder，然后将单词对添加到ListTile行中  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 在偶数行，该函数会为单词对添加一个ListTile row.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 在奇数行，该函数会添加一个分割线widget，来分隔相邻的词对。  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 注意，在小屏幕上，分割线看起来可能比较吃力。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemBuilder: (context, i) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 在每一列之前，添加一个1像素高的分隔线widget
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (i.isOdd) return new Divider();
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 语法 "i ~/ 2" 表示i除以2，但返回值是整形（向下取整），比如i为：1, 2, 3, 4, 5  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 时，结果为0, 1, 1, 2, 2， 这可以计算出ListView中减去分隔线后的实际单词对数量 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final index = i ~/ 2;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 如果是建议列表中最后一个单词对
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (index &gt;= _suggestions.length) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...接着再生成10个单词对，然后添加到建议列表
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_suggestions.addAll(generateWordPairs().take(10));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return _buildRow(_suggestions[index]);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+
+</code></pre>
+<p>3.&nbsp;对于每一个单词对，<cite>_buildSuggestions</cite>函数都会调用一次<cite>_buildRow</cite>。 这个函数在ListTile中显示每个新词对，这使您在下一步中可以生成更漂亮的显示行</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;在<cite>RandomWordsState</cite>中添加一个<cite>_buildRow</cite>函数 :</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;class RandomWordsState extends State&lt;RandomWords&gt; {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...  
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Widget _buildRow(WordPair pair) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new ListTile(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pair.asPascalCase,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: _biggerFont,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} 
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>4.&nbsp;更新<cite>RandomWordsState</cite>的build方法以使用<cite>_buildSuggestions()</cite>，而不是直接调用单词生成库。 更改后如下面高亮部分：</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;...  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@override  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Widget build(BuildContext context) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final wordPair = new WordPair.random(); // 删除这两行  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Text(wordPair.asPascalCase);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Scaffold (  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appBar: new AppBar(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text('Startup Name Generator'),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: _buildSuggestions(),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...  
+</code></pre>
+<p>5.&nbsp;更新<cite>MyApp</cite>的<cite>build</cite>方法。从<cite>MyApp</cite>中删除<cite>Scaffold</cite>和<cite>AppBar</cite>实例。 这些将由<cite>RandomWordsState</cite>管理，这使得用户在下一步中从一个屏幕导航到另一个屏幕时， 可以更轻松地更改导航栏中的的路由名称。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;用下面高亮部分替换最初的build方法：</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;class MyApp extends StatelessWidget {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@override  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Widget build(BuildContext context) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new MaterialApp(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: 'Startup Name Generator',  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home: new RandomWords(),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} 
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;重新启动应用程序。应该看到一个单词对列表。尽可能地向下滚动，将继续看到新的单词对。&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://upload.zcool.com.cn/image/9914082/3/community/0169245d9b047aa801211d5331c1ff.png@1280w_1l_2o_100sh.png" alt=""></p>
+<h3 id="toc_h3_29">第五步: 添加交互</h3>
+<blockquote>
+<p>在这一步中，您将为每一行添加一个可点击的心形 ❤️ 图标。当用户点击列表中的条目，切换其“收藏”状态时，将该词对添加到或移除出“收藏夹”。</p>
+</blockquote>
+<p>1.&nbsp;添加一个 <cite>_saved</cite> Set(集合) 到RandomWordsState。这个集合存储用户喜欢（收藏）的单词对。 在这里，Set比List更合适，因为Set中不允许重复的值。</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;class RandomWordsState extends State&lt;RandomWords&gt; {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final _suggestions = &lt;WordPair&gt;[];  
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final _saved = new Set&lt;WordPair&gt;();
+&nbsp;&nbsp;&nbsp;&nbsp;  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final _biggerFont = const TextStyle(fontSize: 18.0);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>2.&nbsp;在 <cite>_buildRow</cite> 方法中添加 <cite>alreadySaved</cite>来检查确保单词对还没有添加到收藏夹中。</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;Widget _buildRow(WordPair pair) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final alreadySaved = _saved.contains(pair); 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>3.&nbsp;同时在 _buildRow()中， 添加一个心形 ❤️ 图标到 ListTiles以启用收藏功能。接下来，你就可以给心形 ❤️ 图标添加交互能力了。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;添加下面高亮的行:</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;Widget _buildRow(WordPair pair) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final alreadySaved = _saved.contains(pair);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new ListTile(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pair.asPascalCase,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: _biggerFont,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;trailing: new Icon(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alreadySaved ? Icons.favorite : Icons.favorite_border,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: alreadySaved ? Colors.red : null,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>4.&nbsp;在 <cite>_buildRow</cite>中让心形❤️图标变得可以点击。如果单词条目已经添加到收藏夹中， 再次点击它将其从收藏夹中删除。当心形❤️图标被点击时，函数调用<cite>setState()</cite>通知框架状态已经改变。</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;Widget _buildRow(WordPair pair) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final alreadySaved = _saved.contains(pair);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new ListTile(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pair.asPascalCase,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: _biggerFont,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;trailing: new Icon(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alreadySaved ? Icons.favorite : Icons.favorite_border,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: alreadySaved ? Colors.red : null,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onTap: () {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setState(() {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (alreadySaved) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_saved.remove(pair);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_saved.add(pair);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p><img src="https://upload.zcool.com.cn/image/9914082/3/community/01d7c45d9b047aa8012060be69d606.png@1280w_1l_2o_100sh.png" alt=""></p>
+<h3 id="toc_h3_30">第六步：导航到新页面</h3>
+<blockquote>
+<p>在这一步中，您将添加一个显示收藏夹内容的新页面（在Flutter中称为路由(route)）。您将学习如何在主路由和新路由之间导航（切换页面）。&nbsp;&nbsp;&nbsp;<br>
+在Flutter中，导航器管理应用程序的路由栈。将路由推入（push）到导航器的栈中，将会显示更新为该路由页面。 从导航器的栈中弹出（pop）路由，将显示返回到前一个路由。&nbsp;&nbsp;</p>
+</blockquote>
+<p>1.&nbsp;在<cite>RandomWordsState</cite>的build方法中为AppBar添加一个列表图标。当用户点击列表图标时，包含收藏夹的新路由页面入栈显示。</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;class RandomWordsState extends State&lt;RandomWords&gt; {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@override  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Widget build(BuildContext context) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Scaffold(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appBar: new AppBar(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text('Startup Name Generator'),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actions: &lt;Widget&gt;[  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;], 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: _buildSuggestions(),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>2.&nbsp;向RandomWordsState类添加一个 _pushSaved() 方法。&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;当用户点击导航栏中的列表图标时，建立一个路由并将其推入到导航管理器栈中。此操作会切换页面以显示新路由。&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;新页面的内容在在MaterialPageRoute的builder属性中构建，builder是一个匿名函数。&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;添加Navigator.push调用，这会使路由入栈（以后路由入栈均指推入到导航管理器的栈）</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;void _pushSaved() {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Navigator.of(context).push(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;}
+</code></pre>
+<p>3.&nbsp;添加MaterialPageRoute及其builder。 现在，添加生成ListTile行的代码。ListTile的<cite>divideTiles()</cite>方法在每个ListTile之间添加1像素的分割线。 该<cite>divided</cite>变量持有最终的列表项。</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;void _pushSaved() {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Navigator.of(context).push(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new MaterialPageRoute(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;builder: (context) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final tiles = _saved.map(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(pair) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new ListTile(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pair.asPascalCase,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: _biggerFont,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final divided = ListTile  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.divideTiles(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context: context,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tiles: tiles,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.toList();  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;), 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+<p>4.&nbsp;builder返回一个Scaffold，其中包含名为“Saved Suggestions”的新路由的应用栏。 新路由的body由包含ListTiles行的ListView组成; 每行之间通过一个分隔线分隔。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;添加如下高亮的代码:</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;void _pushSaved() {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Navigator.of(context).push(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new MaterialPageRoute(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;builder: (context) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final tiles = _saved.map(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(pair) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new ListTile(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pair.asPascalCase,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: _biggerFont,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final divided = ListTile  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.divideTiles(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;context: context,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tiles: tiles,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.toList();  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Scaffold(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appBar: new AppBar(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text('Saved Suggestions'),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: new ListView(children: divided),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;); 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;...  
+&nbsp;&nbsp;&nbsp;&nbsp;Widget _buildRow(WordPair pair){  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Widget build(BuildContext context){  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Scaffold(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appBar: new AppBar(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: new Text('startup name Generator'),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actions: &lt;Widget&gt;[  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: _buildSuggestions(),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;} 
+</code></pre>
+<p>5.&nbsp;热重载应用程序。收藏一些选项，并点击应用栏中的列表图标，在新路由页面中显示收藏的内容。 请注意，导航器会在应用栏中添加一个“返回”按钮。点击后退按钮返回到主页路由。</p>
+<p><img src="https://upload.zcool.com.cn/image/9914082/3/community/01d7c45d9b047aa8012060be69d606.png@1280w_1l_2o_100sh.png" alt=""><br>
+<img src="https://upload.zcool.com.cn/image/9914082/3/community/01f8a05d9b047aa801211d53bb424e.png@1280w_1l_2o_100sh.png" alt=""></p>
+<h3 id="toc_h3_31">了解如何使用主题更改应用ui的外观</h3>
+<p>1.&nbsp;将应用程序的主题更改为白色</p>
+<pre><code>&nbsp;&nbsp;&nbsp;&nbsp;class MyApp extends StatelessWidget {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@override  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Widget build(BuildContext context) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new MaterialApp(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: 'Startup Name Generator',  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;theme: new ThemeData(  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primaryColor: Colors.white,  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home: new RandomWords(),  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+</code></pre>
+</font><p><font size="3"><img src="https://upload.zcool.com.cn/image/9914082/3/community/01f5e35d9b047aa8012060be489c0f.png@1280w_1l_2o_100sh.png" alt=""><br>
+&nbsp;</font>&nbsp;</p>
+<h2 id="toc_h2_32">Android构建发布</h2>
+<h3 id="toc_h3_33">检查 App Manifest</h3>
+<p>查看默认应用程序清单文件(位于<app dir>/android/app/src/main/中的AndroidManifest.xml文件)，修改App配置；</app></p>
+<h3 id="toc_h3_34">app签名</h3>
+<p>-&nbsp;创建 keystore：进入C:\Program Files\Java\jdk1.7.0_80\bin目录，执行：keytool -genkey -v -keystore C:/wmj/flutter_app/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key<br>
+-&nbsp;参数说明：&nbsp;&nbsp;<br>
+genkey：创建一个默认keystore文件“.jks”。&nbsp;&nbsp;&nbsp;&nbsp;<br>
+keyalg：指定密钥的算法，这里指定是的RSA算法。&nbsp;&nbsp;<br>
+keysize：指定密钥的长度。<br>
+validity：证书有效期 10000天。<br>
+alias：别名。</p>
+<p>-&nbsp;引用应用程序中的keystore,创建一个名为<app dir>/android/key.properties的文件，其中包含对密钥库的引用：</app></p>
+<pre><code>storePassword='password from previous step'  
+keyPassword='password from previous step'  
+keyAlias=key  
+storeFile='location of the key store file, e.g. /Users/&lt;user name&gt;/key.jks'  
+</code></pre>
+<p>-&nbsp;在gradle中配置签名<br>
+通过编辑<app dir>/android/app/build.gradle文件为您的应用配置签名&nbsp;&nbsp;<br>
+替换&nbsp;&nbsp;</app></p>
+<pre><code>android {
+</code></pre>
+<p>为&nbsp;&nbsp;</p>
+<pre><code>def keystorePropertiesFile = rootProject.file("key.properties")  
+def keystoreProperties = new Properties()  
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))  
+  
+android {  
+</code></pre>
+<p>替换&nbsp;&nbsp;</p>
+<pre><code>buildTypes {  
+&nbsp;&nbsp;&nbsp;&nbsp;release {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// TODO: Add your own signing config for the release build.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Signing with the debug keys for now, so `flutter run --release` works.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;signingConfig signingConfigs.debug  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+}  
+</code></pre>
+<p>为&nbsp;&nbsp;</p>
+<pre><code>signingConfigs {  
+&nbsp;&nbsp;&nbsp;&nbsp;release {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;keyAlias keystoreProperties['keyAlias']  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;keyPassword keystoreProperties['keyPassword']  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;storeFile file(keystoreProperties['storeFile'])  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;storePassword keystoreProperties['storePassword']  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+}  
+buildTypes {  
+&nbsp;&nbsp;&nbsp;&nbsp;release {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;signingConfig signingConfigs.release  
+&nbsp;&nbsp;&nbsp;&nbsp;}  
+}  
+
+</code></pre>
+<p>release版本将自动进行签名。</p>
+<h3 id="toc_h3_35">打包apk</h3>
+<p>使用命令行:</p>
+<p>cd <app dir> (<app dir> 工程目录)；&nbsp;&nbsp;<br>
+运行flutter build apk (flutter build 默认会包含 --release选项)；&nbsp;&nbsp;<br>
+打包后的apk位于项目目录build\app\outputs\apk\release\app-release.apk。</app></app></p>
+<h2 id="toc_h2_36">其他代码案例了解</h2>
+<h3 id="toc_h3_37">视图更新</h3>
+<p>flutter中，widget是不可变的，不会直接更新，可以通过操纵widget状态来更新他们，这就是有状态和无状态widget的概念来源，StatelessWidget是一个没有状态信息的widget,<br>
+例如我们需要ImageView/UIImageView来显示logo。logo在运行时不会改变，因此可以使用StatelessWidget来展示logo。</p>
+                        <div>
+                            <hr>
+
+标题：11月内训-从零开始创建一个flutter应用程序<br>
+作者：<a href="https://ymfed.github.io" target="_blank">WMJinger</a><br>
+地址：<a href="https://ymfed.github.io/articles/2019/11/19/1574155856959.html" target="_blank">https://ymfed.github.io/articles/2019/11/19/1574155856959.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                        </div>
+                </div>
+
+                <footer class="tags">
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/Flutter">
+                            Flutter</a>
+
+                    <div class="rel fn-clear ft__center">
+                            <a href="https://ymfed.github.io/articles/2019/11/19/1574142122396.html" rel="prev"
+                               class="fn-left vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="从零开始搭建JENKINS+GITHUB持续集成环境【多图】">
+                                旧一篇
+                            </a>
+                            <a href="https://ymfed.github.io/articles/2019/11/29/1575010147913.html" rel="next"
+                               class="fn-right vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="11月内训—利用Jenkins对前端应用做自动化构建">
+                                新一篇
+                            </a>
+                    </div>
+                </footer>
+                    <div id="b3logsolocomments"></div>
+                    <div id="vcomment" data-name="WMJinger" data-postId="1574155856959"></div>
+                <br>
+                <div id="externalRelevantArticles" class="list"></div>
+                <div id="relevantArticles" class="list"></div>
+                <div id="randomArticles" class="list"></div>
+            </article>
+        </main>
+<aside>
+<ul class="article__toc">
+        <li class="toc__h2">
+            <a href="#toc_h2_0">前言</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">dart基础语法</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_2">入口函数</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">输出</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_4">变量</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_5">数组</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_6">Map</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_7">Set</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_8">集合遍历</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_9">默认值</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_10">true或false判断</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_11">dart null检查最佳实践</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_12">functions</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_13">异步编程</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_14">futures</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_15">async和await</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_16">声明式ui</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_17">安装环境</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_18">window安装</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_19">macOS</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_20">创建 Flutter app</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_21">第一步：创建新应用</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_22">编写hellow world</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_23">运行应用</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_24">分析</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_25">第二步：利用外部的第三方库</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_26">使用热重载加快开发周期.</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_27">第三步：实现一个有状态的widget，为应用增加交互.</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_28">第四步：用listview和listtiles创建一个延迟加载的无限滚动列表.</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_29">第五步: 添加交互</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_30">第六步：导航到新页面</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_31">了解如何使用主题更改应用ui的外观</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_32">Android构建发布</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_33">检查 App Manifest</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_34">app签名</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_35">打包apk</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_36">其他代码案例了解</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_37">视图更新</a>
+        </li>
+</ul></aside>
+    </div>
+</div>
+<footer class="footer fn-clear">
+    &copy; 2020
+    <a href="https://ymfed.github.io">亚美大前端（FED）</a>
+    
+    <br/>
+    Powered by <a href="https://solo.b3log.org" target="_blank">YMFED</a>
+    <span class="ft-warn">&heartsuit;</span>
+    Theme
+    <sup>[<a href="javascript:;" target="_blank">ref</a>]</sup>
+    by <a href="javascript:;" target="_blank">亚美Web团队</a>
+</footer>
+<div class="icon-up" onclick="Util.goTop()"></div>
+<script>
+  var Label = {
+    servePath: "https://ymfed.github.io",
+    staticServePath: "https://ymfed.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "3.9.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
+</script>
+<script src="https://ymfed.github.io/skins/9IPHP/js/common.min.js?1585645466987"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+<script type="text/javascript">
+    Util.addScript('https://ymfed.github.io/js/page.min.js?1585645466987', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1574155856959",
+        "blogHost": "https://ymfed.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initToc()
+    page.share()
+    });
+</script>
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 68ms, 2020/06/24 15:11:34 -->

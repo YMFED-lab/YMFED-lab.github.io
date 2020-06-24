@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>11月内训—利用Jenkins对前端应用做自动化构建 - 亚美大前端（FED）</title><meta name="description" content="Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工具"/><meta property="og:description" content="Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工具"/>    <meta name="keywords" content="YM,亚美,前端,博客"/><link rel="dns-prefetch" href="https://ymfed.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://ymfed.github.io"><link rel="icon" type="image/png" href="http://fed.ym/images/czh-fed-logo.png"/><link rel="apple-touch-icon" href="http://fed.ym/images/czh-fed-logo.png"><link rel="shortcut icon" type="image/x-icon" href="http://fed.ym/images/czh-fed-logo.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="11月内训—利用Jenkins对前端应用做自动化构建 - 亚美大前端（FED）"/><meta property="og:site_name" content="亚美大前端（FED）"/><meta property="og:url"      content="https://ymfed.github.io/articles/2019/11/29/1575010147913.html?"/><meta property="og:image" content="http://fed.ym/images/czh-fed-logo.png"/><link rel="search" type="application/opensearchdescription+xml" title="11月内训—利用Jenkins对前端应用做自动化构建 - 亚美大前端（FED）" href="/opensearch.xml"><link href="https://ymfed.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://ymfed.github.io/manifest.json">        <link rel="canonical" href="https://ymfed.github.io/articles/2019/11/29/1575010147913.html">        <link rel="stylesheet"
+              href="https://ymfed.github.io/skins/9IPHP/css/base.css?1585645466987"/>
+            <link rel="prev" title="11月内训-从零开始创建一个flutter应用程序" href="https://ymfed.github.io/articles/2019/11/19/1574155856959.html">
+            <link rel="next" title="11月内训纪实-利用Jenkins对前端应用做自动化构建" href="https://ymfed.github.io/articles/2019/12/02/1575273585246.html">
+    </head>
+<body>
+<header>
+    <div class="banner">
+        <div class="fn-clear wrapper">
+            <a href="https://ymfed.github.io" class="logo" rel="start"></a>
+            <h2 class="subtitle-wrap">
+                <p class="subtitle">亚美大前端（FED）</p>
+                <p class="description">既要埋头干事，也要抬头看路</p>
+            </h2>
+            <div class="fn-right">
+                    <a class="fn__flex-inline" href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i>&nbsp;开始使用
+                    </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="fn-clear wrapper">
+            <nav class="fn-left">
+                <a href="https://ymfed.github.io">
+                    <i class="icon-home"></i>
+                    首页
+                </a>
+                <a href="https://ymfed.github.io/tags.html" rel="section">
+                    <i class="icon-tags"></i> 标签墙
+                </a>
+                <a href="https://ymfed.github.io/archives.html">
+                    <i class="icon-inbox"></i> 存档
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/links.html">
+                    <i class="icon-link"></i> 友情链接
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/team.html">
+                    <i class="icon-category"></i> 团队介绍
+                </a>
+                <a rel="archive" href="https://ymfed.github.io/join.html">
+                    <i class="icon-register"></i> 加入我们
+                </a>
+            </nav>
+            <div class="fn-right">
+                <form class="form" action="https://ymfed.github.io/search">
+                    <input placeholder="搜索" id="search" type="text" name="keyword"/>
+                    <button type="submit"><i class="icon-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="responsive fn-none">
+    <i class="icon-list"></i>
+    <ul class="list">
+                <li>
+                    <a href="https://ymfed.github.io/start">
+                        <i class="icon-login"></i> 开始使用
+                    </a>
+                </li>
+        <li>
+            <a href="https://ymfed.github.io">
+                <i class="icon-home"></i>
+                首页
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/tags.html" rel="section">
+                <i class="icon-tags"></i> 标签墙
+            </a>
+        </li>
+        <li>
+            <a href="https://ymfed.github.io/archives.html">
+                <i class="icon-inbox"></i> 存档
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/links.html">
+                <i class="icon-link"></i> 友情链接
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/team.html">
+                <i class="icon-category"></i> 团队介绍
+            </a>
+        </li>
+        <li>
+            <a rel="archive" href="https://ymfed.github.io/join.html">
+                <i class="icon-register"></i> 加入我们
+            </a>
+        </li>
+    </ul>
+</div><div class="wrapper">
+    <div class="main-wrap">
+        <main>
+            <article class="post">
+                <header>
+                    <h2>
+                        <a rel="bookmark" href="https://ymfed.github.io/articles/2019/11/29/1575010147913.html">
+                            11月内训—利用Jenkins对前端应用做自动化构建
+                        </a>
+                    </h2>
+                    <div class="meta">
+                                <span class="vditor-tooltipped vditor-tooltipped__n"
+                                      aria-label="更新日期">
+                                    <i class="icon-date"></i>
+                                    <time>
+                                    2019-12-03
+                                    </time>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="评论数">
+                                    <i class="icon-comments"></i>
+                                    <a href="https://ymfed.github.io/articles/2019/11/29/1575010147913.html#b3logsolocomments">
+                                        <span data-uvstatcmt="1575010147913">0</span> 评论</a>
+                                </span>
+                        &nbsp; | &nbsp;
+                        <span class="vditor-tooltipped vditor-tooltipped__n" aria-label="浏览数">
+                                    <i class="icon-views"></i>
+                        <span data-uvstaturl="https://ymfed.github.io/articles/2019/11/29/1575010147913.html">61</span> 浏览
+                                </span>
+                    </div>
+                </header>
+
+                <div class="vditor-reset post__content">
+                    <p>注意：如果图片访问不到，请直接访问连接，<a href="https://github.com/hopechans/blog/issues/38" target="_blank">https://github.com/hopechans/blog/issues/38</a></p>
+<h1 id="toc_h1_0">Jenkins是什么</h1>
+<p>Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工具，用于监控持续重复的工作，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能，最初的创建者川口清子（Kohsuke Kawaguchi）。他独自写了大部分代码</p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524077-01e52f80-02fd-11ea-9531-d039a4c77113.png" alt="clipboard"></p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68523536-9c417500-02f5-11ea-9862-dd7bc23ae9ec.png" alt="clipbo123ard"></p>
+<h1 id="toc_h1_1">概要</h1>
+<p>今天分享的主要内容有</p>
+<ul>
+<li>
+<p>Docker简单介绍</p>
+</li>
+<li>
+<p>Jenkins的简介与安装</p>
+</li>
+<li>
+<p>Jenkins对接Github 项目做持续集成</p>
+</li>
+<li>
+<p>Jenkins构建项目的几种方式</p>
+</li>
+<li>
+<p>Jenkins上传前端包到文件服务器</p>
+</li>
+<li>
+<p>云服务器简单使用介绍</p>
+</li>
+</ul>
+<p>涉及到的资源和工具</p>
+<ul>
+<li>
+<p>一台阿里云Linux服务器（默认安装Centos）。</p>
+</li>
+<li>
+<p>Xshell：一个Windows软件，脚本的方式来操作服务器。</p>
+</li>
+<li>
+<p>XFTP：是Xshell的一个插件，能图形化看到服务器的文件。</p>
+</li>
+<li>
+<p>Nginx：展示前端页面</p>
+</li>
+<li>
+<p>Docker：一个运行Jenkins的容器</p>
+</li>
+<li>
+<p>Jenkins</p>
+</li>
+<li>
+<p>Git</p>
+</li>
+</ul>
+<h1 id="toc_h1_2">现状</h1>
+<p>如今我们已经到前后端分离开发的模式。通常情况下，前端只需要把HTML，CSS，JS打包好之后，发给后端部署即可。最能体现这个场景比如使用vue来开发前端项目的时候，利用vue-cli脚手架来帮我们打包npm run build。 最终会生成一个dist目录，我们只需提供这个dist包给后端开发人员即可。</p>
+<p>如果只发一个版本，这种方式完全OK，但是如果需要频繁的更新版本，就会有如下图的操作，各个人员在频发互传代码包，容易出问题。这对于前后端来说，都是一个很低效的事情。</p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68523471-c6466780-02f4-11ea-8700-e6c5e0bef519.png" alt="12313"></p>
+<p>因此我们需要将低效的手动式部署，升级为更加先进的工程化，流水线式的持续部署。Jenkins就很好的可以做这样的事情，而且我们公司的持续集成也是使用这个工具。</p>
+<h1 id="toc_h1_3">CI/CD</h1>
+<h2 id="toc_h2_4">持续集成Continuous Integration（CI）</h2>
+<p>持续集成强调开发人员提交了新代码之后，立刻自动的进行构建、（单元）测试。根据测试结果，我们可以确定新代码和原有代码能否正确地集成在一起。  持续集成过程中很重视自动化测试验证结果，对可能出现的一些问题进行预警，以保障最终合并的代码没有问题。</p>
+<h2 id="toc_h2_5">持续交付Continuous Delivery（CD）</h2>
+<p>持续交付在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境的「类生产环境」（production-like environments）中。交付给质量团队或者用户，以供评审。如果评审通过，代码就进入生产阶段。  持续交付并不是指软件每一个改动都要尽快部署到产品环境中，它指的是任何的代码修改都可以在任何时候实施部署。  这里强调的是</p>
+<ul>
+<li>
+<p>手动部署</p>
+</li>
+<li>
+<p>有部署的能力，但不一定部署</p>
+</li>
+</ul>
+<h2 id="toc_h2_6">持续部署（Continuous Deployment)</h2>
+<p>持续部署是指当交付的代码通过评审之后，自动部署到生产环境中。持续部署是持续交付的最高阶段。  这里强调</p>
+<ul>
+<li>
+<p>持续部署是自动的</p>
+</li>
+<li>
+<p>持续部署是持续交付的最高阶段</p>
+</li>
+</ul>
+<h2 id="toc_h2_7">总结</h2>
+<p>「持续集成（Continuous Integration）」、「持续交付（Continuous Delivery）」和「持续部署（Continuous Deployment）」提供了一个优秀的 DevOps 环境，对于整个团队来说，好处与挑战并行。无论如何，频繁部署、快速交付以及开发测试流程自动化都将成为未来软件工程的重要组成部分。</p>
+<h1 id="toc_h1_8">Docker</h1>
+<h2 id="toc_h2_9">docker简介</h2>
+<p>Docker是一种Linux容器技术，容器有效的将由单个操作系统挂管理的资源划分到孤立的组中，以便更好的在组之间平衡有冲突的资源使用需求。可简单理解为一种沙盒 。每个容器内运行一个应用，不同的容器之间相互隔离，容器之间也可以建立通信机制。容器的创建和停止都十分快速，资源需求远远低于虚拟机。</p>
+<h2 id="toc_h2_10">docker与虚拟机对比</h2>
+<table>
+<thead>
+<tr><th>特性</th><th>docker容器</th><th>虚拟机</th></tr>
+</thead>
+<tbody>
+<tr><td>启动速度</td><td>秒级</td><td>分钟级</td></tr>
+<tr><td>硬盘使用</td><td>一般为MB</td><td>一般为GB</td></tr>
+<tr><td>性能</td><td>接近原生</td><td>弱于原生</td></tr>
+<tr><td>系统支持量</td><td>单台机支持上千个容器</td><td>单台机支持几十个容器</td></tr>
+<tr><td>隔离性</td><td>安全隔离</td><td>安全隔离</td></tr>
+</tbody>
+</table>
+<h2 id="toc_h2_11">Docker容器</h2>
+<p>类似linux系统环境，运行和隔离应用。容器从镜像启动的时候，docker会在镜像的最上一层创建一个可写层，镜像本身是只读的，保持不变。</p>
+<h2 id="toc_h2_12">Docker镜像</h2>
+<p>Docker镜像是一个Docker的可执行文件，其中包含了运行应用程序所需要的代码、依赖库、环境变量、配置文件等等。</p>
+<h2 id="toc_h2_13">Dockerfile</h2>
+<p>如果你想要从一个基础镜像开始建立一个自定义镜像，可以选择一步一步进行构建，也可以选择写一个配置文件，然后一条命令（docker build）完成构建，显然配置文件的方式可以更好地应对需求的变更，这个配置文件就是Dockerfile。  学习Dockerfile的最好方式就是阅读别人写的Dockerfile，遇到不会的指令就查一查Dockerfile的文档</p>
+<h2 id="toc_h2_14">注意</h2>
+<p>关机后，docker容器会停止运行，镜像会保留在硬盘上，就想关机了，软件就关闭了，但可以再次打开。</p>
+<h1 id="toc_h1_15">Jenkins</h1>
+<h2 id="toc_h2_16">Jenkins安装</h2>
+<p>建议直接在Linux上安装，首页的插件选择默认的安装。</p>
+<h2 id="toc_h2_17">Jenkins页面简介</h2>
+<p>jenkins系统的介绍</p>
+<h2 id="toc_h2_18">Jenkins插件安装</h2>
+<p>作为CI/CD的调度中心，Jenkins具有十八般武艺，目前已有1500多个插件，功能非常强大，比如说我们用到的，node插件，npm插件，Github插件，ssh上传文件插件，还有很多插件，比较多人用的，导出测试报告，sonar代码扫描等等。如果再jenkins里面没有搜到想用的插件，去官网搜，下载后在回来安装需要额外安装的有：</p>
+<ul>
+<li>
+<p>Github plugin：把代码从Github上拉下来</p>
+</li>
+<li>
+<p>Nodejs：运行前端项目，npm install，npm run build</p>
+</li>
+<li>
+<p>Pubish Over SSH：把构建好的文件 上传到nginx</p>
+</li>
+<li>
+<p>Email Extended Template : 发送邮件通知</p>
+</li>
+</ul>
+<h3 id="toc_h3_19">在github配置钩子</h3>
+<p><code>Jenkins需要一个对项目有读写权限的账户，所以要在github生成一个token给jenkins使用，这个token，在后面需要用到。</code></p>
+<blockquote>
+<p>进入github --&gt; setting --&gt; Personal Access Token --&gt; Generate new token</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/16111288/68523844-aebdad80-02f9-11ea-9294-828868dfdf69.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68523993-9e0e3700-02fb-11ea-9a0b-f07e19b9cc7f.png" alt="image"></p>
+<p>拿到这个token之后先保存好，等会到jenkins中需要配置凭证  我们有一个token可以访问到github了，但是还要对其中的项目设置钩子</p>
+<blockquote>
+<p>进入GitHub上指定的项目 --&gt; setting --&gt; WebHooks&amp;Services --&gt; add webhook --&gt; 输入刚刚部署jenkins的服务器的IP</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524015-04935500-02fc-11ea-9a12-9cfd5bfc7695.png" alt="image"></p>
+<h2 id="toc_h2_20">在Jenkins和github钩子</h2>
+<h3 id="toc_h3_21">安装github plugin</h3>
+<blockquote>
+<p>系统管理--&gt;插件管理--&gt;可选插件</p>
+</blockquote>
+<h3 id="toc_h3_22">配置github plugin</h3>
+<blockquote>
+<p>系统管理--&gt;github plugin</p>
+</blockquote>
+<p>API URL 输入 <code>https://api.github.com</code>，Credentials点击Add添加，Kind选择Secret Text,具体如下图所示。</p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524053-c64a6580-02fc-11ea-9f2d-db3a71b304d3.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524112-9485ce80-02fd-11ea-9047-d73780d20b48.png" alt="image"></p>
+<p>设置完成后，点击<code>TestConnection</code>,提示<code>Credentials verified for user UUserName, rate limit: xxx</code>,则表明有效。</p>
+<h2 id="toc_h2_23">构建配置</h2>
+<h2 id="toc_h2_24">构建方式</h2>
+<ul>
+<li>
+<p>手动构建：自己上Jenkins点击。</p>
+</li>
+<li>
+<p>自动构建：提交代码到git仓库之后，自动构建。</p>
+</li>
+<li>
+<p>定时构建：每隔一段时间构建一次，比如设置每天固定某个时间段构建。</p>
+</li>
+</ul>
+<h3 id="toc_h3_25">编写shell脚本</h3>
+<p>Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。</p>
+<p><code>node -v</code>  <code>npm -v</code>  <code>npm --registry https://registry.npm.taobao.org install</code>  <code>npm run test:unit</code>  <code>npm run build</code></p>
+<h3 id="toc_h3_26">参数化构建</h3>
+<p>选择参数化构建，配置参数，在工程的首页就会多一个构建入口，参数化构建使得构建变得更加灵活。</p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524161-5d63ed00-02fe-11ea-9874-1f4672d47891.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524197-a0be5b80-02fe-11ea-8765-a5505bc42420.png" alt="image"></p>
+<h3 id="toc_h3_27">上传构建包</h3>
+<p>使用nginx做为文件服务器  在机器上安装nginx  在nginx上配置为文件资源服务器</p>
+<p><code>location / { root /usr/share/nginx/html/static; autoindex on; autoindex_exact_size off; autoindex_localtime on; }</code>  <img src="https://user-images.githubusercontent.com/16111288/68524366-0b709680-0301-11ea-8892-a7e1e50f4cfa.png" alt="微信截图_20191109145520"></p>
+<h2 id="toc_h2_28">Jenkins系统配置SSH账号</h2>
+<p>安装Publish Over SSH插件用于SSH连接远程的服务器。</p>
+<p>登录 jenkins 管理系统首页，打开“系统管理”--“管理插件” 搜索 Publish Over SSH 然后勾选安装  配置远程服务器的连接</p>
+<p>打开“系统管理”--“系统设置” 找到 “Publish over SSH” 项 ，我这里远程服务器用的是ssh登录，通过ppk密钥进行连接，所以我的配置如图，如果是帐号密码登录的Passphrase填写密码Username填写用户名，path to key 为空就可以了。</p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524390-5094c880-0301-11ea-8559-ad729ff4f671.png" alt="微信截图_20191109145522"></p>
+<p>点击 Test Configuration 按钮测试连接是否成功</p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524400-6bffd380-0301-11ea-840d-96bc52a4257b.png" alt="image"></p>
+<h3 id="toc_h3_29">JOB添加构建后上传</h3>
+<blockquote>
+<p>“构建后操作步骤”---“Send build artifacts over SSH”</p>
+</blockquote>
+<p>Name：第三步创建的远程服务器名称</p>
+<p>Source files：本地需要传输过去的文件路径</p>
+<p>Remove prefix：过滤掉的目录名</p>
+<p>Remote directory：远程服务器的保存路径</p>
+<p>Exec command：传输完成后在远程服务器执行的sh命令</p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524450-03652680-0302-11ea-9bce-f7b42ddf589d.png" alt="微信截图_20191109150211"></p>
+<h2 id="toc_h2_30">构建后邮件通知</h2>
+<p>构建成功之后，可以进行邮件通知。  第一步，先到插件管理安装插件，Email Extension Plugin，我只搜到了Email EXtension Template，所以就安装了它</p>
+<p>如果是QQ邮箱，先去获取一个独立密码</p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524622-02cd8f80-0304-11ea-949b-ec148ea39d08.png" alt="image"></p>
+<blockquote>
+<p>系统管理--&gt;系统设置--&gt; Extended E-mail Notification</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524633-1a0c7d00-0304-11ea-8bdb-3c94222fcfb8.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524636-21338b00-0304-11ea-8ac7-0e8aa0f07aab.png" alt="image"></p>
+<h2 id="toc_h2_31">配置邮件报错</h2>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524653-593ace00-0304-11ea-9b60-d4f4227f020c.png" alt="image"></p>
+<p>邮件配置的过程出错，是因为管理的邮箱没有配置，到用户设置去设置</p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524659-6952ad80-0304-11ea-846b-fb1dc721ab56.png" alt="image"></p>
+<h3 id="toc_h3_32">构建后选择接收人</h3>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524667-7f606e00-0304-11ea-8425-84fbd475e9af.png" alt="image"></p>
+<h2 id="toc_h2_33">注意</h2>
+<p>对于新手来说，Jenkin最好直接安装在机器上，安装在docker上的话，Jenkins无法访问到宿主机器的环境变量，比如我在机器上安装Yarn，但docker上的Jenkins无法访问得到Yarn，只能老老实实的使用npm。</p>
+<h2 id="toc_h2_34">遇到的问题</h2>
+<ul>
+<li>
+<p>学习Jenkins，Docker这种工具，最好租一个服务器，不需要买域名，按月租就够了。</p>
+</li>
+<li>
+<p>境外服务器的比境内便宜，但境外的经常连不上去，每天总有几个小时连不上去。</p>
+</li>
+<li>
+<p>构建过程中npm install总是失败，服务器从1G内存扩容到2G 之后又成功了。</p>
+</li>
+<li>
+<p>Docker安装的jenkins无法访问到本机的环境变量，例如无法在构建脚本中写Yarn命令。</p>
+</li>
+</ul>
+<h1 id="toc_h1_35">阿里云简介</h1>
+<p>轻量应用型服务器，便宜，适合学习。  买好之后，在点击进入自己的机器</p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524467-30193e00-0302-11ea-8266-0114201443ba.png" alt="image"></p>
+<p>服务器默认只开发 80,443，22端口是可以通过外网进行访问的，如果自己的应用是8080,8088这个端口，需要在阿里云防火墙里面添加规则，并重启机器</p>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524471-3c050000-0302-11ea-8d61-54e8fc0000fb.png" alt="image"></p>
+<h2 id="toc_h2_36">通过xshell进入服务器</h2>
+<p><img src="https://user-images.githubusercontent.com/16111288/68524476-4c1cdf80-0302-11ea-825b-aa3ce6144c22.png" alt="image"></p>
+<h1 id="toc_h1_37">访问github慢</h1>
+<p>github的CDN被某墙屏了，由于网络代理商的原因，所以访问下载很慢。ping github.com 时，速度只有300多ms。  绕过dns解析，在本地直接绑定host，该方法也可加速其他因为CDN被屏蔽导致访问慢的网站。  windows系统的hosts文件的位置如下：C:\Windows\System32\drivers\etc\hosts  mac/linux系统的hosts文件的位置如下：/etc/hosts</p>
+<p>修改windows里的hosts文件，添加如下内容</p>
+<p><code># Github 151.101.44.249 github.global.ssl.fastly.net 192.30.253.113 github.com 103.245.222.133 assets-cdn.github.com 23.235.47.133 assets-cdn.github.com 203.208.39.104 assets-cdn.github.com 204.232.175.78 documentcloud.github.com 204.232.175.94 gist.github.com 107.21.116.220 help.github.com 207.97.227.252 nodeload.github.com 199.27.76.130 raw.github.com 107.22.3.110 status.github.com 204.232.175.78 training.github.com 207.97.227.243 www.github.com 185.31.16.184 github.global.ssl.fastly.net 185.31.18.133 avatars0.githubusercontent.com 185.31.19.133 avatars1.githubusercontent.com 192.30.253.120 codeload.github.com</code></p>
+                        <div>
+                            <hr>
+
+标题：11月内训—利用Jenkins对前端应用做自动化构建<br>
+作者：<a href="https://ymfed.github.io" target="_blank">hopechans</a><br>
+地址：<a href="https://ymfed.github.io/articles/2019/11/29/1575010147913.html" target="_blank">https://ymfed.github.io/articles/2019/11/29/1575010147913.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                        </div>
+                </div>
+
+                <footer class="tags">
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/%E5%B7%A5%E5%85%B7">
+                            工具</a>
+                        <a class="tag" rel="tag" href="https://ymfed.github.io/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96">
+                            工程化</a>
+
+                    <div class="rel fn-clear ft__center">
+                            <a href="https://ymfed.github.io/articles/2019/11/19/1574155856959.html" rel="prev"
+                               class="fn-left vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="11月内训-从零开始创建一个flutter应用程序">
+                                旧一篇
+                            </a>
+                            <a href="https://ymfed.github.io/articles/2019/12/02/1575273585246.html" rel="next"
+                               class="fn-right vditor-tooltipped vditor-tooltipped__n"
+                               aria-label="11月内训纪实-利用Jenkins对前端应用做自动化构建">
+                                新一篇
+                            </a>
+                    </div>
+                </footer>
+                    <div id="b3logsolocomments"></div>
+                    <div id="vcomment" data-name="hopechans" data-postId="1575010147913"></div>
+                <br>
+                <div id="externalRelevantArticles" class="list"></div>
+                <div id="relevantArticles" class="list"></div>
+                <div id="randomArticles" class="list"></div>
+            </article>
+        </main>
+<aside>
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#toc_h1_0">Jenkins是什么</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#toc_h1_1">概要</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#toc_h1_2">现状</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#toc_h1_3">CI/CD</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_4">持续集成Continuous Integration（CI）</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_5">持续交付Continuous Delivery（CD）</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_6">持续部署（Continuous Deployment)</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_7">总结</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#toc_h1_8">Docker</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_9">docker简介</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_10">docker与虚拟机对比</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_11">Docker容器</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_12">Docker镜像</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_13">Dockerfile</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_14">注意</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#toc_h1_15">Jenkins</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_16">Jenkins安装</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_17">Jenkins页面简介</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_18">Jenkins插件安装</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_19">在github配置钩子</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_20">在Jenkins和github钩子</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_21">安装github plugin</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_22">配置github plugin</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_23">构建配置</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_24">构建方式</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_25">编写shell脚本</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_26">参数化构建</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_27">上传构建包</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_28">Jenkins系统配置SSH账号</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_29">JOB添加构建后上传</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_30">构建后邮件通知</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_31">配置邮件报错</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_32">构建后选择接收人</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_33">注意</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_34">遇到的问题</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#toc_h1_35">阿里云简介</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_36">通过xshell进入服务器</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#toc_h1_37">访问github慢</a>
+        </li>
+</ul></aside>
+    </div>
+</div>
+<footer class="footer fn-clear">
+    &copy; 2020
+    <a href="https://ymfed.github.io">亚美大前端（FED）</a>
+    
+    <br/>
+    Powered by <a href="https://solo.b3log.org" target="_blank">YMFED</a>
+    <span class="ft-warn">&heartsuit;</span>
+    Theme
+    <sup>[<a href="javascript:;" target="_blank">ref</a>]</sup>
+    by <a href="javascript:;" target="_blank">亚美Web团队</a>
+</footer>
+<div class="icon-up" onclick="Util.goTop()"></div>
+<script>
+  var Label = {
+    servePath: "https://ymfed.github.io",
+    staticServePath: "https://ymfed.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "3.9.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+  }
+</script>
+<script src="https://ymfed.github.io/skins/9IPHP/js/common.min.js?1585645466987"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.6/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+<script type="text/javascript">
+    Util.addScript('https://ymfed.github.io/js/page.min.js?1585645466987', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论内容只能为 2 到 500 个字符！",
+        "oId": "1575010147913",
+        "blogHost": "https://ymfed.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    Skin.initToc()
+    page.share()
+    });
+</script>
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 65ms, 2020/06/24 15:11:34 -->
